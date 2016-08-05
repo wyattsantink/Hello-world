@@ -1,0 +1,1 @@
+angular.module('FindAParty',['ngMaterial', 'ngRoute']);
