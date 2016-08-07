@@ -8,7 +8,7 @@ angular.module('FindAParty')
     this.loadMapsApi();
     
     this.centerMap = function(){
-      map.setCenter({lat: 0, lng: 0});
+      updateMap();
     };
     
   });

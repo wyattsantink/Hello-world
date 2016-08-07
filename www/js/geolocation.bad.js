@@ -1,19 +1,15 @@
-//Map:
+//Map
 var map;
-//User's location Marker:
-var myLocationMarker;
 
 //User fine tuning response
 var geoOptions = {
   enableHighAccuracy : true, 
-  maximumAge : 0, 
+  maximumAge : 60000, 
   timeout : 60000
 };
 
-//Callback when map loaded:
-function hideSpinner(){
-  document.getElementById("load-spinner").style.display = 'none';
-}
+//Position Id:
+var wpid;
 
 //Success Calback
 function setCurrentLocation(position){
@@ -27,40 +23,37 @@ function setCurrentLocation(position){
     streetViewControl: false,
     zoomControl : false,
     mapTypeControl : false,
-    zoom: 18
+    zoom: 16
   });
   
   //Mark user's location:
-  myLocationMarker = new google.maps.Marker({
+  var myLocationMarker = new google.maps.Marker({
     position: myLatLng,
     map: map,
     title: "You're Here!"
   });
   
-  google.maps.event.addListenerOnce(map, 'tilesloaded', hideSpinner);
+  navigator.geolocation.clearWatch(wpid);
 }
 
 //Error callback
-function setNoLocation(err){
+function setNoLocation(){
   //handle error...  
-  console.error('ERROR(' + err.code + '): ' + err.message);
 }
 
 //Success callback for centering the map
 function setMapAtCenter(position){
-  google.maps.event.addListener(map, 'center_changed', hideSpinner);
   var myLatLng = {lat: position.coords.latitude, lng: position.coords.longitude};
-  myLocationMarker.setPosition(myLatLng);
   map.setCenter(myLatLng);
+  navigator.geolocation.clearWatch(wpid);
 }
 
 //Callback for loading Google Maps API
 function initMap(){
-  navigator.geolocation.getCurrentPosition(setCurrentLocation, setNoLocation, geoOptions);
+  wpid = navigator.geolocation.watchPosition(setCurrentLocation, setNoLocation, geoOptions);
 }
 
 //Update location
 function updateMap(){
-  document.getElementById("load-spinner").style.display = 'flex';
-  navigator.geolocation.getCurrentPosition(setMapAtCenter, setNoLocation, geoOptions);
+  wpid = navigator.geolocation.watchPosition(setMapAtCenter, setNoLocation, geoOptions);
 }
