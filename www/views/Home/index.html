@@ -1,6 +1,6 @@
 <div layout="row">
   <div flex>
-    <md-toolbar class="md-whiteframe-6dp">
+    <md-toolbar class="md-whiteframe-6dp" style="position: fixed;">
       <div class="md-toolbar-tools">
         <md-button class="md-icon-button" ng-click="toggleLeft()">
           <md-icon><i class="material-icons">menu</i></md-icon>
@@ -15,6 +15,10 @@
 </div>
 
 <div id="map"></div>
+
+<md-button class="md-fab md-accent" style="position: fixed; bottom: 60px; right: 10px;" ng-click="HomeCtrl.centerMap()">
+  <md-icon><i class="material-icons">my_location</i></md-icon>
+</md-button>
 
 <div layout='row'>
   <div flex>

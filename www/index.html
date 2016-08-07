@@ -49,32 +49,20 @@
     <script>
   		function onDeviceReady(){
   			if (cordova.platformId == 'android') {
-  			    StatusBar.backgroundColorByHexString("#000");
+  			    StatusBar.backgroundColorByHexString("#212121");
   			}
   		}
   		document.addEventListener("deviceready", onDeviceReady, false);
 	  </script>
 	
-	<script>
-	  function initMap() {
-        // Create a map object and specify the DOM element for display.
-        var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -22.8779247, lng: -43.2755496},
-          scrollwheel: false,
-          streetViewControl: false,
-          zoomControl : false,
-          mapTypeControl : false,
-          zoom: 16
-        });
-        //console.log(google);
-      };
-	</script>
+  	<!-- Geolocation -->
+  	<script src="js/geolocation.js"></script>
 	
-	<!-- Device Browser -->
-	<script>
-	  function openDeviceBrowser(externalLinkToOpen){
-	    window.open(externalLinkToOpen, '_system', 'location=no');
-	  };
-	</script>
+  	<!-- Device Browser -->
+  	<script>
+  	  function openDeviceBrowser(externalLinkToOpen){
+  	    window.open(externalLinkToOpen, '_system', 'location=no');
+  	  };
+  	</script>
   </body>
 </html>

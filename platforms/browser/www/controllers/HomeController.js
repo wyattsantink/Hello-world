@@ -6,4 +6,9 @@ angular.module('FindAParty')
       document.body.appendChild(script);
     };
     this.loadMapsApi();
+    
+    this.centerMap = function(){
+      map.setCenter({lat: 0, lng: 0});
+    };
+    
   });
