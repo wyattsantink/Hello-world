@@ -3,6 +3,9 @@ var map;
 //User's location Marker:
 var myLocationMarker;
 
+//Parties Markers:
+var partiesMarkers;
+
 //User fine tuning response
 var geoOptions = {
   enableHighAccuracy : true, 
@@ -27,7 +30,7 @@ function setCurrentLocation(position){
     streetViewControl: false,
     zoomControl : false,
     mapTypeControl : false,
-    zoom: 18
+    zoom: 16
   });
   
   //Mark user's location:
@@ -36,6 +39,25 @@ function setCurrentLocation(position){
     map: map,
     title: "You're Here!"
   });
+ 
+  //Mark parties 
+  var image = {
+    url: 'img/markers/public-party.png',
+    size: new google.maps.Size(32, 32),
+    origin: new google.maps.Point(0,0),
+    anchor: new google.maps.Point(16,16)
+  };
+  
+  for(var i=0; i < partiesMarkers.length; i++){
+    var marker = partiesMarkers[i];
+    
+    var mapMarker = new  google.maps.Marker({
+      position: {lat: marker.lat, lng: marker.long},
+      map : map,
+      icon : image,
+      zIndex : marker.zIndex
+    });
+  }
   
   google.maps.event.addListenerOnce(map, 'tilesloaded', hideSpinner);
 }
@@ -63,4 +85,9 @@ function initMap(){
 function updateMap(){
   document.getElementById("load-spinner").style.display = 'flex';
   navigator.geolocation.getCurrentPosition(setMapAtCenter, setNoLocation, geoOptions);
+}
+
+//Add markers:
+function setMarkers(markers){
+  partiesMarkers = markers;
 }
