@@ -14,25 +14,32 @@
   </div>
 </div>
 
-<div layout="row" id="load-spinner" layout-sm="column" layout-align="space-around" class="progress-circular">
-  <md-progress-circular md-mode="indeterminate"></md-progress-circular>
-</div>
-
-<div id="map"></div>
-
-<md-button class="md-fab md-accent" style="position: fixed; bottom: 60px; right: 10px;" ng-click="HomeCtrl.centerMap()">
-  <md-icon><i class="material-icons">my_location</i></md-icon>
-</md-button>
-
-<div layout='row'>
+<div layout="row">
+  <div flex="0">
+    <side-menu></side-menu>
+  </div>
   <div flex>
-    <md-card class="foot-banner">
-      <md-card-content>
-        <p>
-          <md-icon><i class="material-icons">local_bar</i></md-icon>
-          <span id="label">Find parties near you</span>
-        </p>
-      </md-card-content>
-    </md-card>
+    <div layout="row" id="load-spinner" layout-sm="column" layout-align="space-around" class="progress-circular">
+      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div>
+    
+    <div id="map"></div>
+    
+    <md-button class="md-fab md-accent" style="position: fixed; bottom: 60px; right: 10px;" ng-click="HomeCtrl.centerMap()">
+      <md-icon><i class="material-icons">my_location</i></md-icon>
+    </md-button>
+    
+    <div layout='row'>
+      <div flex>
+        <md-card class="foot-banner">
+          <md-card-content>
+            <p>
+              <md-icon><i class="material-icons">local_bar</i></md-icon>
+              <span id="label">Find parties near you</span>
+            </p>
+          </md-card-content>
+        </md-card>
+      </div>
+    </div>
   </div>
 </div>

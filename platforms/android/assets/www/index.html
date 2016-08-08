@@ -15,7 +15,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css">
   </head>
-  <body ng-controller="FindAPartyController as FindAPartyCtrl">
+  <body ng-controller="FindAPartyController as FindAPartyCtrl" md-swipe-left="closeLeft()">
     
     <!-- Views -->
     <div ng-view></div>
@@ -39,7 +39,8 @@
     <script src="js/theme.js"></script>
     
     <!-- Directives -->
-    <!--<script src="directives/menu.js"></script>-->
+    <script src="directives/side-menu.js"></script>
+    
     <!-- Models -->
     <!-- Controllers -->
     <script src="controllers/FindAPartyController.js"></script>
