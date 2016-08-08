@@ -52,10 +52,10 @@ function setCurrentLocation(position){
     var marker = partiesMarkers[i];
     
     var mapMarker = new  google.maps.Marker({
-      position: {lat: marker.lat, lng: marker.long},
+      position: marker.location,
       map : map,
       icon : image,
-      zIndex : marker.zIndex
+      zIndex : (i+1)
     });
   }
   

@@ -1,23 +1,8 @@
 angular.module('FindAParty')
-  .controller('HomeController', function(){
+  .controller('HomeController', function(Party){
     this.setMarkersCallback = function(){
       //Actually load from Party service:
-      var publicParties = [
-        {
-          name : 'Awesome Party',
-          type : 'public',
-          lat : -22.8433045,
-          long : -43.2628136,
-          zIndex : 1
-        },
-        {
-          name : 'Nice Party',
-          type : 'public',
-          lat : -22.84481,
-          long : -43.2620348,
-          zIndex : 2
-        }
-      ];
+      var publicParties = Party.findAll();
       setMarkers(publicParties);
     };
     
