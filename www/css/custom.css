@@ -15,6 +15,10 @@ strong {
   color: #616161;
 }
 
+md-card img {
+  height: auto !important;
+}
+
 .foot-banner {
   position: fixed; 
   bottom: 0px; 
@@ -69,4 +73,29 @@ md-sidenav md-icon {
 
 md-sidenav a {
   text-decoration: none;
+}
+
+.party-card {
+  margin-top: 60px;
+}
+
+.party-card .description {
+  color: #9e9e9e;
+}
+
+.party-card .ic {
+  margin: auto 0px;
+}
+
+.party-card .ic-label {
+  color: rgba(0,0,0,0.54);
+}
+
+.party-card .md-headline {
+  color: #616161;
+  font-weight: bold;
+}
+
+.party-card .ic-rating {
+  color: #FFC107;
 }

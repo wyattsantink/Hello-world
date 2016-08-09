@@ -19,11 +19,52 @@
     <side-menu></side-menu>
   </div>
   <div flex>
-    <md-tabs  class="md-primary md-whiteframe-6dp" md-dynamic-height md-border-bottom >
-      <md-tab label="Public" ng-click="viewParties = 'public'"></md-tab>
-      <md-tab label="Private" ng-click="viewParties = 'private'"></md-tab>
-    </md-tabs>
     
-    you're in: {{viewParties}}
+    <div layout="column">
+      <div flex style="position: fixed; width: 100%;">
+        <md-tabs  class="md-primary md-whiteframe-6dp" md-dynamic-height md-center-tabs md-border-bottom >
+          <md-tab label="Public" ng-click="partyType = 'public'"></md-tab>
+          <md-tab label="Private" ng-click="partyType = 'private'"></md-tab>
+        </md-tabs>
+      </div>
+      <div flex>
+        <md-card ng-repeat="party in parties" ng-show="party.type == partyType" class="party-card">
+          <img ng-src="img/05_abstract_fireworks.jpg" class="md-card-image">
+          <md-card-title>
+            <md-card-title-text>
+              <span class="md-headline">{{party.name}}</span>
+            </md-card-title-text>
+          </md-card-title>  
+          <md-card-content>
+            <p class="description">{{party.description}}</p>
+            
+            <div layout="row" ng-show="party.type == 'public'">
+              <div flex="10" class="ic">
+                <md-icon><i class="material-icons">location_on</i></md-icon>
+              </div>
+              <div flex class="ic-label">
+                <p><span>{{party.address}}</span></p>
+              </div>
+            </div>
+            
+            <div layout="row" ng-show="party.type == 'private'">
+              <div flex="10" class="ic">
+                <md-icon><i class="material-icons">location_off</i></md-icon>
+              </div>
+              <div flex class="ic-label">
+                <p><span>You need an invitation to see this address</span></p>
+              </div>
+            </div>
+            
+            <p>
+              <span ng-repeat="n in range(1,party.rating)">
+                <md-icon class="ic-rating"><i class="material-icons">star</i></md-icon>
+              </span>
+            </p>
+          </md-card-content>
+        </md-card>    
+      </div>
+    </div>
+    
   </div>
 </div>

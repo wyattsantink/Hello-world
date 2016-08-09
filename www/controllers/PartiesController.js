@@ -1,4 +1,6 @@
 angular.module('FindAParty')
   .controller('PartiesController', function($scope, Party){
-    $scope.viewParties = "public";
+    $scope.partyType = "public";
+    
+    $scope.parties = Party.findAll();
   });

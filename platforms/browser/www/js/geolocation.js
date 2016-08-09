@@ -51,12 +51,15 @@ function setCurrentLocation(position){
   for(var i=0; i < partiesMarkers.length; i++){
     var marker = partiesMarkers[i];
     
-    var mapMarker = new  google.maps.Marker({
-      position: marker.location,
-      map : map,
-      icon : image,
-      zIndex : (i+1)
-    });
+    //Temporary here, should be able to receive only public parties data
+    if(marker.type === 'public'){
+      var mapMarker = new  google.maps.Marker({
+        position: marker.location,
+        map : map,
+        icon : image,
+        zIndex : (i+1)
+      });  
+    }
   }
   
   google.maps.event.addListenerOnce(map, 'tilesloaded', hideSpinner);
