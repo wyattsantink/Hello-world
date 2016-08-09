@@ -1,0 +1,29 @@
+<div layout="row">
+  <div flex>
+    <md-toolbar class="" style="position: fixed;">
+      <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" ng-click="toggleLeft()">
+          <md-icon><i class="material-icons">menu</i></md-icon>
+        </md-button>
+        <h2>
+          <span>Find parties near you</span>
+        </h2>
+        <span flex></span>
+      </div>
+    </md-toolbar>
+  </div>
+</div>
+
+<div layout="row" style="margin-top: 50px;">
+  <div flex="0">
+    <side-menu></side-menu>
+  </div>
+  <div flex>
+    <md-tabs  class="md-primary md-whiteframe-6dp" md-dynamic-height md-border-bottom >
+      <md-tab label="Public" ng-click="viewParties = 'public'"></md-tab>
+      <md-tab label="Private" ng-click="viewParties = 'private'"></md-tab>
+    </md-tabs>
+    
+    you're in: {{viewParties}}
+  </div>
+</div>
