@@ -117,10 +117,61 @@ md-sidenav a {
   color: #616161;
 }
 
+.card-party-description .ic {
+  margin: auto 5px;
+}
+
+.card-party-description .hoster-label {
+  color: #aaa;
+  margin: auto 5px;
+}
+
+.card-party-description .hoster-label md-icon {
+  vertical-align: -webkit-baseline-middle;
+  width: 13px;
+}
+
+.card-party-description .hoster-label i {
+  font-size: small;
+}
+
+.card-party-description .hoster {
+  color: #777;
+  font-weight: bold;
+}
+
 .card-party-address .ic {
   margin: auto 0px;
 }
 
 .card-party-address .ic-label {
   color: rgba(0,0,0,0.54);
+}
+
+.card-party-reviews .ic {
+  margin: auto 5px;
+}
+
+.card-party-reviews .ic-label {
+  color: #777;
+  font-weight: bold;
+  margin: auto 5px;
+}
+
+.card-party-reviews .ic-label .ic-label-rating {
+  color: #aaa;
+  margin: auto 5px;
+}
+
+.card-party-reviews .ic-label .ic-label-rating i {
+  color: #aaa;
+}
+.card-party-reviews md-icon {
+  vertical-align: -webkit-baseline-middle;
+  width: 13px;
+}
+
+.card-party-reviews  i {
+  font-size: small;
+  color: #FFC107;
 }

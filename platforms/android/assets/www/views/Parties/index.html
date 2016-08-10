@@ -30,7 +30,7 @@
       <div flex>
         <a ng-repeat="party in parties" ng-href="{{'#/Parties/' + party.id}}" style="text-decoration: none;">
           <md-card  ng-show="party.type == partyType" class="party-card">
-            <img ng-src="img/05_abstract_fireworks.jpg" class="md-card-image">
+            <img ng-src="img/cocktails.gif" class="md-card-image">
             <md-card-title>
               <md-card-title-text>
                 <span class="md-headline">{{party.name}}</span>
@@ -38,6 +38,17 @@
             </md-card-title>  
             <md-card-content>
               <p class="description">{{party.description}}</p>
+              
+              <!--
+              <div layout="row">
+                <div flex="10" class="ic">
+                  <md-icon><i class="material-icons">account_circle</i></md-icon>
+                </div>
+                <div flex class="ic-label">
+                  <p><span>{{party.hoster}}</span></p>
+                </div>
+              </div>
+              -->
               
               <div layout="row" ng-show="party.type == 'public'">
                 <div flex="10" class="ic">
@@ -47,6 +58,17 @@
                   <p><span>{{party.address}}</span></p>
                 </div>
               </div>
+              
+              <!--
+              <div layout="row">
+                <div flex="10" class="ic">
+                  <md-icon><i class="material-icons">event</i></md-icon>
+                </div>
+                <div flex class="ic-label">
+                  <p><span>{{date.toLocaleDateString()}}, 21:00</span></p>
+                </div>
+              </div>
+              -->
               
               <div layout="row" ng-show="party.type == 'private'">
                 <div flex="10" class="ic">

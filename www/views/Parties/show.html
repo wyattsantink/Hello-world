@@ -2,7 +2,7 @@
 
 <div layout="row">
   <div flex>
-    <img src="img/05_abstract_fireworks.jpg" class="img-responsive">
+    <img src="img/cocktails.gif" class="img-responsive">
   </div>
 </div>
 
@@ -43,6 +43,19 @@
     <md-card class="card-party-description">
       <md-card-content>
         <p class="description">{{party.description}}</p>
+
+        <div layout="row">
+          <div flex="10" class="ic">
+            <img src="img/avatar.png" class="img-responsive img-circle">
+          </div>
+          <div flex class="ic-label">
+            <p>
+              <span class="hoster-label">Hoster: </span>
+              <span class="hoster">{{party.hoster}}</span>
+              <span class="hoster-label"><small>(5.0 <md-icon><i class="material-icons">star_border</i></md-icon>)</small></span></p>
+          </div>
+        </div>
+        
       </md-card-content>
     </md-card>
   </div>  
@@ -51,6 +64,7 @@
 <div layout="row">
   <div flex>
     <md-card class="card-party-address">
+      <img ng-src="{{getStaticMapUrl(party.location)}}" class="img-responsive" ng-show="party.type == 'public'">
       <md-card-content>
         <div layout="row" ng-show="party.type == 'public'">
           <div flex="10" class="ic">
@@ -69,10 +83,44 @@
             <p><span>You need an invitation to see this address</span></p>
           </div>
         </div>
+        
+        <div layout="row">
+          <div flex="10" class="ic">
+            <md-icon><i class="material-icons">event</i></md-icon>
+          </div>
+          <div flex class="ic-label">
+            <p><span>{{date.toLocaleDateString()}}, 21:00</span></p>
+          </div>
+        </div>
+        
       </md-card-content>
       <md-card-actions layout="row" layout-align="end center"  ng-show="party.type == 'private'">
         <md-button>Invite Me!</md-button>
       </md-card-actions>
     </md-card>
+    
+    <md-card class="card-party-reviews">
+      <md-card-content>
+        <div ng-repeat="review in party.reviews">
+        <div layout="row">
+          <div flex="10" class="ic">
+            <img src="img/avatar.png" class="img-responsive img-circle">
+          </div>
+          <div flex class="ic-label">
+            <p><span>{{review.userName}}<small class="ic-label-rating"> (5.0 <md-icon><i class="material-icons">star_border</i></md-icon>)</small></span></p>
+          </div>
+        </div>
+        <div layout="row">
+          <div flex>
+            <ng-repeat ng-repeat="n in range(1,review.rating)">
+              <md-icon><i class="material-icons">star</i></md-icon>
+            </ng-repeat>
+            {{review.comment}}
+          </div>
+        </div>
+        </div>
+      </md-card-content>
+    </md-card>
+    
   </div>
 </div>
