@@ -28,41 +28,44 @@
         </md-tabs>
       </div>
       <div flex>
-        <md-card ng-repeat="party in parties" ng-show="party.type == partyType" class="party-card">
-          <img ng-src="img/05_abstract_fireworks.jpg" class="md-card-image">
-          <md-card-title>
-            <md-card-title-text>
-              <span class="md-headline">{{party.name}}</span>
-            </md-card-title-text>
-          </md-card-title>  
-          <md-card-content>
-            <p class="description">{{party.description}}</p>
+        <a ng-repeat="party in parties" ng-href="{{'#/Parties/' + party.id}}">
+          <md-card  ng-show="party.type == partyType" class="party-card">
+            <img ng-src="img/05_abstract_fireworks.jpg" class="md-card-image">
+            <md-card-title>
+              <md-card-title-text>
+                <span class="md-headline">{{party.name}}</span>
+              </md-card-title-text>
+            </md-card-title>  
+            <md-card-content>
+              <p class="description">{{party.description}}</p>
+              
+              <div layout="row" ng-show="party.type == 'public'">
+                <div flex="10" class="ic">
+                  <md-icon><i class="material-icons">location_on</i></md-icon>
+                </div>
+                <div flex class="ic-label">
+                  <p><span>{{party.address}}</span></p>
+                </div>
+              </div>
+              
+              <div layout="row" ng-show="party.type == 'private'">
+                <div flex="10" class="ic">
+                  <md-icon><i class="material-icons">location_off</i></md-icon>
+                </div>
+                <div flex class="ic-label">
+                  <p><span>You need an invitation to see this address</span></p>
+                </div>
+              </div>
+              
+              <p>
+                <span ng-repeat="n in range(1,party.rating)">
+                  <md-icon class="ic-rating"><i class="material-icons">star</i></md-icon>
+                </span>
+              </p>
+            </md-card-content>
+          </md-card>  
+        </a>
             
-            <div layout="row" ng-show="party.type == 'public'">
-              <div flex="10" class="ic">
-                <md-icon><i class="material-icons">location_on</i></md-icon>
-              </div>
-              <div flex class="ic-label">
-                <p><span>{{party.address}}</span></p>
-              </div>
-            </div>
-            
-            <div layout="row" ng-show="party.type == 'private'">
-              <div flex="10" class="ic">
-                <md-icon><i class="material-icons">location_off</i></md-icon>
-              </div>
-              <div flex class="ic-label">
-                <p><span>You need an invitation to see this address</span></p>
-              </div>
-            </div>
-            
-            <p>
-              <span ng-repeat="n in range(1,party.rating)">
-                <md-icon class="ic-rating"><i class="material-icons">star</i></md-icon>
-              </span>
-            </p>
-          </md-card-content>
-        </md-card>    
       </div>
     </div>
     
