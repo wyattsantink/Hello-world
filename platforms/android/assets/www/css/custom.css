@@ -99,3 +99,28 @@ md-sidenav a {
 .party-card .ic-rating {
   color: #FFC107;
 }
+
+.toolbar-rating-label md-icon {
+  vertical-align: baseline;
+  width: 13px;
+}
+
+.toolbar-rating-label i {
+  font-size: small;
+}
+
+.card-party-description {
+  margin: 0px;
+}
+
+.card-party-description .description {
+  color: #616161;
+}
+
+.card-party-address .ic {
+  margin: auto 0px;
+}
+
+.card-party-address .ic-label {
+  color: rgba(0,0,0,0.54);
+}

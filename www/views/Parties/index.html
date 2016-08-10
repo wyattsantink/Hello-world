@@ -28,7 +28,7 @@
         </md-tabs>
       </div>
       <div flex>
-        <a ng-repeat="party in parties" ng-href="{{'#/Parties/' + party.id}}">
+        <a ng-repeat="party in parties" ng-href="{{'#/Parties/' + party.id}}" style="text-decoration: none;">
           <md-card  ng-show="party.type == partyType" class="party-card">
             <img ng-src="img/05_abstract_fireworks.jpg" class="md-card-image">
             <md-card-title>
