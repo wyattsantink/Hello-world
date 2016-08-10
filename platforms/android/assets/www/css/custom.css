@@ -1,5 +1,5 @@
-body {
-  background-color: #EFEFEF;  
+html.md-default-theme, html, body.md-default-theme, body {
+  background-color: #efefef;
 }
 
 .img-responsive {

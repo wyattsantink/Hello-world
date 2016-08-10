@@ -1,5 +1,7 @@
 angular.module('FindAParty')
   .controller('PartiesController', function($scope, $routeParams, Party){
+    window.scroll(0,1);
+    
     $scope.partyType = "public";
     
     $scope.parties = Party.findAll();
