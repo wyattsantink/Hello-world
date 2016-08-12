@@ -1,7 +1,6 @@
-<side-menu></side-menu>
-
 <div layout="row">
-  <md-toolbar>
+  <div flex>
+    <md-toolbar class="md-whiteframe-6dp" style="position: fixed;">
       <div class="md-toolbar-tools">
         <md-button class="md-icon-button" ng-click="toggleLeft()">
           <md-icon><i class="material-icons">menu</i></md-icon>
@@ -11,5 +10,94 @@
         </h2>
         <span flex></span>
       </div>
-    </md-toolbar>  
+    </md-toolbar>
+  </div>
+</div>
+
+<div layout="row" style="">
+  <div flex="0">
+    <side-menu></side-menu>
+  </div>
+  <div flex>
+    <!-- Party Card -->
+    <md-card class="party-card">
+      <img ng-src="img/cocktails.gif" class="md-card-image">
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">{{party.name}}</span>
+        </md-card-title-text>
+      </md-card-title>  
+      <md-card-content>
+        <p class="description">{{party.description}}</p>
+        
+        <div layout="row">
+          <div flex="10" class="ic">
+            <md-icon><i class="material-icons">location_on</i></md-icon>
+          </div>
+          <div flex class="ic-label">
+            <p><span>{{party.address}}</span></p>
+          </div>
+        </div>
+      </md-card-content>
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button>Edit</md-button>
+      </md-card-actions>
+    </md-card>
+      
+    <p class="label">Requests:</p>
+      
+    <md-card class="card-party-reviews">
+      <md-card-content>
+        <div ng-repeat="review in party.reviews">
+        <div layout="row">
+          <div flex="10" class="ic">
+            <img src="img/avatar.png" class="img-responsive img-circle">
+          </div>
+          <div flex class="ic-label">
+            <p><span>{{review.userName}}<small class="ic-label-rating"> (5.0 <md-icon><i class="material-icons">star_border</i></md-icon>)</small></span></p>
+          </div>
+          <div flex="10" class="ic-action">
+            <md-button class="md-icon-button" ng-click="">
+              <md-icon><i class="material-icons">check</i></md-icon>
+            </md-button>
+          </div>
+        </div>
+        <md-divider></md-divider>
+        </div>
+      </md-card-content>
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button>View All</md-button>
+      </md-card-actions>
+    </md-card>
+      
+    <p class="label">Reviews:</p>
+      
+    <md-card class="card-party-reviews">
+      <md-card-content>
+        <div ng-repeat="review in party.reviews">
+        <div layout="row">
+          <div flex="10" class="ic">
+            <img src="img/avatar.png" class="img-responsive img-circle">
+          </div>
+          <div flex class="ic-label">
+            <p><span>{{review.userName}}<small class="ic-label-rating"> (5.0 <md-icon><i class="material-icons">star_border</i></md-icon>)</small></span></p>
+          </div>
+        </div>
+        <div layout="row">
+          <div flex>
+            <ng-repeat ng-repeat="n in range(1,review.rating)">
+              <md-icon><i class="material-icons">star</i></md-icon>
+            </ng-repeat>
+            {{review.comment}}
+          </div>
+        </div>
+        <md-divider></md-divider>
+        </div>
+      </md-card-content>
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button>View All</md-button>
+      </md-card-actions>
+    </md-card>
+      
+  </div>
 </div>

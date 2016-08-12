@@ -76,6 +76,12 @@ md-sidenav a {
   text-decoration: none;
 }
 
+.label {
+  margin-left: 7px;
+  color: rgba(0,0,0,0.54);
+  font-weight: bold;
+}
+
 .party-card {
   margin-top: 60px;
 }
@@ -167,6 +173,7 @@ md-sidenav a {
 .card-party-reviews .ic-label .ic-label-rating i {
   color: #aaa;
 }
+
 .card-party-reviews md-icon {
   vertical-align: -webkit-baseline-middle;
   width: 13px;
@@ -175,4 +182,18 @@ md-sidenav a {
 .card-party-reviews  i {
   font-size: small;
   color: #FFC107;
+}
+
+.card-party-reviews .ic-action {
+  margin: auto 15px;
+}
+
+.card-party-reviews .ic-action md-icon {
+  vertical-align: -webkit-baseline-middle;
+  width: 24px;
+}
+
+.card-party-reviews .ic-action i {
+  font-size: larger;
+  color: #777;
 }
