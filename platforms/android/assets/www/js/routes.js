@@ -11,8 +11,18 @@ angular.module('FindAParty')
         controller : 'PartiesController',
         controllerAs : 'PartiesCtrl'
       })
-      .when('/Parties/:id', {
+      .when('/Parties/show/:id', {
         templateUrl : 'views/Parties/show.html',
+        controller : 'PartiesController',
+        controllerAs : 'PartiesCtrl'
+      })
+      .when('/Parties/host', {
+        templateUrl : 'views/Parties/host.html',
+        controller : 'PartiesController',
+        controllerAs : 'PartiesCtrl'
+      })
+      .when('/Parties/dashboard/:id', {
+        templateUrl : 'views/Parties/dashboard.html',
         controller : 'PartiesController',
         controllerAs : 'PartiesCtrl'
       })

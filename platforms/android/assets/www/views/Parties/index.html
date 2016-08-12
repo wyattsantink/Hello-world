@@ -9,6 +9,9 @@
           <span>Find parties near you</span>
         </h2>
         <span flex></span>
+        <md-button class="md-icon-button" ng-click="">
+          <md-icon><i class="material-icons">search</i></md-icon>
+        </md-button>
       </div>
     </md-toolbar>
   </div>
@@ -28,7 +31,7 @@
         </md-tabs>
       </div>
       <div flex>
-        <a ng-repeat="party in parties" ng-href="{{'#/Parties/' + party.id}}" style="text-decoration: none;">
+        <a ng-repeat="party in parties" ng-href="{{'#/Parties/show/' + party.id}}" style="text-decoration: none;">
           <md-card  ng-show="party.type == partyType" class="party-card">
             <img ng-src="img/cocktails.gif" class="md-card-image">
             <md-card-title>

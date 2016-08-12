@@ -1,0 +1,55 @@
+<div layout="row">
+  <div flex>
+    <md-toolbar class="md-whiteframe-6dp" style="position: fixed;">
+      <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" ng-click="toggleLeft()">
+          <md-icon><i class="material-icons">menu</i></md-icon>
+        </md-button>
+        <h2>
+          <span>Host a Party</span>
+        </h2>
+        <span flex></span>
+      </div>
+    </md-toolbar>
+  </div>
+</div>
+
+<div layout="row" style="margin-top: 50px;">
+  <div flex="0">
+    <side-menu></side-menu>
+  </div>
+  <div flex>
+    <a ng-repeat="party in parties" ng-href="{{'#/Parties/dashboard/' + party.id}}" style="text-decoration: none;">
+      <md-card class="party-card">
+        <img ng-src="img/cocktails.gif" class="md-card-image">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">{{party.name}}</span>
+          </md-card-title-text>
+        </md-card-title>  
+        <md-card-content>
+          <p class="description">{{party.description}}</p>
+          
+          <div layout="row">
+            <div flex="10" class="ic">
+              <md-icon><i class="material-icons">location_on</i></md-icon>
+            </div>
+            <div flex class="ic-label">
+              <p><span>{{party.address}}</span></p>
+            </div>
+          </div>
+          
+          <p>
+            <span ng-repeat="n in range(1,party.rating)">
+              <md-icon class="ic-rating"><i class="material-icons">star</i></md-icon>
+            </span>
+          </p>
+        </md-card-content>
+      </md-card>  
+    </a>
+    
+    <md-button class="md-fab md-accent" style="position: fixed; bottom: 10px; right: 10px;" ng-click="">
+      <md-icon><i class="material-icons">add</i></md-icon>
+    </md-button>
+  </div>
+</div>
