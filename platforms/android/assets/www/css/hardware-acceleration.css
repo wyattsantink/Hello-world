@@ -20,7 +20,7 @@ md-sidenav.md-closed-add, md-sidenav.md-closed-remove {
   -o-transform: translate3d(0, 0, 0) !important;
   -webkit-transform: translate3d(0, 0, 0) !important;
   transform: translate3d(0, 0, 0) !important;
-  transition: 0.2s ease-in all !important; }
+  transition: 0.8s ease-in all !important; }
 
 md-sidenav.md-closed-add.md-closed-add-active, md-sidenav.md-closed-remove.md-closed-remove-active {
   -moz-transform: translateX(0) !important;
@@ -40,7 +40,7 @@ md-sidenav.md-closed-add.md-closed-add-active, md-sidenav.md-closed-remove.md-cl
   -o-transform: translate3d(0, 0, 0) !important;
   -webkit-transform: translate3d(0, 0, 0) !important;
   transform: translate3d(0, 0, 0) !important;
-  transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
 }
 
 .md-sidenav-left, md-sidenav {
