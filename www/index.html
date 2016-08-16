@@ -18,6 +18,19 @@
   </head>
   <body ng-controller="FindAPartyController as FindAPartyCtrl" md-swipe-left="closeLeft()">
     
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyBAMh_WI06U6L94xZ9SMQI3LDSt9ShDMQI",
+        authDomain: "find-a-party.firebaseapp.com",
+        databaseURL: "https://find-a-party.firebaseio.com",
+        storageBucket: "find-a-party.appspot.com",
+      };
+      firebase.initializeApp(config);
+    </script>
+    
     <!-- Views -->
     <div ng-view></div>
     
