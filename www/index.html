@@ -31,6 +31,12 @@
       firebase.initializeApp(config);
     </script>
     
+    <!-- Firebase login -->
+    <script src="https://apis.google.com/js/platform.js"></script>
+    <script>
+      var provider = new firebase.auth.GoogleAuthProvider();  
+    </script>
+    
     <!-- Views -->
     <div ng-view></div>
     
@@ -56,10 +62,12 @@
     <script src="directives/side-menu.js"></script>
     
     <!-- Models -->
+    <script src="models/User.js"></script>
     <script src="models/Party.js"></script>
     <!-- Controllers -->
     <script src="controllers/FindAPartyController.js"></script>
     <script src="controllers/HomeController.js"></script>
+    <script src="controllers/LoginController.js"></script>
     <script src="controllers/PartiesController.js"></script>
     
     <!-- status bar color -->

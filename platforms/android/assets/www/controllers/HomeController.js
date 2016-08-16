@@ -1,5 +1,8 @@
 angular.module('FindAParty')
-  .controller('HomeController', function(Party){
+  .controller('HomeController', function($location, Party, User){
+    //check if the user is logged in:
+    User.verifyLogin();
+    
     this.centerMap = function(){
       centerMap();
     };

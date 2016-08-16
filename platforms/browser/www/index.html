@@ -15,9 +15,27 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css">
     
-    <link rel="stylesheet" href="css/hardware-acceleration.css">
   </head>
   <body ng-controller="FindAPartyController as FindAPartyCtrl" md-swipe-left="closeLeft()">
+    
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyBAMh_WI06U6L94xZ9SMQI3LDSt9ShDMQI",
+        authDomain: "find-a-party.firebaseapp.com",
+        databaseURL: "https://find-a-party.firebaseio.com",
+        storageBucket: "find-a-party.appspot.com",
+      };
+      firebase.initializeApp(config);
+    </script>
+    
+    <!-- Firebase login -->
+    <script src="https://apis.google.com/js/platform.js"></script>
+    <script>
+      var provider = new firebase.auth.GoogleAuthProvider();  
+    </script>
     
     <!-- Views -->
     <div ng-view></div>
@@ -44,10 +62,12 @@
     <script src="directives/side-menu.js"></script>
     
     <!-- Models -->
+    <script src="models/User.js"></script>
     <script src="models/Party.js"></script>
     <!-- Controllers -->
     <script src="controllers/FindAPartyController.js"></script>
     <script src="controllers/HomeController.js"></script>
+    <script src="controllers/LoginController.js"></script>
     <script src="controllers/PartiesController.js"></script>
     
     <!-- status bar color -->
