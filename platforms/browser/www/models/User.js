@@ -5,9 +5,11 @@ angular.module('FindAParty')
         firebase.auth().onAuthStateChanged(function(user) {
           if (user) {
             // User is signed in.
+            return true;
           } else {
             // No user is signed in.
             $location.path('/Login');
+            return false;
           }
         });
       }

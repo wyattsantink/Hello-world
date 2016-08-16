@@ -89,7 +89,6 @@
     <preference name="ShowSplashScreenSpinner" value="false" />
     <icon src="icon.png" />
     <access origin="*" />
-    <allow-navigation href="*://*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />

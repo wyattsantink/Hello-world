@@ -1,6 +1,7 @@
 <html lang="en" ng-app="FindAParty">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <title>Find-A-Party</title>
     
     <!-- Favicon -->
@@ -18,6 +19,9 @@
   </head>
   <body ng-controller="FindAPartyController as FindAPartyCtrl" md-swipe-left="closeLeft()">
     
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
     <script>
@@ -31,11 +35,9 @@
       firebase.initializeApp(config);
     </script>
     
-    <!-- Firebase login -->
+    <!-- Google Login -->
     <script src="https://apis.google.com/js/platform.js"></script>
-    <script>
-      var provider = new firebase.auth.GoogleAuthProvider();  
-    </script>
+    <script src="js/google-oAuth.js"></script>
     
     <!-- Views -->
     <div ng-view></div>
