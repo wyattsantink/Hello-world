@@ -1,8 +1,9 @@
 angular.module('FindAParty')
   .controller('HomeController', function($location, $scope, User){
     //check if the user is logged in:
-    $scope.loggedUser = User.verifyLogin();
-    
+    User.verifyLogin(function(){
+      $scope.currentUser = firebase.auth().currentUser;
+    });
     
     /*firebase.auth().signOut().then(function() {
       // Sign-out successful.

@@ -197,3 +197,24 @@ md-sidenav a {
   font-size: larger;
   color: #777;
 }
+
+.login-info {
+  margin-top: -155px;
+}
+
+.login-info .photo-url {
+  margin-left: 10px;
+}
+
+.login-info .display-name {
+  color: #fff;
+  font-weight: bold;
+  margin-bottom: 0px;
+}
+
+.login-info .email {
+  color: #fff;
+  font-weight: normal;
+  font-size: smaller;
+  margin-top: 4px;
+}

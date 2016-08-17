@@ -1,17 +1,17 @@
 angular.module('FindAParty')
   .factory('User', function UserFactory($location){
     return {
-      verifyLogin : function(){
+      verifyLogin : function(callback){
         firebase.auth().onAuthStateChanged(function(user) {
           if (user) {
             // User is signed in.
-            return user;
+            callback();
           } else {
             // No user is signed in.
             $location.path('/Login');
-            return false;
           }
         });
+        
       }
     };
   });

@@ -4,6 +4,22 @@
     <div flex>
       <img src="img/menu-cover.png" class="img-responsive">
       
+      <div  class="login-info">
+        
+        <div layout="row">
+          <div flex="25">
+            <img ng-src="{{currentUser.photoURL}}" class="img-responsive img-circle photo-url">
+          </div>
+        </div>
+        
+        <div layout="row">
+          <div flex>
+            <p class="display-name">{{currentUser.displayName}}</p>
+            <p class="email">{{currentUser.email}}</p>
+          </div>
+        </div>
+      </div>
+      
       <a ng-href="#/"><p><md-icon><i class="material-icons">home</i></md-icon> <span>Home</span></p></a>
       
       <a ng-href="#/Parties/host"><p><md-icon><i class="material-icons">local_bar</i></md-icon> <span>Host a Party</span></p></a>

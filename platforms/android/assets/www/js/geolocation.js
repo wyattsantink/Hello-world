@@ -28,7 +28,7 @@ function initMap(){
         streetViewControl: false,
         zoomControl : false,
         mapTypeControl : false,
-        zoom: 16
+        zoom: 12
       });
       //Mark the user's location:
       myLocationMarker = new google.maps.Marker({

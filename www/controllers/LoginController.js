@@ -1,5 +1,6 @@
 angular.module('FindAParty')
   .controller('LoginController', function($location,User){
+    //Define 'this.callGoogle':
     //Diferent logins modes when running on cordova and debbuging in browser:
     if(window.location.protocol === 'http:'){
       //running on browser
