@@ -5,7 +5,7 @@ angular.module('FindAParty')
         firebase.auth().onAuthStateChanged(function(user) {
           if (user) {
             // User is signed in.
-            return true;
+            return user;
           } else {
             // No user is signed in.
             $location.path('/Login');

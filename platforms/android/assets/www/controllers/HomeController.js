@@ -1,7 +1,15 @@
 angular.module('FindAParty')
-  .controller('HomeController', function($location, Party, User){
+  .controller('HomeController', function($location, $scope, User){
     //check if the user is logged in:
-    User.verifyLogin();
+    $scope.loggedUser = User.verifyLogin();
+    
+    
+    /*firebase.auth().signOut().then(function() {
+      // Sign-out successful.
+      alert('logged out...');
+    }, function(error) {
+      // An error happened.
+    });*/
     
     this.centerMap = function(){
       centerMap();

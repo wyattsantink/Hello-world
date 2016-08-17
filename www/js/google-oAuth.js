@@ -63,7 +63,7 @@
     var UserData=null;
 
     function callGoogle(){
-      alert('starting');
+      //alert('starting');
       googleapi.authorize({
         client_id: '99044897016-uep6je443errrns1udl8gapq8325tfpo.apps.googleusercontent.com',
         client_secret: '2hH4EccQKJURgMk0re5AWRx-',
@@ -71,11 +71,19 @@
         scope: 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email'
       })
       .done(function(data) {
-        alert('done...');
+        //alert('done...');
         accessToken=data.access_token;
         var credential = firebase.auth.GoogleAuthProvider.credential(null, data.access_token);
         
-        firebase.auth().signInWithCredential(credential).catch(function(error) {
+        firebase.auth().signInWithCredential(credential)
+          .then(function(){
+            window.location = '#/';
+          },
+          function(err){
+            
+          });
+        
+        /*firebase.auth().signInWithCredential(credential).catch(function(error) {
           // Handle Errors here.
           var errorCode = error.code;
           alert(errorCode);
@@ -87,7 +95,8 @@
           var credential = error.credential;
           alert(error.credential);
           // ...
-        });
+        });*/
+        
         // alert(accessToken);
         // $loginStatus.html('Access Token: ' + data.access_token);
         //console.log(data.access_token);
