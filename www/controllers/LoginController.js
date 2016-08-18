@@ -1,10 +1,13 @@
 angular.module('FindAParty')
   .controller('LoginController', function($location,User){
+    this.btnLabel = "Sign in with Google";
+    
     //Define 'this.callGoogle':
     //Diferent logins modes when running on cordova and debbuging in browser:
     if(window.location.protocol === 'http:'){
       //running on browser
       this.callGoogle = function(){
+        this.btnLabel = "Please wait...";
         var provider = new firebase.auth.GoogleAuthProvider();
         firebase.auth().signInWithPopup(provider).then(function(result) {
           // This gives you a Google Access Token. You can use it to access the Google API.
@@ -27,6 +30,7 @@ angular.module('FindAParty')
     }else{
       //running on cordova cli, should use google-oAuth.js
       this.callGoogle = function(){
+        this.btnLabel = "Please wait...";
         callGoogle();
       };
     }

@@ -241,3 +241,35 @@ md-sidenav a {
 .card-profile md-card-actions .md-button {
   color: #fff;
 }
+
+.card-login {
+  margin: 0px;
+  height: 100%;
+  background-color: #a3a3a3;
+  color: #E0E0E0;
+  text-align: center;
+}
+
+.card-login .title {
+  color: #FFF;
+}
+
+.card-login h3 {
+  font-weight: normal;
+}
+
+.card-login .md-button {
+  background-color: #FFF;
+}
+
+.card-login .md-button img {
+  width: 18px;
+  padding: 8px;
+}
+
+.card-login .md-button span {
+  padding: 8px;
+  vertical-align: text-bottom;
+  color: rgba(0,0,0,0.54);
+} 
+

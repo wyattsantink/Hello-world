@@ -13,6 +13,7 @@
 
             //Open the OAuth consent page in the InAppBrowser
             var authWindow = window.open(authUrl, '_blank', 'location=no,toolbar=no');
+            //var authWindow = window.open(authUrl, '_system', 'location=no');
 
             //The recommendation is to use the redirect_uri "urn:ietf:wg:oauth:2.0:oob"
             //which sets the authorization code in the browser's title. However, we can't
