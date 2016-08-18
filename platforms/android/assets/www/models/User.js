@@ -10,8 +10,14 @@ angular.module('FindAParty')
             // No user is signed in.
             $location.path('/Login');
           }
+        }); 
+      },
+      logout : function(){
+        firebase.auth().signOut().then(function() {
+          // Sign-out successful.
+        }, function(error) {
+          // An error happened.
         });
-        
       }
     };
   });

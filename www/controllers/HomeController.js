@@ -5,13 +5,6 @@ angular.module('FindAParty')
       $scope.currentUser = firebase.auth().currentUser;
     });
     
-    /*firebase.auth().signOut().then(function() {
-      // Sign-out successful.
-      alert('logged out...');
-    }, function(error) {
-      // An error happened.
-    });*/
-    
     this.centerMap = function(){
       centerMap();
     };

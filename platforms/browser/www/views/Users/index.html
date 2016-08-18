@@ -1,0 +1,44 @@
+<div layout="row">
+  <div flex>
+    <md-toolbar class="" style="position: fixed;">
+      <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" ng-click="toggleLeft()">
+          <md-icon><i class="material-icons">menu</i></md-icon>
+        </md-button>
+        <h2>
+          <span>Find-A-Party</span>
+        </h2>
+        <span flex></span>
+      </div>
+    </md-toolbar>
+  </div>
+</div>
+
+<div layout="row" style="margin-top: 50px;">
+  <div flex="0">
+    <side-menu></side-menu>
+  </div>
+  <div flex>
+    <md-card class="card-profile">
+      <md-card-content>
+        <div layout="row">
+          <div flex></div>
+          <div flex="25">
+            <img ng-src="{{currentUser.photoURL}}" class="img-responsive img-circle">
+          </div>
+          <div flex></div>
+        </div>
+        
+        <div layout="row">
+          <div flex>
+            <p class="display-name">{{currentUser.displayName}}</p>
+            <p class="email">{{currentUser.email}}</p>
+          </div>
+        </div>
+      </md-card-content>
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button ng-click="UsersCtrl.logout()">Logout</md-button>
+      </md-card-actions>
+    </md-card>
+  </div>
+</div>
