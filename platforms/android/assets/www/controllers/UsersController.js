@@ -7,7 +7,6 @@ angular.module('FindAParty')
     
     this.logout = function(){
       User.logout();
-      alert("You logged out");
-      $location.path('/');
+      $location.path('/Login/You logged out...');
     };
   });

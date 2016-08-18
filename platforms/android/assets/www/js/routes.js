@@ -11,6 +11,11 @@ angular.module('FindAParty')
         controller : 'LoginController',
         controllerAs : 'LoginCtrl'
       })
+      .when('/Login/:msg', {
+        templateUrl : 'views/Login/index.html',
+        controller : 'LoginController',
+        controllerAs : 'LoginCtrl'
+      })
       .when('/Users', {
         templateUrl : 'views/Users/index.html',
         controller : 'UsersController',

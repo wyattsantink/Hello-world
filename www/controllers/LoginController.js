@@ -1,5 +1,5 @@
 angular.module('FindAParty')
-  .controller('LoginController', function($location,User){
+  .controller('LoginController', function($location, $routeParams, $mdToast, User){
     this.btnLabel = "Sign in with Google";
     
     //Define 'this.callGoogle':
@@ -33,5 +33,9 @@ angular.module('FindAParty')
         this.btnLabel = "Please wait...";
         callGoogle();
       };
+    }
+    
+    if($routeParams.msg !== undefined){
+      $mdToast.show($mdToast.simple().textContent($routeParams.msg).hideDelay(3000));
     }
   });
