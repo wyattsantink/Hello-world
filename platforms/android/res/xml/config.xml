@@ -1,22 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="io.iltons.android.apps.findaparty" version="1.0.0" versionCode="1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <preference name="loglevel" value="DEBUG" />
-    <feature name="Battery">
-        <param name="android-package" value="org.apache.cordova.batterystatus.BatteryListener" />
-    </feature>
-    <feature name="Camera">
-        <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
-    </feature>
-    <feature name="File">
-        <param name="android-package" value="org.apache.cordova.file.FileUtils" />
-        <param name="onload" value="true" />
-    </feature>
-    <feature name="Capture">
-        <param name="android-package" value="org.apache.cordova.mediacapture.Capture" />
-    </feature>
-    <feature name="Contacts">
-        <param name="android-package" value="org.apache.cordova.contacts.ContactManager" />
-    </feature>
     <feature name="Device">
         <param name="android-package" value="org.apache.cordova.device.Device" />
     </feature>
@@ -29,9 +13,6 @@
     <feature name="Notification">
         <param name="android-package" value="org.apache.cordova.dialogs.Notification" />
     </feature>
-    <feature name="FileTransfer">
-        <param name="android-package" value="org.apache.cordova.filetransfer.FileTransfer" />
-    </feature>
     <feature name="Geolocation">
         <param name="android-package" value="org.apache.cordova.geolocation.Geolocation" />
     </feature>
@@ -40,9 +21,6 @@
     </feature>
     <feature name="InAppBrowser">
         <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
-    </feature>
-    <feature name="Media">
-        <param name="android-package" value="org.apache.cordova.media.AudioHandler" />
     </feature>
     <feature name="NetworkStatus">
         <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
@@ -85,6 +63,7 @@
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="19" />
+    <preference name="android-targetSdkVersion" value="22" />
     <preference name="SplashScreenDelay" value="8000" />
     <preference name="ShowSplashScreenSpinner" value="false" />
     <icon src="icon.png" />

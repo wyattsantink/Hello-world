@@ -7,19 +7,7 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-battery-status": {
-            "PACKAGE_NAME": "io.iltons.android.apps.findaparty"
-        },
-        "cordova-plugin-camera": {
-            "PACKAGE_NAME": "io.iltons.android.apps.findaparty"
-        },
-        "cordova-plugin-media-capture": {
-            "PACKAGE_NAME": "io.iltons.android.apps.findaparty"
-        },
         "cordova-plugin-console": {
-            "PACKAGE_NAME": "io.iltons.android.apps.findaparty"
-        },
-        "cordova-plugin-contacts": {
             "PACKAGE_NAME": "io.iltons.android.apps.findaparty"
         },
         "cordova-plugin-device": {
@@ -34,9 +22,6 @@
         "cordova-plugin-dialogs": {
             "PACKAGE_NAME": "io.iltons.android.apps.findaparty"
         },
-        "cordova-plugin-file-transfer": {
-            "PACKAGE_NAME": "io.iltons.android.apps.findaparty"
-        },
         "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "io.iltons.android.apps.findaparty"
         },
@@ -44,9 +29,6 @@
             "PACKAGE_NAME": "io.iltons.android.apps.findaparty"
         },
         "cordova-plugin-inappbrowser": {
-            "PACKAGE_NAME": "io.iltons.android.apps.findaparty"
-        },
-        "cordova-plugin-media": {
             "PACKAGE_NAME": "io.iltons.android.apps.findaparty"
         },
         "cordova-plugin-network-information": {
@@ -65,12 +47,5 @@
             "PACKAGE_NAME": "io.iltons.android.apps.findaparty"
         }
     },
-    "dependent_plugins": {
-        "cordova-plugin-compat": {
-            "PACKAGE_NAME": "io.iltons.android.apps.findaparty"
-        },
-        "cordova-plugin-file": {
-            "PACKAGE_NAME": "io.iltons.android.apps.findaparty"
-        }
-    }
+    "dependent_plugins": {}
 }
