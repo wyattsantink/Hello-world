@@ -1,9 +1,7 @@
 angular.module('FindAParty')
   .controller('HomeController', function($location, $scope, User){
     //check if the user is logged in:
-    User.verifyLogin(function(){
-      $scope.currentUser = firebase.auth().currentUser;
-    });
+    User.verifyLogin($scope.storeUser);
     
     this.centerMap = function(){
       centerMap();

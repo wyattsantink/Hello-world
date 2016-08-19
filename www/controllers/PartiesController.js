@@ -3,9 +3,7 @@ angular.module('FindAParty')
     window.scroll(0,1);
     
     //check if the user is logged in:
-    User.verifyLogin(function(){
-      $scope.currentUser = firebase.auth().currentUser;
-    });
+    User.verifyLogin($scope.storeUser);
     
     $scope.partyType = "public";
     
