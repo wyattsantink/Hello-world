@@ -69,7 +69,7 @@
       googleapi.authorize({
         client_id: '99044897016-uep6je443errrns1udl8gapq8325tfpo.apps.googleusercontent.com',
         client_secret: '2hH4EccQKJURgMk0re5AWRx-',
-        redirect_uri: 'http://localhost',
+        redirect_uri: 'http://iltons.io',
         scope: 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email'
       })
       .done(function(data) {
