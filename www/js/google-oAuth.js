@@ -7,6 +7,7 @@
                 client_id: options.client_id,
                 redirect_uri: options.redirect_uri,
                 response_type: 'code',
+                prompt: 'select_account',
                 scope: options.scope
 
             });
