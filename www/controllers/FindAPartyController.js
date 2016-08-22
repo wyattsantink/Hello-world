@@ -1,14 +1,29 @@
 angular.module('FindAParty')
   .controller('FindAPartyController', function($scope, $mdSidenav){
+    
+    /**-----------------------------------------------------*
+     * ENVIRONMENT SET-UP:                                  *
+     * change only for production-ready releases:           *
+     * values = ['dev','production']                        *
+     *------------------------------------------------------*/
+        $scope.environment = 'dev';
+        console.log("\n");
+        console.log("%c  You're in: '" + $scope.environment.toUpperCase() + "' environment  ", "padding: 10px; background-color: #E8F5E9; border: 1px solid #C8E6C9; color: #388E3C");
+        console.log("\n");
+    //-----------------------------------------------------//
+    
     //Define callback to store user information:
     $scope.storeUser = function(){
        //$scope.currentUser = firebase.auth().currentUser;
+       //console.log(firebase.auth().currentUser);
        $scope.currentUser = {
+         uid : '',
          photoURL : '',
          displayName : '',
          email : ''
        };
        
+       $scope.currentUser.uid = firebase.auth().currentUser.uid;
        $scope.currentUser.photoURL = firebase.auth().currentUser.photoURL;
        $scope.currentUser.displayName = firebase.auth().currentUser.displayName;
        $scope.currentUser.email = firebase.auth().currentUser.email;
