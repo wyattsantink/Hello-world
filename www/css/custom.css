@@ -37,9 +37,11 @@ md-card img {
 
 .foot-banner #label {
   color: rgba(0,0,0,0.54);
+  color: #212121;
   vertical-align: middle;
   padding-left: 10px;
   font-weight: bold;
+  font-weight: normal;
 }
 
 #map { 
@@ -55,6 +57,10 @@ md-card img {
 
 .md-button.md-accent.md-fab:not([disabled]):hover {
   background-color: rgb(245,245,245);
+}
+
+.md-button.md-primary.md-fab:not([disabled]):hover {
+  background-color: #212121;
 }
 
 md-sidenav p {

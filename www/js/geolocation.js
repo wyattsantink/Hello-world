@@ -21,6 +21,21 @@ function initMap(){
         lat : pos.coords.latitude,
         lng : pos.coords.longitude
       };
+      
+      // Create an array of styles:
+      var styles = [
+        {
+          featureType: "all",
+          stylers: [
+            { "saturation": -100 }
+          ]
+        }
+      ];
+      
+      // Create a new StyledMapType object, passing it the array of styles,
+      // as well as the name to be displayed on the map type control.
+      var styledMap = new google.maps.StyledMapType(styles,{name: "Styled Map"});
+      
       //Create a new Map:
       map = new google.maps.Map(document.getElementById('map'), {
         center: myLatLng,
@@ -28,12 +43,24 @@ function initMap(){
         streetViewControl: false,
         zoomControl : false,
         mapTypeControl : false,
-        zoom: 12
+        zoom: 12,
+        mapTypeControlOptions: {
+          mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
+        }
       });
+      
+      //Associate the styled map with the MapTypeId and set it to display.
+      map.mapTypes.set('map_style', styledMap);
+      map.setMapTypeId('map_style');
+  
+      //User's location marker image:
+      var image = 'img/markers/user-location.png';
+      
       //Mark the user's location:
       myLocationMarker = new google.maps.Marker({
         position: myLatLng,
         map: map,
+        icon : image,
         title: "You're Here!"
       });
       //Stop spinning wheel after creating map:
