@@ -1,5 +1,5 @@
 angular.module('FindAParty')
-  .controller('LoginController', function($location, $routeParams, $mdToast, User){
+  .controller('LoginController', function($location, $scope, $routeParams, $mdToast, User){
     this.btnLabel = "Sign in with Google";
     
     //Define 'this.callGoogle':

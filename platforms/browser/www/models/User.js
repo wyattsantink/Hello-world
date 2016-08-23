@@ -4,7 +4,8 @@ angular.module('FindAParty')
       verifyLogin : function(callback){
         firebase.auth().onAuthStateChanged(function(user) {
           if (user) {
-            // User is signed in.
+            // User is signed in!
+            //Exec callback that stores user at $scope:
             callback();
           } else {
             // No user is signed in.
