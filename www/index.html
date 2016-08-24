@@ -16,8 +16,16 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css">
     
+    <!-- App config -->
+    <script src="js/config.js"></script>
   </head>
   <body ng-controller="FindAPartyController as FindAPartyCtrl" md-swipe-left="closeLeft()">
+    
+    <!-- Views -->
+    <div ng-view></div>
+    
+    <!-- Cordova -->
+    <script src="cordova.js"></script>
     
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -27,24 +35,20 @@
     <script>
       // Initialize Firebase
       var config = {
-        apiKey: "AIzaSyBAMh_WI06U6L94xZ9SMQI3LDSt9ShDMQI",
-        authDomain: "find-a-party.firebaseapp.com",
-        databaseURL: "https://find-a-party.firebaseio.com",
-        storageBucket: "find-a-party.appspot.com",
+        apiKey: findAParty.firebase.apiKey,
+        authDomain: findAParty.firebase.authDomain,
+        databaseURL: findAParty.firebase.databaseURL,
+        storageBucket: findAParty.firebase.storageBucket,
       };
-      firebase.initializeApp(config);
-      
+      firebase.initializeApp(config);  
     </script>
     
     <!-- Google Login -->
     <script src="https://apis.google.com/js/platform.js"></script>
     <script src="js/google-oAuth.js"></script>
     
-    <!-- Views -->
-    <div ng-view></div>
-    
-    <!-- Cordova -->
-    <script src="cordova.js"></script>
+    <!-- Geolocation -->
+  	<script src="js/geolocation.js"></script>
     
     <!-- AngularJs -->
     <script src="vendor/angular-1.5.8/angular.min.js"></script>
@@ -83,10 +87,6 @@
   		}
   		document.addEventListener("deviceready", onDeviceReady, false);
 	  </script>
-	
-  	<!-- Geolocation -->
-  	<script src="js/geolocation.js"></script>
-	  
 	  
   	<!-- Device Browser -->
   	<script>

@@ -1,16 +1,9 @@
 angular.module('FindAParty')
   .controller('FindAPartyController', function($scope, $mdSidenav){
-    
-    /**-----------------------------------------------------*
-     * ENVIRONMENT SET-UP:                                  *
-     * change only for production-ready releases:           *
-     * values = ['dev','production']                        *
-     *------------------------------------------------------*/
-        $scope.environment = 'dev';
-        console.log("\n");
-        console.log("%c  You're in: '" + $scope.environment.toUpperCase() + "' environment  ", "padding: 10px; background-color: #E8F5E9; border: 1px solid #C8E6C9; color: #388E3C");
-        console.log("\n");
-    //-----------------------------------------------------//
+  
+    console.log("\n");
+    console.log("%c  You're in: '" + findAParty.channel.toUpperCase() + "' channel  ", "padding: 10px; background-color: #E8F5E9; border: 1px solid #C8E6C9; color: #388E3C");
+    console.log("\n");
     
     //Flag to control First Access:
     $scope.firstAccess = true;
@@ -35,11 +28,11 @@ angular.module('FindAParty')
        if($scope.firstAccess){
          //change the flag:
          $scope.firstAccess = false;
-         firebase.database().ref('/'+$scope.environment+'/users/' + $scope.currentUser.uid).once('value').then(function(snapshot) {
+         firebase.database().ref(findAParty.firebase.environment+'/users/' + $scope.currentUser.uid).once('value').then(function(snapshot) {
           //Check if user exists in database:
           if(snapshot.val() === null){
             //If it doesn't exist, make an insert:
-            firebase.database().ref('/'+$scope.environment+'/users/' + $scope.currentUser.uid).set({
+            firebase.database().ref(findAParty.firebase.environment+'/users/' + $scope.currentUser.uid).set({
               photoUrl : $scope.currentUser.photoURL,
               displayName : $scope.currentUser.displayName,
               email : $scope.currentUser.email,
@@ -53,7 +46,7 @@ angular.module('FindAParty')
             user.displayName = $scope.currentUser.displayName;
             user.email = $scope.currentUser.email;
             user.lastLogin = Date.now();
-            firebase.database().ref('/'+$scope.environment+'/users/' + $scope.currentUser.uid).set(user);
+            firebase.database().ref(findAParty.firebase.environment+'/users/' + $scope.currentUser.uid).set(user);
           }
         });
        }//first access
