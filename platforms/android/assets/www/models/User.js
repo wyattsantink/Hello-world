@@ -9,11 +9,11 @@ angular.module('FindAParty')
             callback();
           } else {
             // No user is signed in.
-            $location.path('/Login');
+            $location.path('/Users/login');
           }
         }); 
       },
-      logout : function(){
+      signout : function(){
         firebase.auth().signOut().then(function() {
           // Sign-out successful.
         }, function(error) {

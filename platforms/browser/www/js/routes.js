@@ -6,15 +6,15 @@ angular.module('FindAParty')
         controller : 'HomeController',
         controllerAs : 'HomeCtrl'
       })
-      .when('/Login', {
-        templateUrl : 'views/Login/index.html',
-        controller : 'LoginController',
-        controllerAs : 'LoginCtrl'
+      .when('/Users/login', {
+        templateUrl : 'views/Users/login.html',
+        controller : 'UsersController',
+        controllerAs : 'UsersCtrl'
       })
-      .when('/Login/:msg', {
-        templateUrl : 'views/Login/index.html',
-        controller : 'LoginController',
-        controllerAs : 'LoginCtrl'
+      .when('/Users/login/:msg', {
+        templateUrl : 'views/Users/login.html',
+        controller : 'UsersController',
+        controllerAs : 'UsersCtrl'
       })
       .when('/Users', {
         templateUrl : 'views/Users/index.html',

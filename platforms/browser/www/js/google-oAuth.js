@@ -67,9 +67,9 @@
     function callGoogle(){
       //alert('starting');
       googleapi.authorize({
-        client_id: '99044897016-uep6je443errrns1udl8gapq8325tfpo.apps.googleusercontent.com',
-        client_secret: '2hH4EccQKJURgMk0re5AWRx-',
-        redirect_uri: 'http://iltons.io',
+        client_id: findAParty.googleOAuth.clientId,
+        client_secret: findAParty.googleOAuth.clientSecret,
+        redirect_uri: findAParty.googleOAuth.redirectUri,
         scope: 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email'
       })
       .done(function(data) {

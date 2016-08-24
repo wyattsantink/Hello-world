@@ -12,7 +12,7 @@ angular.module('FindAParty')
         //Load API for the 1st time:
         var script = document.createElement('script');
         script.id = 'g-maps';
-        script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCqWrMqngMfbrwJ18PZffg10wcyQj6w4S4&callback=initMap';
+        script.src = 'https://maps.googleapis.com/maps/api/js?key='+findAParty.googleMaps.javascriptApiKey+'&callback=initMap';
         document.body.appendChild(script);
       }else{
         initMap();
