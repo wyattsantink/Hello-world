@@ -5,8 +5,35 @@ angular.module('FindAParty')
         firebase.auth().onAuthStateChanged(function(user) {
           if (user) {
             // User is signed in!
-            //Exec callback that stores user at $scope:
-            callback();
+            //Log User:
+            //Log user at database only in 1st access after signing in:
+            if(findAParty.firstAccessFlag){
+              //change the flag:
+              findAParty.firstAccessFlag = false;
+              firebase.database().ref(findAParty.firebase.environment+'/users/' + user.uid).once('value').then(function(snapshot) {
+                //Check if user exists in database:
+                if(snapshot.val() === null){
+                  //If it doesn't exist, make an insert:
+                  firebase.database().ref(findAParty.firebase.environment+'/users/' + user.uid).set({
+                    photoUrl : user.photoURL,
+                    displayName : user.displayName,
+                    email : user.email,
+                    bio : '',
+                    lastLogin : Date.now()
+                  });
+                }else{
+                  //The user already exists:
+                  var currentUser = snapshot.val();
+                  currentUser.photoUrl = user.photoURL;
+                  currentUser.displayName = user.displayName;
+                  currentUser.email = user.email;
+                  currentUser.lastLogin = Date.now();
+                  firebase.database().ref(findAParty.firebase.environment+'/users/' + user.uid).set(currentUser);
+                }
+              });
+              //Exec callback that stores user at $scope:
+              callback();
+            }//first access
           } else {
             // No user is signed in.
             $location.path('/Users/login');
@@ -16,6 +43,7 @@ angular.module('FindAParty')
       signout : function(){
         firebase.auth().signOut().then(function() {
           // Sign-out successful.
+          findAParty.firstAccessFlag = true;
         }, function(error) {
           // An error happened.
         });

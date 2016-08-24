@@ -9,6 +9,8 @@ var findAParty = {
   version : '0.0.0',
   channel : 'dev', // channels : ['dev', 'alpha', 'beta', 'master']
   
+  firstAccessFlag : true,
+  
   googleOAuth : {
     clientId : '99044897016-uep6je443errrns1udl8gapq8325tfpo.apps.googleusercontent.com',
     clientSecret : '2hH4EccQKJURgMk0re5AWRx-',
