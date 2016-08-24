@@ -5,21 +5,24 @@ angular.module('FindAParty')
     console.log("%c  You're in: '" + findAParty.channel.toUpperCase() + "' channel  ", "padding: 10px; background-color: #E8F5E9; border: 1px solid #C8E6C9; color: #388E3C");
     console.log("\n");
     
+    //Define currentUser:
+    $scope.currentUser = {
+      uid : '',
+      photoURL : '',
+      displayName : '',
+      email : '',
+      lastLogin : ''
+    };
+    
     //Define callback to store user information:
     $scope.storeUser = function(){
-      //Define currentUser:
-      $scope.currentUser = {
-        uid : '',
-        photoURL : '',
-        displayName : '',
-        email : ''
-      };
-       
+      
       //Store currentUser:
       $scope.currentUser.uid = firebase.auth().currentUser.uid;
       $scope.currentUser.photoURL = firebase.auth().currentUser.photoURL;
       $scope.currentUser.displayName = firebase.auth().currentUser.displayName;
       $scope.currentUser.email = firebase.auth().currentUser.email;
+      $scope.currentUser.lastLogin = Date.now();
     };
     
     //Sidenav open function:

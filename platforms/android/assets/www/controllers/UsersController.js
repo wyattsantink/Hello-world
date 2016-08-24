@@ -1,5 +1,10 @@
 angular.module('FindAParty')
   .controller('UsersController', function($scope, $location, $routeParams, $mdToast, User){
+    //check if the user is logged in:
+    if($location.path().substring(0,12) !== '/Users/login'){
+      User.verifyLogin($scope.storeUser);  
+    }
+    
     //Google Signin btn label
     this.btnGoogleSigninLabel = "Sign in with Google";
     
@@ -45,8 +50,10 @@ angular.module('FindAParty')
       $mdToast.show($mdToast.simple().textContent($routeParams.msg).hideDelay(3000));
     }
     
-    //check if the user is logged in:
-    if($location.path().substring(0,12) !== '/Users/login'){
-      User.verifyLogin($scope.storeUser);  
-    }
+    //Read Last login
+    this.lastLogin = function(){
+      var timestamp = moment($scope.currentUser.lastLogin);
+      //this.lastLogin = timestamp.format("MM/DD/YYYY HH:mm");
+      return timestamp.fromNow();  
+    };
   });

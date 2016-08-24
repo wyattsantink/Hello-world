@@ -12,6 +12,11 @@ html.md-default-theme, html, body.md-default-theme, body {
   border-radius: 50%;
 }
 
+.label {
+  margin-left: 10px;
+  color: #616161;
+}
+
 strong {
   color: #616161;
 }
