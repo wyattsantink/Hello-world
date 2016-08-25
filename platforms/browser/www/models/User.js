@@ -1,5 +1,5 @@
 angular.module('FindAParty')
-  .factory('User', function UserFactory($location){
+  .factory('User', function UserFactory($location, $firebaseObject, $mdToast){
     return {
       verifyLogin : function(callback){
         firebase.auth().onAuthStateChanged(function(user) {
@@ -46,6 +46,15 @@ angular.module('FindAParty')
           findAParty.firstAccessFlag = true;
         }, function(error) {
           // An error happened.
+        });
+      },
+      findUserById : function(id){
+        var ref = firebase.database().ref(findAParty.firebase.environment+'/users/' + id);
+        return $firebaseObject(ref);
+      },
+      update : function(user){
+        user.$save().then(function(){
+          $mdToast.show($mdToast.simple().textContent('Data Saved!').hideDelay(3000));
         });
       }
     };

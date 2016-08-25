@@ -40,6 +40,29 @@
         <md-button ng-click="UsersCtrl.signout()">Sign out</md-button>
       </md-card-actions>
     </md-card>
-    <p class="label"><strong>Last Login: </strong>{{UsersCtrl.lastLogin()}}</p>
+    
+    <md-tabs  class="md-accent md-whiteframe-6dp" md-dynamic-height md-center-tabs md-border-bottom >
+      <md-tab label="Profile" ng-click="UsersCtrl.cardShow = 'profile'"></md-tab>
+      <md-tab label="Reviews" ng-click="UsersCtrl.cardShow = 'reviews'"></md-tab>
+    </md-tabs>
+    
+    <md-card ng-show="UsersCtrl.cardShow === 'profile'">
+      <md-card-title>
+        <md-car-title-text>
+          <span class="md-headline">Bio</span><p></p>
+          <span class="md-subhead">Write a 150 characters bio, so others users can know you better!</span>
+        </md-car-title-text>
+      </md-card-title>
+      <md-card-content>
+        <form>
+          <md-input-container class="md-block">
+            <textarea ng-model="UsersCtrl.user.bio" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+          </md-input-container>
+        </form>
+      </md-card-content>
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button class="md-primary md-raised" ng-click="UsersCtrl.update()">Save</md-button>
+      </md-card-actions>
+    </md-card>
   </div>
 </div>

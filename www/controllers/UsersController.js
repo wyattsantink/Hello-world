@@ -7,6 +7,12 @@ angular.module('FindAParty')
     
     this.user = User.findUserById($scope.currentUser.uid);
     
+    this.cardShow = 'profile';
+    
+    this.update = function(){
+      User.update(this.user);
+    };
+    
     //Google Signin btn label
     this.btnGoogleSigninLabel = "Sign in with Google";
     

@@ -2,7 +2,6 @@ html.md-default-theme, html, body.md-default-theme, body {
   background-color: #efefef;
 }
 
-
 .img-responsive {
   max-width: 100%;
   height: auto;
@@ -283,3 +282,7 @@ md-sidenav a {
   vertical-align: text-bottom;
   color: rgba(0,0,0,0.54);
 } 
+
+md-tabs.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]) {
+    color: rgba(0,0,0,0.54);
+}
