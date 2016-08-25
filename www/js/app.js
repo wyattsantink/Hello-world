@@ -1,1 +1,1 @@
-angular.module('FindAParty',['ngMaterial', 'ngRoute']);
+angular.module('FindAParty',['ngMaterial', 'ngRoute', 'firebase']);

@@ -1,5 +1,5 @@
 angular.module('FindAParty')
-  .factory('User', function UserFactory($location){
+  .factory('User', function UserFactory($location, $firebaseObject){
     return {
       verifyLogin : function(callback){
         firebase.auth().onAuthStateChanged(function(user) {
@@ -47,6 +47,10 @@ angular.module('FindAParty')
         }, function(error) {
           // An error happened.
         });
+      },
+      findUserById : function(id){
+        var ref = firebase.database().ref(findAParty.firebase.environment+'/users/' + id);
+        return $firebaseObject(ref);
       }
     };
   });
