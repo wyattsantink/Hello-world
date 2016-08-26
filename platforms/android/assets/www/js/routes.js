@@ -41,6 +41,11 @@ angular.module('FindAParty')
         controller : 'PartiesController',
         controllerAs : 'PartiesCtrl'
       })
+      .when('/Parties/new', {
+        templateUrl : 'views/Parties/new.html',
+        controller : 'PartiesController',
+        controllerAs : 'PartiesCtrl'
+      })
       .otherwise({
         templateUrl : 'views/Home/404.html'
       });

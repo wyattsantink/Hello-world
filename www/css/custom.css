@@ -286,3 +286,15 @@ md-sidenav a {
 md-tabs.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]) {
     color: rgba(0,0,0,0.54);
 }
+
+
+.card-new-party .party-name h1 {
+  margin: 0px;
+}
+
+.card-new-party .party-name input {
+  padding-bottom: 10px;
+  margin-top: 5px;
+  height: 35px;
+  color: #616161;
+}

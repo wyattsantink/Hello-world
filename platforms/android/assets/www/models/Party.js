@@ -1,14 +1,3 @@
-/**
- * PARTY DATA-MODEL
- * 
- * Parties 
- * 
- * "parties" : {
-      
-    }
- * 
- * 
- */
 angular.module('FindAParty')
   .factory('Party', function PartyFactory(){
     return {
@@ -17,37 +6,19 @@ angular.module('FindAParty')
           hoster : '',
           name : '',
           description : '',
+          type : '',
           address : '',
-          coordinates : {lat : 0, lng : 0},
-          dateTime : '',
-          duration : ''
+          lat : 0, 
+          lng : 0,
+          startDateTime : '',
+          hours : ''
         };
       },
       
-      create : function(party){
-        //Add party to database
-        
-        //Add party to users-party
-        
-        //Add party to public-parties/private-parties
-      },
+      create : function(party){},
       
-      findAll : function(){
-        return {};
-      },
+      findAll : function(){},
       
-      find : function(id){
-        var parties = [];
-        var party;
-        
-        for(i=0; i < parties.length; i++){
-          if(parties[i].id === id){
-            party = parties[i];
-            break;
-          }
-        }
-        
-        return party;
-      }
+      find : function(id){}
     };
   });
