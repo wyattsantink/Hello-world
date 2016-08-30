@@ -12,7 +12,10 @@ angular.module('FindAParty')
           lng : 0,
           date : moment().format("MM/DD/YYYY"),
           time : moment().format("HH:mm"),
-          dateTime : '',
+          utcOffset : moment().format("ZZ"),
+          timeZone : moment.tz.guess(),
+          dateTimeString : '',
+          timestamp : 0,
           hours : ''
         };
       },

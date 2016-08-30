@@ -47,8 +47,15 @@
             <input placeholder="Date" class="datepicker" ng-model="PartiesCtrl.party.date">
           </md-input-container>
           
+          <md-input-container class="md-block">
+            <input placeholder="Time" class="timepicker"  ng-model="PartiesCtrl.party.time">
+          </md-input-container>
+          
         </form>
       </md-card-content>
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button ng-click="PartiesCtrl.save()" class="md-raised md-primary">Save</md-button>
+      </md-card-actions>
     </md-card>
   </div>
 </div>
