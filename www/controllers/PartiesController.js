@@ -15,4 +15,9 @@ angular.module('FindAParty')
       format: 'mm/dd/yyyy'
     });
     
+    $('.timepicker').pickatime({
+      autoclose: false,
+      twelvehour: false
+    });
+    
   });
