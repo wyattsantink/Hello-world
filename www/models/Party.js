@@ -10,7 +10,8 @@ angular.module('FindAParty')
           address : '',
           lat : 0, 
           lng : 0,
-          startDateTime : '',
+          date : '',
+          time : '',
           hours : ''
         };
       },
