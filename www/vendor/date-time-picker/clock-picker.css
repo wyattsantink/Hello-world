@@ -20,7 +20,8 @@
   font-size: 70px;
   padding: 10px;
   padding-bottom: 0px;
-  color: #b2dfdb;
+  /*color: #b2dfdb;*/
+  color: #FFFFFF;
 }
 .clockpicker-display-column {
   float: left;
@@ -168,11 +169,13 @@
 	    -ms-transition: background-color 300ms;
 	     -o-transition: background-color 300ms;
 	        transition: background-color 300ms;
-  background-color: rgba(0, 150, 136, 0);
+  /*background-color: rgba(0, 150, 136, 0);*/
+  background-color: rgba(0, 0, 0, 0);
 }
 .clockpicker-tick.active,
 .clockpicker-tick:hover {
-	background-color: rgba(0, 150, 136, 0.25);
+	/*background-color: rgba(0, 150, 136, 0.25);*/
+	background-color: rgba(0, 0, 0, 0.25);
 }
 .clockpicker-dial {
 	-webkit-transition: -webkit-transform 350ms, opacity 350ms;
@@ -210,24 +213,30 @@
 }
 .clockpicker-canvas-bearing {
 	stroke: none;
-	fill: rgba(0, 77, 64, 0.75);
+	/*fill: rgba(0, 77, 64, 0.75);*/
+	fill: rgba(0, 0, 0, 0.75);
 }
 .clockpicker-canvas-fg {
 	stroke: none;
-  fill: rgba(0, 77, 64, 0);
+  /*fill: rgba(0, 77, 64, 0);*/
+  fill: rgba(0,0,0,0);
 }
 .clockpicker-canvas-fg.active {
-  fill: rgba(0, 77, 64, 0.5);
+  /*fill: rgba(0, 77, 64, 0.5);*/
+  fill: rgba(0, 0, 0, 0.5);
 }
 .clockpicker-canvas-bg {
 	stroke: none;
-	fill: rgba(0, 150, 136, 0.25);
+	/*fill: rgba(0, 150, 136, 0.25);*/
+	fill: rgba(0, 77, 64, 0.25);
 }
 .clockpicker-canvas-bg-trans {
-	fill: rgba(0, 150, 136, 0.25);
+	/*fill: rgba(0, 150, 136, 0.25);*/
+	fill: rgba(0, 77, 64, 0.25);
 }
 .clockpicker-canvas line {
-	stroke: rgba(0, 150, 136, 0.25);
+	/*stroke: rgba(0, 150, 136, 0.25);*/
+	stroke: rgba(0, 0, 0, 0.25);
 	stroke-width: 1;
 	stroke-linecap: round;
 	/*shape-rendering: crispEdges;*/
@@ -255,14 +264,16 @@
   background-color: transparent;
 }
 .btn-floating.btn-flat:active, .btn-floating.btn-flat.active {
-  background-color: rgba(0, 150, 136, 0.25);
+  /*background-color: rgba(0, 150, 136, 0.25);*/
+  background-color: rgba(0, 0, 0, 0.25);
 }
 .picker__footer .clockpicker-button {
   margin: auto;
   margin-top: 15px;
 }
 .picker__footer .clockpicker-button:focus, .picker__footer .clockpicker-button:active {
-  background-color: rgba(0, 150, 136, 0.25);
+  /*background-color: rgba(0, 150, 136, 0.25);*/
+  background-color: rgba(0, 0, 0, 0.25);
 }
 
 .darktheme .picker__box {

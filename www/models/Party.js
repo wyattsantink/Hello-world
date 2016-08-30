@@ -6,12 +6,13 @@ angular.module('FindAParty')
           hoster : '',
           name : '',
           description : '',
-          type : '',
+          type : 'private',
           address : '',
           lat : 0, 
           lng : 0,
-          date : '',
-          time : '',
+          date : moment().format("MM/DD/YYYY"),
+          time : moment().format("HH:mm"),
+          dateTime : '',
           hours : ''
         };
       },
