@@ -208,6 +208,11 @@ md-sidenav a {
   color: #777;
 }
 
+.card-new-party .md-headline {
+  color: #616161;
+  font-size: 18px;
+}
+
 .login-info {
   margin-top: -155px;
 }

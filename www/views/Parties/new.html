@@ -9,6 +9,9 @@
           <span>New Party</span>
         </h2>
         <span flex></span>
+        <md-button class="md-icon-button" ng-click="PartiesCtrl.save()">
+          <md-icon><i class="material-icons">add_location</i></md-icon>
+        </md-button>
       </div>
     </md-toolbar>
   </div>
@@ -19,43 +22,60 @@
     <side-menu></side-menu>
   </div>
   <div flex>
-    <md-card class="card-new-party">
-      <img ng-src="img/cocktails.gif" class="md-card-image">
-      <md-card-content>
-        <form>
+    <form>
+      <md-card class="card-new-party">
+        <img ng-src="img/cocktails.gif" class="md-card-image">
+        <md-card-content>
           <md-input-container class="md-block party-name">
-            <h1><input placeholder="Party Name"></h1>
+            <h1><input placeholder="Party Name" ng-model="PartiesCtrl.party.name"></h1>
           </md-input-container>
           
           <md-input-container class="md-block">
-            <textarea placeholder="Description" md-maxlength="150" rows="5" md-select-on-focus ng-model="PartiesCtrl.party.description"></textarea>
+            <textarea placeholder="Details" md-maxlength="150" rows="5" md-select-on-focus ng-model="PartiesCtrl.party.details"></textarea>
           </md-input-container>
-          
+        </md-card-content>
+      </md-card>
+      
+      <md-card class="card-new-party">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Viewing Options</span>
+            <md-divider></md-divider>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
           <md-input-container class="md-block">
-            <p style="color: #616161;">Viewing Options:</p>
             <md-radio-group class="md-primary" ng-model="PartiesCtrl.party.type">
               <md-radio-button value="public" class="md-primary">Public</md-radio-button>
               <md-radio-button value="private" class="md-primary">Private</md-radio-button>
             </md-radio-group>  
           </md-input-container>
-          
+        </md-card-content>
+      </md-card>
+      
+      <md-card class="card-new-party">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">When</span>
+            <md-divider></md-divider>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
           <md-input-container class="md-block">
-            <input placeholder="Address">
+            <input placeholder="Date" class="datepicker" ng-model="PartiesCtrl.party.startsAt.date">
           </md-input-container>
           
           <md-input-container class="md-block">
-            <input placeholder="Date" class="datepicker" ng-model="PartiesCtrl.party.date">
+            <input placeholder="Time" class="timepicker"  ng-model="PartiesCtrl.party.startsAt.time">
           </md-input-container>
           
-          <md-input-container class="md-block">
-            <input placeholder="Time" class="timepicker"  ng-model="PartiesCtrl.party.time">
-          </md-input-container>
+          <p><strong>Duration: </strong>{{PartiesCtrl.party.hours}} Hours</p>
           
-        </form>
-      </md-card-content>
-      <md-card-actions layout="row" layout-align="end center">
-        <md-button ng-click="PartiesCtrl.save()" class="md-raised md-primary">Save</md-button>
-      </md-card-actions>
-    </md-card>
+          <md-slider flex min="1" max="24" class="md-primary"  ng-model="PartiesCtrl.party.hours" md-discrete></md-slider>
+          
+        </md-card-content>
+      </md-card>
+      
+    </form>
   </div>
 </div>
