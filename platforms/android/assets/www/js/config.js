@@ -26,6 +26,7 @@ var findAParty = {
   },
   
   googleMaps : {
-    javascriptApiKey : 'AIzaSyCqWrMqngMfbrwJ18PZffg10wcyQj6w4S4'
+    javascriptApiKey : 'AIzaSyCqWrMqngMfbrwJ18PZffg10wcyQj6w4S4',
+    geocodingApiKey :'AIzaSyAxmxCN2xvh-LdA7Lj7QeKkKG4ecwVzAZA'
   }
 };

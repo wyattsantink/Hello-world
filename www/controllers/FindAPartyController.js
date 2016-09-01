@@ -44,4 +44,24 @@ angular.module('FindAParty')
       }
       return input;
     };
+    
+    //get a static map URL:
+    $scope.getStaticMapUrl = function(lat,lng,mapParams){
+      var url = "https://maps.googleapis.com/maps/api/staticmap";
+      
+      var zoom = mapParams.zoom || 16;
+      var width = mapParams.width || 500;
+      var height = mapParams.height || 125;
+      var scale = mapParams.scale || 2;
+      
+      url += "?center=" + lat + "," + lng;
+      url += "&zoom=" + zoom;
+      url += "&size=" + width + "x" + height;
+      url += "&scale=" + scale;
+      url += "&markers=" + lat + "," + lng;
+      url += "&key=" + findAParty.googleMaps.javascriptApiKey;
+      
+      return url;
+    };
+    
   });

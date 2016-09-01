@@ -1,5 +1,5 @@
 angular.module('FindAParty')
-  .controller('PartiesController', function($scope, $location, $routeParams, Party, User){
+  .controller('PartiesController', function($scope, $location, $routeParams, $http, Party, User){
     //check if the user is logged in:
     User.verifyLogin($scope.storeUser);
     
@@ -27,13 +27,60 @@ angular.module('FindAParty')
       this.party.endsAt.dateTimeString = endsAt.format('MM/DD/YYYY HH:mm ZZ');
       this.party.endsAt.timestamp = parseInt(endsAt.format('x'));
       
+      //set Party's location:
+      this.party.location.address = this.selectedAddress.formatted_address;
+      this.party.location.lat = this.selectedAddress.geometry.location.lat;
+      this.party.location.lng = this.selectedAddress.geometry.location.lng;
+      this.party.location.placeId = this.selectedAddress.place_id;
+      
       //save
       console.log(this.party);
+    };
+    
+    this.searchAddressResults = [];
+    this.selectedAddress = null;
+    
+    this.searchAddress = function(){
+      this.searchAddressResults = [];
+      this.selectedAddress = null;
+      if(this.party.location.address){
+        var encodedAddress = encodeURIComponent(this.party.location.address);
+        var url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + encodedAddress +'&key=' + findAParty.googleMaps.geocodingApiKey;
+        
+        var that = this;
+        $http({method: 'GET',url: url}).then(function successCallback(response) {
+          // this callback will be called asynchronously
+          // when the response is available
+          if(response.data.results.length === 1){
+            that.selectedAddress = response.data.results[0];
+          }else{
+            that.searchAddressResults = response.data.results;  
+          }
+        }, 
+        function errorCallback(response) {
+          // called asynchronously if an error occurs
+          // or server returns response with an error status.
+          console.log(response);
+        });  
+      }
+    };
+    
+    this.selectAddress = function(index){
+      this.selectedAddress = this.searchAddressResults[index];
+      this.searchAddressResults = [];
+    };
+    
+    this.getMap = function(){
+      if(this.selectedAddress !== null){
+        var mapParams = {height:500};
+        return $scope.getStaticMapUrl(this.selectedAddress.geometry.location.lat, this.selectedAddress.geometry.location.lng, mapParams);
+      }
     };
     
     $('.datepicker').pickadate({
       selectMonths: true, // Creates a dropdown to control month
       selectYears: 15, // Creates a dropdown of 15 years to control year
+      close: 'Done',
       format: 'mm/dd/yyyy'
     });
     

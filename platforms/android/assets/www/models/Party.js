@@ -7,9 +7,12 @@ angular.module('FindAParty')
           name : '',
           details : '',
           type : 'private',
-          address : '',
-          lat : 0, 
-          lng : 0,
+          location : {
+            address : '',
+            lat : 0, 
+            lng : 0,
+            placeId : ''
+          },
           startsAt : {
             date : moment().format("MM/DD/YYYY"),
             time : moment().format("HH:mm"),

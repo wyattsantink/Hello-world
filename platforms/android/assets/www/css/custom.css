@@ -303,3 +303,7 @@ md-tabs.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > m
   height: 35px;
   color: #616161;
 }
+
+.card-results {
+  background-color: #eee;
+}
