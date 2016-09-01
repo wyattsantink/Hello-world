@@ -40,6 +40,13 @@
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
     </feature>
+    <preference name="webView" value="org.crosswalk.engine.XWalkWebViewEngine" />
+    <preference default="20+" name="xwalkVersion" />
+    <preference default="xwalk_core_library_canary:17+" name="xwalkLiteVersion" />
+    <preference default="--disable-pull-to-refresh-effect" name="xwalkCommandLine" />
+    <preference default="embedded" name="xwalkMode" />
+    <preference default="true" name="xwalkMultipleApk" />
+    <preference default="16" name="android-minSdkVersion" />
     <splash density="land-ldpi" src="www/res/screen/android/drawable-land-ldpi/screen.png" />
     <splash density="land-mdpi" src="www/res/screen/android/drawable-land-mdpi/screen.png" />
     <splash density="land-hdpi" src="www/res/screen/android/drawable-land-hdpi/screen.png" />
@@ -74,4 +81,8 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <preference name="xwalkVersion" value="20+" />
+    <preference name="xwalkCommandLine" value="--disable-pull-to-refresh-effect" />
+    <preference name="xwalkMode" value="embedded" />
+    <preference name="xwalkMultipleApk" value="true" />
 </widget>
