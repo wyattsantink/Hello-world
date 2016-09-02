@@ -1,5 +1,5 @@
 angular.module('FindAParty')
-  .factory('Party', function PartyFactory(){
+  .factory('Party', function PartyFactory($firebaseObject, $firebaseArray){
     return {
       new : function(){
         return {
@@ -33,7 +33,20 @@ angular.module('FindAParty')
         };
       },
       
-      create : function(party){},
+      create : function(party){
+        var ref = firebase.database().ref(findAParty.firebase.environment+'/parties/');
+        var parties = $firebaseArray(ref);
+        parties.$add(party);
+      },
+      
+      findByUser : function(id){
+        var ref = firebase.database().ref(findAParty.firebase.environment+'/parties/').orderByChild('hoster').equalTo(id);
+        return $firebaseArray(ref);
+      },
+      
+      delete : function(party, parties){
+        parties.$remove(party);
+      },
       
       findAll : function(){},
       

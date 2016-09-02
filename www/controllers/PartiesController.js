@@ -1,5 +1,5 @@
 angular.module('FindAParty')
-  .controller('PartiesController', function($scope, $location, $routeParams, $http, $mdToast, Party, User){
+  .controller('PartiesController', function($scope, $location, $routeParams, $http, $mdToast, $mdDialog, Party, User){
     //Fix Scroll to top
     document.getElementById('mdcontent').scrollTop = 0;
     
@@ -94,9 +94,33 @@ angular.module('FindAParty')
       
     };
     
-    this.remove = function(party){
+    this.confirmRemove = function(ev,party){
+      this.party = party;
+      var that = this;
+      $mdDialog.show({
+        controller : function DialogController($mdDialog){
+          this.close = function(ac){
+            $mdDialog.hide(ac);
+          };
+        },
+        controllerAs : 'DialogCtrl',
+        templateUrl: 'templates/confirm-remove-party.html',
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose:true
+      })
+      .then(function(ac){
+        if(ac === 'delete'){
+          that.remove();
+        }
+      }, function() {
+        //clicked outside
+      });
+    };
+    
+    this.remove = function(){
       //console.log(this.parties);
-      Party.delete(this.parties, party);
+      Party.delete(this.party, this.parties);
     };
     
     this.searchAddressResults = [];

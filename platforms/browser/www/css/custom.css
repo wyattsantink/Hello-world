@@ -2,6 +2,14 @@ html.md-default-theme, html, body.md-default-theme, body {
   background-color: #efefef;
 }
 
+body {
+  overflow-y: hidden !important; /* Fix to $mdToast https://github.com/angular/material/issues/3539 */
+}
+
+md-content {
+  background-color: #efefef;
+}
+
 .img-responsive {
   max-width: 100%;
   height: auto;
@@ -115,6 +123,27 @@ md-sidenav a {
 
 .party-card .ic-rating {
   color: #FFC107;
+}
+
+.party-history-card {
+  margin-top: 20px;
+}
+
+.party-history-card .description {
+  color: #9e9e9e;
+}
+
+.party-history-card .ic {
+  margin: auto 0px;
+}
+
+.party-history-card .ic-label {
+  color: rgba(0,0,0,0.54);
+}
+
+.party-history-card .md-headline {
+  color: #616161;
+  font-weight: bold;
 }
 
 .toolbar-rating-label md-icon {
