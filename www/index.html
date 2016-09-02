@@ -23,10 +23,13 @@
     <!-- App config -->
     <script src="js/config.js"></script>
   </head>
-  <body ng-controller="FindAPartyController as FindAPartyCtrl" md-swipe-left="closeLeft()">
+  <body ng-controller="FindAPartyController as FindAPartyCtrl" md-swipe-left="closeLeft()" layout="column">
     
     <!-- Views -->
-    <div ng-view></div>
+    <md-content>
+      <div ng-view></div>  
+    </md-content>
+    
     
     <!-- Cordova -->
     <script src="cordova.js"></script>

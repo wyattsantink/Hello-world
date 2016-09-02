@@ -2,6 +2,10 @@ html.md-default-theme, html, body.md-default-theme, body {
   background-color: #efefef;
 }
 
+body {
+  overflow-y: hidden !important; /* Fix to $mdToast https://github.com/angular/material/issues/3539 */
+}
+
 .img-responsive {
   max-width: 100%;
   height: auto;
