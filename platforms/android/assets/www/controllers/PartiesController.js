@@ -1,5 +1,8 @@
 angular.module('FindAParty')
-  .controller('PartiesController', function($scope, $location, $routeParams, $http, Party, User){
+  .controller('PartiesController', function($scope, $location, $routeParams, $http, $mdToast, $mdDialog, Party, User){
+    //Fix Scroll to top
+    document.getElementById('mdcontent').scrollTop = 0;
+    
     //check if the user is logged in:
     User.verifyLogin($scope.storeUser);
     
@@ -8,33 +11,116 @@ angular.module('FindAParty')
       this.party = Party.new();
     }
     
+    if($location.path() === '/Parties/host'){
+      this.parties = Party.findByUser($scope.currentUser.uid);
+      var that = this;
+      this.parties.$loaded().then(function(data){
+        that.parties.reverse();
+      });
+    }
+    
+    this.getPartyErrors = function(){
+      var partyErrors = [];
+      
+      //Party's name mustn't be blank or contain only white spaces
+      if(this.party.name.length === 0 || !this.party.name.trim()){
+        partyErrors.push({
+          field: 'Name',
+          msg : "Field Can't be blank"
+        });
+      }
+      
+      //Party's details mustn't be blank or contain only white spaces
+      if(this.party.details.length === 0 || !this.party.details.trim()){
+        partyErrors.push({
+          field: 'Details',
+          msg : "Field Can't be blank"
+        });
+      }
+      
+      //Party must contain a valid date time:
+      if(this.party.startsAt.date.length === 0 || !this.party.startsAt.date.trim() || this.party.startsAt.time.length === 0 || !this.party.startsAt.time.trim()){
+        partyErrors.push({
+          field: 'Date/Time',
+          msg : "Invalid"
+        });
+      }
+      
+      //Party must contain a valid address:
+      if(!this.selectedAddress){
+        partyErrors.push({
+          field: 'Address',
+          msg : "None Selected"
+        });
+      }
+      
+      return partyErrors;
+    };
+        
     this.save = function(){
-      //set Hoster:
-      this.party.hoster = $scope.currentUser.uid;
+      if(this.getPartyErrors().length === 0){
+        //set Hoster:
+        this.party.hoster = $scope.currentUser.uid;
+        
+        //set startsAt:
+        //join date+time+offset
+        this.party.startsAt.dateTimeString = this.party.startsAt.date + ' ' + this.party.startsAt.time + ' ' + this.party.startsAt.utcOffset;
+        //create timestamp
+        this.party.startsAt.timestamp = parseInt(moment.utc(this.party.startsAt.dateTimeString, "MM/DD/YYYY HH:mm ZZ").format('x'));
+        
+        //set endsAt:
+        var endsAt = moment.utc(this.party.startsAt.timestamp + (1000*60*60*this.party.hours)).utcOffset(this.party.startsAt.utcOffset);
+        //set party.endsAt:
+        this.party.endsAt.date = endsAt.format('MM/DD/YYYY');
+        this.party.endsAt.time = endsAt.format('HH:mm');
+        this.party.endsAt.utcOffset = endsAt.format('ZZ');
+        this.party.endsAt.dateTimeString = endsAt.format('MM/DD/YYYY HH:mm ZZ');
+        this.party.endsAt.timestamp = parseInt(endsAt.format('x'));
+        
+        //set Party's location:
+        this.party.location.address = this.selectedAddress.formatted_address;
+        this.party.location.lat = this.selectedAddress.geometry.location.lat;
+        this.party.location.lng = this.selectedAddress.geometry.location.lng;
+        this.party.location.placeId = this.selectedAddress.place_id;
+        
+        //save
+        Party.create(this.party);
+        $location.path('/Parties/host');
+        //console.log(this.party);
+      }else{
+        //console.log(this.getPartyErrors());
+        $mdToast.show($mdToast.simple().textContent("Please, fill all the fields correctly...").position('bottom end').hideDelay(3000));
+      }
       
-      //set startsAt:
-      //join date+time+offset
-      this.party.startsAt.dateTimeString = this.party.startsAt.date + ' ' + this.party.startsAt.time + ' ' + this.party.startsAt.utcOffset;
-      //create timestamp
-      this.party.startsAt.timestamp = parseInt(moment.utc(this.party.startsAt.dateTimeString, "MM/DD/YYYY HH:mm ZZ").format('x'));
-      
-      //set endsAt:
-      var endsAt = moment.utc(this.party.startsAt.timestamp + (1000*60*60*this.party.hours)).utcOffset(this.party.startsAt.utcOffset);
-      //set party.endsAt:
-      this.party.endsAt.date = endsAt.format('MM/DD/YYYY');
-      this.party.endsAt.time = endsAt.format('HH:mm');
-      this.party.endsAt.utcOffset = endsAt.format('ZZ');
-      this.party.endsAt.dateTimeString = endsAt.format('MM/DD/YYYY HH:mm ZZ');
-      this.party.endsAt.timestamp = parseInt(endsAt.format('x'));
-      
-      //set Party's location:
-      this.party.location.address = this.selectedAddress.formatted_address;
-      this.party.location.lat = this.selectedAddress.geometry.location.lat;
-      this.party.location.lng = this.selectedAddress.geometry.location.lng;
-      this.party.location.placeId = this.selectedAddress.place_id;
-      
-      //save
-      console.log(this.party);
+    };
+    
+    this.confirmRemove = function(ev,party){
+      this.party = party;
+      var that = this;
+      $mdDialog.show({
+        controller : function DialogController($mdDialog){
+          this.close = function(ac){
+            $mdDialog.hide(ac);
+          };
+        },
+        controllerAs : 'DialogCtrl',
+        templateUrl: 'templates/confirm-remove-party.html',
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose:true
+      })
+      .then(function(ac){
+        if(ac === 'delete'){
+          that.remove();
+        }
+      }, function() {
+        //clicked outside
+      });
+    };
+    
+    this.remove = function(){
+      //console.log(this.parties);
+      Party.delete(this.party, this.parties);
     };
     
     this.searchAddressResults = [];

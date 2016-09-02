@@ -64,4 +64,8 @@ angular.module('FindAParty')
       return url;
     };
     
+    this.timestampToCalendar = function(timestamp,utcOffset){
+      return moment.utc(timestamp,"x").utcOffset(utcOffset).calendar(null,{sameElse : 'DD/MM/YYYY HH:mm'});
+    };
+    
   });
