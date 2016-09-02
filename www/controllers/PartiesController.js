@@ -1,5 +1,8 @@
 angular.module('FindAParty')
   .controller('PartiesController', function($scope, $location, $routeParams, $http, $mdToast, Party, User){
+    //Fix Scroll to top
+    document.getElementById('mdcontent').scrollTop = 0;
+    
     //check if the user is logged in:
     User.verifyLogin($scope.storeUser);
     
@@ -10,9 +13,10 @@ angular.module('FindAParty')
     
     if($location.path() === '/Parties/host'){
       this.parties = Party.findByUser($scope.currentUser.uid);
-      console.log($scope.currentUser.uid);
-      
-      this.parties.$loaded().then(function(data){console.log(data);});
+      var that = this;
+      this.parties.$loaded().then(function(data){
+        that.parties.reverse();
+      });
     }
     
     this.getPartyErrors = function(){
@@ -88,6 +92,11 @@ angular.module('FindAParty')
         $mdToast.show($mdToast.simple().textContent("Please, fill all the fields correctly...").position('bottom end').hideDelay(3000));
       }
       
+    };
+    
+    this.remove = function(party){
+      //console.log(this.parties);
+      Party.delete(this.parties, party);
     };
     
     this.searchAddressResults = [];
