@@ -19,7 +19,7 @@
     <side-menu></side-menu>
   </div>
   <div flex>
-    <!--<a ng-repeat="party in parties" ng-href="{{'#/Parties/dashboard/' + party.id}}" style="text-decoration: none;">
+    <a ng-repeat="party in PartiesCtrl.parties" ng-href="{{'#/Parties/dashboard/'}}" style="text-decoration: none;">
       <md-card class="party-card">
         <img ng-src="img/cocktails.gif" class="md-card-image">
         <md-card-title>
@@ -28,14 +28,14 @@
           </md-card-title-text>
         </md-card-title>  
         <md-card-content>
-          <p class="description">{{party.description}}</p>
+          <p class="description">{{party.details}}</p>
           
           <div layout="row">
             <div flex="10" class="ic">
               <md-icon><i class="material-icons">location_on</i></md-icon>
             </div>
             <div flex class="ic-label">
-              <p><span>{{party.address}}</span></p>
+              <p><span>{{party.location.address}}</span></p>
             </div>
           </div>
           
@@ -46,7 +46,7 @@
           </p>
         </md-card-content>
       </md-card>  
-    </a>-->
+    </a>
     
     <md-button class="md-fab md-primary" style="position: fixed; bottom: 10px; right: 10px;" ng-href="#/Parties/new">
       <md-icon><i class="material-icons" style="line-height: 56px;">add</i></md-icon>

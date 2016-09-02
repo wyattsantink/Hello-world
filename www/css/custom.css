@@ -6,6 +6,10 @@ body {
   overflow-y: hidden !important; /* Fix to $mdToast https://github.com/angular/material/issues/3539 */
 }
 
+md-content {
+  background-color: #efefef;
+}
+
 .img-responsive {
   max-width: 100%;
   height: auto;

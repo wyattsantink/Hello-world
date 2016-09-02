@@ -39,6 +39,11 @@ angular.module('FindAParty')
         parties.$add(party);
       },
       
+      findByUser : function(id){
+        var ref = firebase.database().ref(findAParty.firebase.environment+'/parties/').orderByChild('hoster').equalTo(id);
+        return $firebaseArray(ref);
+      },
+      
       findAll : function(){},
       
       find : function(id){}

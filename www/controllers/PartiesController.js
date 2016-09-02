@@ -8,6 +8,13 @@ angular.module('FindAParty')
       this.party = Party.new();
     }
     
+    if($location.path() === '/Parties/host'){
+      this.parties = Party.findByUser($scope.currentUser.uid);
+      console.log($scope.currentUser.uid);
+      
+      this.parties.$loaded().then(function(data){console.log(data);});
+    }
+    
     this.getPartyErrors = function(){
       var partyErrors = [];
       
