@@ -73,9 +73,11 @@ angular.module('FindAParty')
         this.party.location.placeId = this.selectedAddress.place_id;
         
         //save
-        console.log(this.party);
+        Party.create(this.party);
+        $location.path('/Parties/host');
+        //console.log(this.party);
       }else{
-        console.log(this.getPartyErrors());
+        //console.log(this.getPartyErrors());
         $mdToast.show($mdToast.simple().textContent("Please, fill all the fields correctly...").position('bottom end').hideDelay(3000));
       }
       
