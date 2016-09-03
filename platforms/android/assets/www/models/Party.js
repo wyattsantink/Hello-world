@@ -44,8 +44,17 @@ angular.module('FindAParty')
         return $firebaseArray(ref);
       },
       
+      findById : function(id){
+        var ref = firebase.database().ref(findAParty.firebase.environment+'/parties/'+id);
+        return $firebaseObject(ref);
+      },
+      
       delete : function(party, parties){
-        parties.$remove(party);
+        if(parties){
+          parties.$remove(party);
+        }else{
+         party.$remove(); 
+        }
       },
       
       findAll : function(){},

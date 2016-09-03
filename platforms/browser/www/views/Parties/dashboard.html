@@ -24,26 +24,75 @@
       <img ng-src="img/cocktails.gif" class="md-card-image">
       <md-card-title>
         <md-card-title-text>
-          <span class="md-headline">{{party.name}}</span>
+          <span class="md-headline">{{PartiesCtrl.party.name}}</span>
         </md-card-title-text>
       </md-card-title>  
       <md-card-content>
-        <p class="description">{{party.description}}</p>
+        <p class="description">{{PartiesCtrl.party.details}}</p>
         
         <div layout="row">
           <div flex="10" class="ic">
             <md-icon><i class="material-icons">location_on</i></md-icon>
           </div>
           <div flex class="ic-label">
-            <p><span>{{party.address}}</span></p>
+            <p><span>{{PartiesCtrl.party.location.address}}</span></p>
+          </div>
+        </div>
+        
+        <div layout="row">
+          <div flex="10" class="ic">
+            <md-icon><i class="material-icons">{{ ((PartiesCtrl.party.type=='public') ? 'public':'vpn_lock') }}</i></md-icon>
+          </div>
+          <div flex class="ic-label">
+            <p><span>{{PartiesCtrl.party.type}}</span></p>
+          </div>
+        </div>
+        
+        <div layout="row">
+          <div flex="10" class="ic">
+            <md-icon><i class="material-icons">event</i></md-icon>
+          </div>
+          <div flex class="ic-label">
+            <p>
+              <span>
+                <strong>From: </strong>
+                {{FindAPartyCtrl.timestampToFormated(PartiesCtrl.party.startsAt.timestamp,PartiesCtrl.party.startsAt.utcOffset)}}
+              </span>
+            </p>
+          </div>
+        </div>
+        
+        <div layout="row">
+          <div flex="10" class="ic">
+            <md-icon><i class="material-icons">event</i></md-icon>
+          </div>
+          <div flex class="ic-label">
+            <p>
+              <span>
+                <strong>Until: </strong>
+                {{FindAPartyCtrl.timestampToFormated(PartiesCtrl.party.endsAt.timestamp,PartiesCtrl.party.endsAt.utcOffset)}}
+              </span>
+            </p>
           </div>
         </div>
       </md-card-content>
-      <md-card-actions layout="row" layout-align="end center">
-        <md-button>Edit</md-button>
+      <md-card-actions layout="row" layout-align="start center">
+        <md-button ng-show="PartiesCtrl.partyIsEditable">
+          <md-icon><i class="material-icons">edit</i></md-icon>
+        </md-button>
+            
+        <md-button ng-show="!PartiesCtrl.partyIsEditable" ng-click="PartiesCtrl.notifyPartyUneditable()">
+          <md-icon><i class="material-icons" style="color: rgba(0,0,0,0.38);">edit</i></md-icon>
+        </md-button>
+        
+        <md-button class="md-icon-button" ng-click="PartiesCtrl.confirmRemove($event,PartiesCtrl.party,'/Parties/host')">
+          <md-icon><i class="material-icons">delete</i></md-icon>
+        </md-button>
       </md-card-actions>
     </md-card>
-      
+    
+    
+    <!--  
     <p class="label">Requests:</p>
       
     <md-card class="card-party-reviews">

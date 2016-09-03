@@ -19,6 +19,14 @@ angular.module('FindAParty')
       });
     }
     
+    if($routeParams.id !== undefined){
+      this.party = Party.findById($routeParams.id);
+      var that = this;
+      this.party.$loaded().then(function(data){
+        that.partyIsEditable = that.party.endsAt.timestamp > Date.now();
+      }); 
+    }
+    
     this.getPartyErrors = function(){
       var partyErrors = [];
       
@@ -94,8 +102,11 @@ angular.module('FindAParty')
       
     };
     
-    this.confirmRemove = function(ev,party){
+    this.confirmRemove = function(ev,party,redirect){
       this.party = party;
+      
+      this.redirect = redirect;
+      
       var that = this;
       $mdDialog.show({
         controller : function DialogController($mdDialog){
@@ -121,6 +132,11 @@ angular.module('FindAParty')
     this.remove = function(){
       //console.log(this.parties);
       Party.delete(this.party, this.parties);
+      if(this.redirect) $location.path(this.redirect);
+    };
+    
+    this.notifyPartyUneditable =  function(){
+      $mdToast.show($mdToast.simple().textContent("You can't edit a finished party...").position('bottom end').hideDelay(3000));
     };
     
     this.searchAddressResults = [];
