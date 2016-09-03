@@ -1,0 +1,110 @@
+<div layout="row">
+  <div flex>
+    <md-toolbar class="md-whiteframe-6dp" style="position: fixed;">
+      <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" ng-click="toggleLeft()">
+          <md-icon><i class="material-icons">menu</i></md-icon>
+        </md-button>
+        <h2>
+          <span>Edit Party</span>
+        </h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="PartiesCtrl.edit()">
+          <md-icon><i class="material-icons">check</i></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+  </div>
+</div>
+
+<div layout="row" style="margin-top: 60px;">
+  <div flex="0">
+    <side-menu></side-menu>
+  </div>
+  <div flex>
+    <form>
+      <md-card class="card-new-party">
+        <img ng-src="img/cocktails.gif" class="md-card-image">
+        <md-card-content>
+          <md-input-container class="md-block">
+            <input placeholder="Party Name" ng-model="PartiesCtrl.party.name">
+          </md-input-container>
+          
+          <md-input-container class="md-block">
+            <textarea placeholder="Details" md-maxlength="150" rows="5" md-select-on-focus ng-model="PartiesCtrl.party.details"></textarea>
+          </md-input-container>
+        </md-card-content>
+      </md-card>
+      
+      <md-card class="card-new-party">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Viewing Options:</span>
+            <md-divider></md-divider>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+          <md-input-container class="md-block">
+            <md-radio-group class="md-primary" ng-model="PartiesCtrl.party.type">
+              <md-radio-button value="public" class="md-primary">Public</md-radio-button>
+              <md-radio-button value="private" class="md-primary">Private</md-radio-button>
+            </md-radio-group>  
+          </md-input-container>
+        </md-card-content>
+      </md-card>
+      
+      <md-card class="card-new-party">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">When:</span>
+            <md-divider></md-divider>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+          <md-input-container class="md-block">
+            <input placeholder="Date" class="datepicker" ng-model="PartiesCtrl.party.startsAt.date">
+          </md-input-container>
+          
+          <md-input-container class="md-block">
+            <input placeholder="Time" class="timepicker"  ng-model="PartiesCtrl.party.startsAt.time">
+          </md-input-container>
+          
+          <p><strong>Duration: </strong>{{PartiesCtrl.party.hours}} Hours</p>
+          
+          <md-slider flex min="1" max="24" class="md-primary"  ng-model="PartiesCtrl.party.hours" md-discrete></md-slider>
+          
+        </md-card-content>
+      </md-card>
+      
+      <md-card class="card-new-party">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Where:</span>
+            <md-divider></md-divider>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+          <md-input-container class="md-block">
+            <input placeholder="Address" ng-model="PartiesCtrl.party.location.address">
+            <md-icon ng-click="PartiesCtrl.searchAddress()"><i class="material-icons">search</i></md-icon>      
+          </md-input-container>
+          
+          <div ng-show="PartiesCtrl.searchAddressResults.length > 1">
+            <md-card class="card-results" ng-repeat="result in PartiesCtrl.searchAddressResults" ng-click="PartiesCtrl.selectAddress($index)">
+              <md-card-content>
+                <p>{{result.formatted_address}}</p>
+              </md-card-content>
+            </md-card>
+          </div>
+          
+          <div ng-show="PartiesCtrl.selectedAddress !== null">
+            <img ng-src="{{PartiesCtrl.getMap()}}" class="img-responsive">
+            <p>{{PartiesCtrl.selectedAddress.formatted_address}}</p>
+          </div>
+          
+        </md-card-content>
+      </md-card>
+      
+    </form>
+  </div>
+</div>
