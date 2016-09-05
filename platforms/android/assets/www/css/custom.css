@@ -336,3 +336,46 @@ md-tabs.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > m
 .card-results {
   background-color: #eee;
 }
+
+.delete-dialog-content {
+  padding: 24px;
+}
+
+.delete-dialog-content .title {
+  margin-top: 0px;
+}
+
+.delete-dialog-content .highlight {
+  background-color: #fbe9e7;
+  color: #d50000;
+  position: relative;
+  padding: 12px 0;
+  line-height: 20px;
+  font-size: 14px;
+}
+
+.delete-dialog-content .highlight i {
+  padding-left: 15px;
+  color: #ff5252
+}
+
+.delete-dialog-content .highlight span {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.delete-dialog-content .content-text {
+  font-size: 13px;
+  color: rgba(0,0,0,0.54);
+  max-width: 280px;
+  line-height: 18px;
+}
+
+.delete-dialog-actions .delete-btn, 
+.delete-dialog-actions .delete-btn:hover,
+.delete-dialog-actions .delete-btn:not([disabled]):hover,
+.delete-dialog-actions .delete-btn:not([disabled]).md-focused {
+  background-color: #e04848;
+  color: #FFF;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+}

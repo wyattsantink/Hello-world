@@ -63,9 +63,9 @@ function initMap(){
         icon : image,
         title: "You're Here!"
       });
-      //Stop spinning wheel after creating map:
+      //Stop progress bar after creating map:
       google.maps.event.addListenerOnce(map, 'tilesloaded',function(){
-        document.getElementById("load-spinner").style.display = 'none';
+        document.getElementById("load-progress").style.display = 'none';
       });
     },
     function(err){
@@ -77,8 +77,8 @@ function initMap(){
 
 //Center the Map with updated location:
 function centerMap(){
-  //Start spinning wheel:
-  document.getElementById("load-spinner").style.display = 'flex';
+  //Start progress bar:
+  document.getElementById("load-progress").style.display = 'flex';
   navigator.geolocation.getCurrentPosition(
     function(pos){
       //success callback:
@@ -87,9 +87,9 @@ function centerMap(){
         lat : pos.coords.latitude,
         lng : pos.coords.longitude
       };
-      //Stop spinning wheel:
+      //Stop progress bar:
       google.maps.event.addListener(map, 'center_changed', function(){
-        document.getElementById("load-spinner").style.display = 'none';
+        document.getElementById("load-progress").style.display = 'none';
       });
       //Set the new center:
       map.setCenter(myLatLng);
@@ -98,7 +98,7 @@ function centerMap(){
     },
     function(err){
       //error callback:
-      document.getElementById("load-spinner").style.display = 'none';
+      document.getElementById("load-progress").style.display = 'none';
     },
     geoOptions
   );  

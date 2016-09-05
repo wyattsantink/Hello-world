@@ -14,9 +14,9 @@ angular.module('FindAParty')
     if($location.path() === '/Parties/host'){
       this.parties = Party.findByUser($scope.currentUser.uid);
       var that = this;
-      this.parties.$loaded().then(function(data){
+      /*this.parties.$loaded().then(function(data){
         that.parties.reverse();
-      });
+      });*/
     }
     
     if($routeParams.id !== undefined){
