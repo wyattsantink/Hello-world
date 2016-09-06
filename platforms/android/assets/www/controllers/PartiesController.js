@@ -14,9 +14,18 @@ angular.module('FindAParty')
     if($location.path() === '/Parties/host'){
       this.parties = Party.findByUser($scope.currentUser.uid);
       var that = this;
-      this.parties.$loaded().then(function(data){
+      /*this.parties.$loaded().then(function(data){
         that.parties.reverse();
-      });
+      });*/
+    }
+    
+    if($routeParams.id !== undefined){
+      this.party = Party.findById($routeParams.id);
+      var that = this;
+      this.party.$loaded().then(function(data){
+        that.partyIsEditable = that.party.endsAt.timestamp > Date.now();
+        that.searchAddress();
+      }); 
     }
     
     this.getPartyErrors = function(){
@@ -94,8 +103,45 @@ angular.module('FindAParty')
       
     };
     
-    this.confirmRemove = function(ev,party){
+    this.edit = function(){
+      if(this.getPartyErrors().length === 0){
+        //set startsAt:
+        //join date+time+offset
+        this.party.startsAt.dateTimeString = this.party.startsAt.date + ' ' + this.party.startsAt.time + ' ' + this.party.startsAt.utcOffset;
+        //create timestamp
+        this.party.startsAt.timestamp = parseInt(moment.utc(this.party.startsAt.dateTimeString, "MM/DD/YYYY HH:mm ZZ").format('x'));
+        
+        //set endsAt:
+        var endsAt = moment.utc(this.party.startsAt.timestamp + (1000*60*60*this.party.hours)).utcOffset(this.party.startsAt.utcOffset);
+        //set party.endsAt:
+        this.party.endsAt.date = endsAt.format('MM/DD/YYYY');
+        this.party.endsAt.time = endsAt.format('HH:mm');
+        this.party.endsAt.utcOffset = endsAt.format('ZZ');
+        this.party.endsAt.dateTimeString = endsAt.format('MM/DD/YYYY HH:mm ZZ');
+        this.party.endsAt.timestamp = parseInt(endsAt.format('x'));
+        
+        //set Party's location:
+        this.party.location.address = this.selectedAddress.formatted_address;
+        this.party.location.lat = this.selectedAddress.geometry.location.lat;
+        this.party.location.lng = this.selectedAddress.geometry.location.lng;
+        this.party.location.placeId = this.selectedAddress.place_id;
+        
+        //edit
+        Party.update(this.party);
+        $location.path('/Parties/dashboard/'+this.party.$id);
+        //console.log(this.party);
+      }else{
+        //console.log(this.getPartyErrors());
+        $mdToast.show($mdToast.simple().textContent("Please, fill all the fields correctly...").position('bottom end').hideDelay(3000));
+      }
+      
+    };
+    
+    this.confirmRemove = function(ev,party,redirect){
       this.party = party;
+      
+      this.redirect = redirect;
+      
       var that = this;
       $mdDialog.show({
         controller : function DialogController($mdDialog){
@@ -121,6 +167,11 @@ angular.module('FindAParty')
     this.remove = function(){
       //console.log(this.parties);
       Party.delete(this.party, this.parties);
+      if(this.redirect) $location.path(this.redirect);
+    };
+    
+    this.notifyPartyUneditable =  function(){
+      $mdToast.show($mdToast.simple().textContent("You can't edit a finished party...").position('bottom end').hideDelay(3000));
     };
     
     this.searchAddressResults = [];

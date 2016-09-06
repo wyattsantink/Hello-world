@@ -11,6 +11,7 @@
         <span flex></span>
       </div>
     </md-toolbar>
+    
   </div>
 </div>
 
@@ -19,9 +20,9 @@
     <side-menu></side-menu>
   </div>
   <div flex>
-    <div layout="row" id="load-spinner" layout-sm="column" layout-align="space-around" class="progress-circular">
+    <!--<div layout="row" id="load-spinner" layout-sm="column" layout-align="space-around" class="progress-circular">
       <md-progress-circular md-mode="indeterminate"></md-progress-circular>
-    </div>
+    </div>-->
     
     <div id="map"></div>
     
@@ -31,8 +32,10 @@
     
     <div layout='row'>
       <div flex>
+        
         <a ng-href="#/Parties">
         <md-card class="foot-banner">
+          <md-progress-linear md-mode="query" id="load-progress"></md-progress-linear>
           <md-card-content>
             <p>
               <md-icon><i class="material-icons">local_bar</i></md-icon>

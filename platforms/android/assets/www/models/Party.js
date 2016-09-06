@@ -39,13 +39,41 @@ angular.module('FindAParty')
         parties.$add(party);
       },
       
+      update : function(party){
+        party.$save();
+      },
+      
       findByUser : function(id){
         var ref = firebase.database().ref(findAParty.firebase.environment+'/parties/').orderByChild('hoster').equalTo(id);
-        return $firebaseArray(ref);
+        var parties = $firebaseArray(ref);
+        parties.$loaded().then(function(data){
+          //Recent timestamps come first
+          parties.sort(function(a,b){
+            return b.startsAt.timestamp - a.startsAt.timestamp;
+          });
+          
+          parties.$watch(function(ev) {
+            parties.sort(function(a,b){
+              return b.startsAt.timestamp - a.startsAt.timestamp;
+            });
+          });
+          
+        });
+        
+        return parties;
+      },
+      
+      findById : function(id){
+        var ref = firebase.database().ref(findAParty.firebase.environment+'/parties/'+id);
+        return $firebaseObject(ref);
       },
       
       delete : function(party, parties){
-        parties.$remove(party);
+        if(parties){
+          parties.$remove(party);
+        }else{
+         party.$remove(); 
+        }
       },
       
       findAll : function(){},

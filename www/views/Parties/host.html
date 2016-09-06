@@ -49,7 +49,7 @@
           
         </md-card-content>
         <md-card-actions layout="row" layout-align="start center">
-          <md-button class="md-icon-button">
+          <md-button class="md-icon-button" ng-href="{{ '#/Parties/dashboard/' + party.$id }}">
             <md-icon><i class="material-icons">insert_chart</i></md-icon>
           </md-button>
           <md-button class="md-icon-button" ng-click="PartiesCtrl.confirmRemove($event,party)">
