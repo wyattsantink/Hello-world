@@ -1,5 +1,5 @@
 angular.module('FindAParty')
-  .controller('FindAPartyController', function($scope, $mdSidenav){
+  .controller('FindAPartyController', function($scope, $rootScope, $mdSidenav){
   
     console.log("\n");
     console.log("%c  You're in: '" + findAParty.channel.toUpperCase() + "' channel  ", "padding: 10px; background-color: #E8F5E9; border: 1px solid #C8E6C9; color: #388E3C");
@@ -71,5 +71,12 @@ angular.module('FindAParty')
     this.timestampToFormated = function(timestamp,utcOffset){
       return moment.utc(timestamp,"x").utcOffset(utcOffset).format('MM/DD/YYYY HH:mm');
     };
+    
+    //Add an event listener to record the user history
+    $rootScope.$on('$locationChangeStart', function(ev,n,o){
+      if(n.split('#')[1] !== historyChannel[historyChannel.length-1]){
+        historyChannel.push(n.split('#')[1]);
+      }
+    });
     
   });

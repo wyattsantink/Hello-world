@@ -1,5 +1,5 @@
 angular.module('FindAParty')
-  .controller('FindAPartyController', function($scope, $mdSidenav){
+  .controller('FindAPartyController', function($scope, $rootScope, $mdSidenav){
   
     console.log("\n");
     console.log("%c  You're in: '" + findAParty.channel.toUpperCase() + "' channel  ", "padding: 10px; background-color: #E8F5E9; border: 1px solid #C8E6C9; color: #388E3C");
@@ -71,5 +71,17 @@ angular.module('FindAParty')
     this.timestampToFormated = function(timestamp,utcOffset){
       return moment.utc(timestamp,"x").utcOffset(utcOffset).format('MM/DD/YYYY HH:mm');
     };
+    
+    $rootScope.$on('$locationChangeStart', function(event, newUrl, oldUrl){
+      alert('location change start');
+      
+      document.addEventListener("backbutton", function(ev){
+        alert("back button");
+        alert(JSON.stringify(ev));
+      }, false);
+      
+      alert("do native slide");
+      
+    });
     
   });

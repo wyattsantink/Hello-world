@@ -8,7 +8,7 @@ angular.module('FindAParty')
           if(attrs.ngHref ){
             elem.on('click', function(e){  
               e.preventDefault();
-              nativeSlide(attrs.ngHref,'left');
+              nativeSlide(attrs.ngHref);
             });
           }
         }

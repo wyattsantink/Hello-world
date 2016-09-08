@@ -1,5 +1,5 @@
 angular.module('FindAParty')
-  .directive('md-button', function(){
+  .directive('a', function(){
     return {
       restrict : 'E',
       link: function(scope, elem, attrs) {
@@ -7,8 +7,8 @@ angular.module('FindAParty')
         if(window.location.protocol !== 'http:'){
           if(attrs.ngHref ){
             elem.on('click', function(e){  
-              e.preventDefault();
-              nativeSlide(attrs.ngHref,'left');
+              //e.preventDefault();
+              nativeSlide(attrs.ngHref);
             });
           }
         }
