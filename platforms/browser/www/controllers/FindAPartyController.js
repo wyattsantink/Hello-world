@@ -5,34 +5,13 @@ angular.module('FindAParty')
     console.log("%c  You're in: '" + findAParty.channel.toUpperCase() + "' channel  ", "padding: 10px; background-color: #E8F5E9; border: 1px solid #C8E6C9; color: #388E3C");
     console.log("\n");
     
-    //Define currentUser:
-    $scope.currentUser = {
-      uid : '',
-      photoURL : '',
-      displayName : '',
-      email : '',
-      lastLogin : ''
-    };
+    //Define User ID:
+    $scope.uid = null;
     
     //Define callback to store user information:
-    $scope.storeUser = function(){
-      
-      //Store currentUser:
-      $scope.currentUser.uid = firebase.auth().currentUser.uid;
-      $scope.currentUser.photoURL = firebase.auth().currentUser.photoURL;
-      $scope.currentUser.displayName = firebase.auth().currentUser.displayName;
-      $scope.currentUser.email = firebase.auth().currentUser.email;
-      $scope.currentUser.lastLogin = Date.now();
-    };
-    
-    //Sidenav open function:
-    $scope.toggleLeft = function(){
-      $mdSidenav('left').toggle();
-    };
-    
-    //Sidenav close function:
-    $scope.closeLeft = function(){
-      $mdSidenav('left').close();
+    $scope.storeUid = function(){
+      //Store User ID:
+      $scope.uid = firebase.auth().currentUser.uid;
     };
     
     //Helper function to render stars with ng-repeat:
@@ -72,16 +51,11 @@ angular.module('FindAParty')
       return moment.utc(timestamp,"x").utcOffset(utcOffset).format('MM/DD/YYYY HH:mm');
     };
     
-    $rootScope.$on('$locationChangeStart', function(event, newUrl, oldUrl){
-      alert('location change start');
-      
-      document.addEventListener("backbutton", function(ev){
-        alert("back button");
-        alert(JSON.stringify(ev));
-      }, false);
-      
-      alert("do native slide");
-      
+    //Add an event listener to record the user history
+    $rootScope.$on('$locationChangeStart', function(ev,n,o){
+      if(n.split('#')[1] !== historyChannel[historyChannel.length-1]){
+        historyChannel.push(n.split('#')[1]);
+      }
     });
     
   });

@@ -21,6 +21,11 @@ angular.module('FindAParty')
         controller : 'UsersController',
         controllerAs : 'UsersCtrl'
       })
+      .when('/Users/menu', {
+        templateUrl : 'views/Users/menu.html',
+        controller : 'UsersController',
+        controllerAs : 'UsersCtrl'
+      })
       .when('/Parties', {
         templateUrl : 'views/Parties/index.html',
         controller : 'PartiesController',
@@ -31,8 +36,8 @@ angular.module('FindAParty')
         controller : 'PartiesController',
         controllerAs : 'PartiesCtrl'
       })
-      .when('/Parties/host', {
-        templateUrl : 'views/Parties/host.html',
+      .when('/Parties/history/:isActive', {
+        templateUrl : 'views/Parties/history.html',
         controller : 'PartiesController',
         controllerAs : 'PartiesCtrl'
       })

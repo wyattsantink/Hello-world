@@ -11,12 +11,17 @@ angular.module('FindAParty')
       this.party = Party.new();
     }
     
-    if($location.path() === '/Parties/host'){
-      this.parties = Party.findByUser($scope.currentUser.uid);
+    if($location.path().substring(0,16) === '/Parties/history'){
+      this.parties = Party.findByUser($scope.uid);
+      
+      this.displayActiveParties = ($routeParams.isActive === 'true');
+      
       var that = this;
-      /*this.parties.$loaded().then(function(data){
-        that.parties.reverse();
-      });*/
+      this.parties.$loaded().then(function(data){
+        for(var i=0; i < that.parties.length; i++){
+          that.parties[i].isActive = that.parties[i].endsAt.timestamp > Date.now();
+        }
+      });
     }
     
     if($routeParams.id !== undefined){
@@ -69,7 +74,7 @@ angular.module('FindAParty')
     this.save = function(){
       if(this.getPartyErrors().length === 0){
         //set Hoster:
-        this.party.hoster = $scope.currentUser.uid;
+        this.party.hoster = $scope.uid;
         
         //set startsAt:
         //join date+time+offset
@@ -94,7 +99,7 @@ angular.module('FindAParty')
         
         //save
         Party.create(this.party);
-        $location.path('/Parties/host');
+        $location.path('/Parties/history/true');
         //console.log(this.party);
       }else{
         //console.log(this.getPartyErrors());
@@ -168,10 +173,6 @@ angular.module('FindAParty')
       //console.log(this.parties);
       Party.delete(this.party, this.parties);
       if(this.redirect) $location.path(this.redirect);
-    };
-    
-    this.notifyPartyUneditable =  function(){
-      $mdToast.show($mdToast.simple().textContent("You can't edit a finished party...").position('bottom end').hideDelay(3000));
     };
     
     this.searchAddressResults = [];

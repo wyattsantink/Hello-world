@@ -1,0 +1,60 @@
+<md-card class="menu-card">
+  <md-card-content>
+    <div layout="row">
+      <div flex="25">
+        <img ng-src="{{UsersCtrl.user.photoUrl}}" class="img-responsive img-circle">
+      </div>
+      <div flex>
+        <p class="display-name">{{UsersCtrl.user.displayName}}</p>
+        <a href="" class="profile-link">See your profile...</a>
+      </div>
+    </div>
+    
+    <div layout="row"><div flex><md-divider class="divider"></md-divider></div></div>
+    
+    <a ng-href="#/">
+      <div layout="row">
+        <div flex="15">
+          <md-icon><i class="material-icons menu-icon">home</i></md-icon>
+        </div>
+        <div flex>
+          <p class="menu-label">Home</p>
+        </div>
+      </div>
+    </a>
+    <br>
+    <a ng-href="#/Parties/new">
+      <div layout="row">
+        <div flex="15">
+          <md-icon><i class="material-icons menu-icon">local_bar</i></md-icon>
+        </div>
+        <div flex>
+          <p class="menu-label">Host a Party</p>
+        </div>
+      </div>
+    </a>
+    <br>
+    <a ng-href="#/Parties/history/true">
+      <div layout="row">
+        <div flex="15">
+          <md-icon><i class="material-icons menu-icon">schedule</i></md-icon>
+        </div>
+        <div flex>
+          <p class="menu-label">Scheduled Parties</p>
+        </div>
+      </div>
+    </a>
+    <br>
+    <a ng-href="#/Parties/history/false">
+      <div layout="row">
+        <div flex="15">
+          <md-icon><i class="material-icons menu-icon">timeline</i></md-icon>
+        </div>
+        <div flex>
+          <p class="menu-label">History</p>
+        </div>
+      </div>
+    </a>
+    
+  </md-card-content>
+</md-card>

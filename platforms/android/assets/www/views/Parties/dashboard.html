@@ -2,7 +2,7 @@
   <div flex>
     <md-toolbar class="md-whiteframe-6dp" style="position: fixed;">
       <div class="md-toolbar-tools">
-        <md-button class="md-icon-button" ng-click="toggleLeft()">
+        <md-button class="md-icon-button" ng-href="#/Users/menu">
           <md-icon><i class="material-icons">menu</i></md-icon>
         </md-button>
         <h2>
@@ -15,9 +15,6 @@
 </div>
 
 <div layout="row" style="">
-  <div flex="0">
-    <side-menu></side-menu>
-  </div>
   <div flex>
     <!-- Party Card -->
     <md-card class="party-card">
@@ -79,10 +76,6 @@
       <md-card-actions layout="row" layout-align="start center">
         <md-button ng-show="PartiesCtrl.partyIsEditable" ng-href="{{'#/Parties/edit/' + PartiesCtrl.party.$id }}">
           <md-icon><i class="material-icons">edit</i></md-icon>
-        </md-button>
-            
-        <md-button ng-show="!PartiesCtrl.partyIsEditable" ng-click="PartiesCtrl.notifyPartyUneditable()">
-          <md-icon><i class="material-icons" style="color: rgba(0,0,0,0.38);">edit</i></md-icon>
         </md-button>
         
         <md-button class="md-icon-button" ng-click="PartiesCtrl.confirmRemove($event,PartiesCtrl.party,'/Parties/host')">

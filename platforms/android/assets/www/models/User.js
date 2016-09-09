@@ -31,7 +31,7 @@ angular.module('FindAParty')
                   firebase.database().ref(findAParty.firebase.environment+'/users/' + user.uid).set(currentUser);
                 }
               });
-              //Exec callback that stores user at $scope:
+              //Exec callback that stores user ID at $scope:
               callback();
             }//first access
           } else {
@@ -40,6 +40,7 @@ angular.module('FindAParty')
           }
         }); 
       },
+      
       signout : function(){
         firebase.auth().signOut().then(function() {
           // Sign-out successful.
@@ -48,10 +49,12 @@ angular.module('FindAParty')
           // An error happened.
         });
       },
-      findUserById : function(id){
+      
+      findById : function(id){
         var ref = firebase.database().ref(findAParty.firebase.environment+'/users/' + id);
         return $firebaseObject(ref);
       },
+      
       update : function(user){
         user.$save().then(function(){
           $mdToast.show($mdToast.simple().textContent('Data Saved!').hideDelay(3000));

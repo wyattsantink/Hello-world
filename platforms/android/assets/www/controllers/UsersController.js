@@ -2,10 +2,10 @@ angular.module('FindAParty')
   .controller('UsersController', function($scope, $location, $routeParams, $mdToast, User){
     //check if the user is logged in:
     if($location.path().substring(0,12) !== '/Users/login'){
-      User.verifyLogin($scope.storeUser);
+      User.verifyLogin($scope.storeUid);
     }
     
-    this.user = User.findUserById($scope.currentUser.uid);
+    this.user = User.findById($scope.uid);
     
     this.cardShow = 'profile';
     

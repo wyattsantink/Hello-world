@@ -360,3 +360,38 @@ md-tabs.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > m
   color: #FFF;
   box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
 }
+
+.menu-card {
+  margin: 0px;
+  height: 100%;
+}
+
+.menu-card .display-name {
+  color: #757575;
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+.menu-card .profile-link {
+  margin-left: 20px;
+  color: #616161;
+  text-decoration: none;
+  font-size: small;
+}
+
+.menu-card .divider {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.menu-card .menu-icon {
+  background-color: #757575;
+  border-radius: 50%;
+  color: #F5F5F5;
+  padding: 10px;
+}
+
+.menu-card .menu-label {
+ font-weight: bold;
+ color: #757575;
+}

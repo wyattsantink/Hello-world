@@ -1,7 +1,7 @@
 angular.module('FindAParty')
   .controller('HomeController', function($location, $scope, User){
     //check if the user is logged in:
-    User.verifyLogin($scope.storeUser);
+    User.verifyLogin($scope.storeUid);
     
     this.centerMap = function(){
       centerMap();
