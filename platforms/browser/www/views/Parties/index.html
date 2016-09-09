@@ -2,8 +2,8 @@
   <div flex>
     <md-toolbar class="" style="position: fixed;">
       <div class="md-toolbar-tools">
-        <md-button class="md-icon-button">
-          <md-icon><i class="material-icons" paper-drawer-toggle>menu</i></md-icon>
+        <md-button class="md-icon-button" ng-click="toggleLeft()">
+          <md-icon><i class="material-icons">menu</i></md-icon>
         </md-button>
         <h2>
           <span>Find parties near you</span>
@@ -18,6 +18,9 @@
 </div>
 
 <div layout="row" style="margin-top: 50px;">
+  <div flex="0">
+    <side-menu></side-menu>
+  </div>
   <div flex>
     
     <div layout="column">

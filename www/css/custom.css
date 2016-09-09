@@ -75,7 +75,6 @@ md-card img {
   background-color: #212121;
 }
 
-/*
 md-sidenav p {
   margin-left: 18px;
   margin-bottom: 26px;
@@ -93,35 +92,6 @@ md-sidenav md-icon {
 
 md-sidenav a {
   text-decoration: none;
-}
-*/
-
-#drawer {
-  z-index: 9;
-}
-
-#drawer p {
-  margin-left: 18px;
-  margin-bottom: 26px;
-}
-
-#drawer span {
-  vertical-align: middle;
-  color: #616161;
-  font-weight: bold;
-}
-
-#drawer md-icon {
-  margin-right: 25px;
-}
-
-#drawer a {
-  text-decoration: none;
-}
-
-/*Hack for performance*/
-#main #scrim {
-  opacity: 0!important;
 }
 
 .label {

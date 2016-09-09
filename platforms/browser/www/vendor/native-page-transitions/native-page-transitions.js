@@ -9,40 +9,18 @@
  */
 
 
-function nativeSlide(hrf,direction) {
-  var slideOptions = {
+function nativeSlide(hrf) {
+  var theOptions = {
     'duration' : 300,
-    'href': hrf,
-    'direction' : direction,
-    'slowdownfactor' : 20,
-    'androiddelay' : -1 //Wait the timeout function execute slide
+    'href': hrf
   };
   
   window.plugins.nativepagetransitions.slide(
-    slideOptions,
+    theOptions,
     function () {
       console.log('slide transition finished');
     },
     function (msg) {
       console.log('error: ' + msg);
   });
-  
-  //wait .25s to load the view and do the slide, 
-  setTimeout(function(){
-    window.plugins.nativepagetransitions.executePendingTransition(
-      function (msg) {console.log("success: " + msg);}, // called when the animation has finished
-      function (msg) {alert("error: " + msg);} // called in case you pass in weird values
-    );
-  }, 250);
-  
 }
-
-//Record the user page history, to controll the back destinaion
-var historyChannel = [];
-
-document.addEventListener("backbutton", function(ev){
-  historyChannel.pop();
-  if(historyChannel.length > 0){
-    nativeSlide('#' + historyChannel[historyChannel.length-1], 'right');  
-  }
-}, false);
