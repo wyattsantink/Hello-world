@@ -4,7 +4,7 @@ angular.module('FindAParty')
     document.getElementById('mdcontent').scrollTop = 0;
     
     //check if the user is logged in:
-    User.verifyLogin($scope.storeUser);
+    User.verifyLogin($scope.storeUid);
     
     //Get new Party if in /Parties/new
     if($location.path() === '/Parties/new'){
