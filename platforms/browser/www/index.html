@@ -7,6 +7,11 @@
     <!-- Favicon -->
 	  <link rel="icon" href="img/icon.png?v=5">
     
+    <!-- Polymer -->
+    <!-- Remove *.gz files from vendor folder before build -->
+    <script src="vendor/polymer/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="vendor/polymer/elements/elements.html">
+    
     <!-- Material Icons Font -->
 	  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     
@@ -23,12 +28,21 @@
     <!-- App config -->
     <script src="js/config.js"></script>
   </head>
-  <body ng-controller="FindAPartyController as FindAPartyCtrl" md-swipe-left="closeLeft()" layout="column">
+  <body ng-controller="FindAPartyController as FindAPartyCtrl" layout="column">
     
     <!-- Views -->
-    <md-content id="mdcontent">
-      <div ng-view></div>  
-    </md-content>
+    <paper-drawer-panel force-narrow>
+      <div drawer>
+        <side-menu></side-menu>
+      </div>
+      
+      <div main>
+        <md-content id="mdcontent">
+          <div ng-view></div>  
+        </md-content>
+      </div>
+    </paper-drawer-panel>
+    
     
     
     <!-- Cordova -->

@@ -72,16 +72,11 @@ angular.module('FindAParty')
       return moment.utc(timestamp,"x").utcOffset(utcOffset).format('MM/DD/YYYY HH:mm');
     };
     
-    $rootScope.$on('$locationChangeStart', function(event, newUrl, oldUrl){
-      alert('location change start');
-      
-      document.addEventListener("backbutton", function(ev){
-        alert("back button");
-        alert(JSON.stringify(ev));
-      }, false);
-      
-      alert("do native slide");
-      
+    //Add an event listener to record the user history
+    $rootScope.$on('$locationChangeStart', function(ev,n,o){
+      if(n.split('#')[1] !== historyChannel[historyChannel.length-1]){
+        historyChannel.push(n.split('#')[1]);
+      }
     });
     
   });

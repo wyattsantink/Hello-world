@@ -7,8 +7,8 @@ angular.module('FindAParty')
         if(window.location.protocol !== 'http:'){
           if(attrs.ngHref ){
             elem.on('click', function(e){  
-              //e.preventDefault();
-              nativeSlide(attrs.ngHref);
+              e.preventDefault();
+              nativeSlide(attrs.ngHref,'left');
             });
           }
         }
