@@ -16,7 +16,7 @@
 
 <div layout="row" style="margin-top: 50px;">
   <div flex>
-      <md-card class="party-history-card" ng-repeat="party in PartiesCtrl.parties">
+      <md-card class="party-history-card" ng-repeat="party in PartiesCtrl.parties track by party.$id">
         <img ng-src="img/cocktails.gif" class="md-card-image">
         <md-card-title>
           <md-card-title-text>
