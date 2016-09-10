@@ -99,7 +99,7 @@ angular.module('FindAParty')
         
         //save
         Party.create(this.party);
-        $location.path('/Parties/history');
+        $location.path('/Parties/history/true');
         //console.log(this.party);
       }else{
         //console.log(this.getPartyErrors());

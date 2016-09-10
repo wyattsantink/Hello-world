@@ -8,7 +8,11 @@ angular.module('FindAParty')
           if(attrs.ngHref ){
             elem.on('click', function(e){  
               e.preventDefault();
-              nativeSlide(attrs.ngHref,'left');
+              if( attrs.ngHref === '#/Users/menu' ){
+                nativeSlide(attrs.ngHref,'right');
+              }else{
+                nativeSlide(attrs.ngHref,'left');
+              }
             });
           }
         }

@@ -361,9 +361,30 @@ md-tabs.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > m
   box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
 }
 
+.menu-card-header {
+  margin: 0px;
+  background-color: #212121;
+}
+
+.menu-card-header .display-name {
+  color: #FAFAFA;
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+.menu-card-header .email {
+  margin-left: 20px;
+  color: #FAFAFA;
+  font-size: small;
+}
+
 .menu-card {
   margin: 0px;
   height: 100%;
+}
+
+.menu-card a {
+  text-decoration: none;
 }
 
 .menu-card .display-name {
@@ -372,10 +393,9 @@ md-tabs.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > m
   margin-left: 20px;
 }
 
-.menu-card .profile-link {
+.menu-card .email {
   margin-left: 20px;
   color: #616161;
-  text-decoration: none;
   font-size: small;
 }
 

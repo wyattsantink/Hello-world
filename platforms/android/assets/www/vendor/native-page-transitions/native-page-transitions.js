@@ -41,8 +41,12 @@ function nativeSlide(hrf,direction) {
 var historyChannel = [];
 
 document.addEventListener("backbutton", function(ev){
-  historyChannel.pop();
+  var last = historyChannel.pop();
   if(historyChannel.length > 0){
-    nativeSlide('#' + historyChannel[historyChannel.length-1], 'right');  
+    if(last === '/Users/menu'){
+      nativeSlide('#' + historyChannel[historyChannel.length-1], 'left');    
+    }else{
+      nativeSlide('#' + historyChannel[historyChannel.length-1], 'right');  
+    }
   }
 }, false);
