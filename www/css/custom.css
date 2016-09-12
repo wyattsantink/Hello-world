@@ -487,3 +487,15 @@ md-tabs.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > m
   vertical-align: sub;
   padding-right: 20px;
 }
+
+.menu-card .profile-label {
+  color: #757575;
+  font-size: smaller;
+  margin-top: 30px;
+}
+
+.menu-card .action-btn {
+  padding: 0px;
+  margin: 0px;
+  text-align: left;
+}

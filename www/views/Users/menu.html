@@ -77,6 +77,15 @@
             <md-tab-body>
               <p class="tab-title">Profile:</p>
               <md-divider></md-divider>
+              <p class="profile-label">Drescribe yourself in 150 characters:</p>
+              <form>
+                <md-input-container class="md-block">
+                  <textarea ng-model="UsersCtrl.user.bio" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+                </md-input-container>
+              </form>
+              <md-button class="action-btn" ng-click="UsersCtrl.update()">
+                <md-icon><i class="material-icons">check</i></md-icon>
+              </md-button>
             </md-tab-body>
           </md-tab>
           
