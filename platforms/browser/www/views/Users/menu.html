@@ -1,4 +1,4 @@
-<md-card class="menu-card">
+<md-card class="menu-card-header md-whiteframe-6dp">
   <md-card-content>
     <div layout="row">
       <div flex="25">
@@ -6,12 +6,14 @@
       </div>
       <div flex>
         <p class="display-name">{{UsersCtrl.user.displayName}}</p>
-        <a href="" class="profile-link">See your profile...</a>
+        <p class="email">{{UsersCtrl.user.email}}</p>
       </div>
     </div>
-    
-    <div layout="row"><div flex><md-divider class="divider"></md-divider></div></div>
-    
+  </md-card-content>
+</md-card>
+
+<md-card class="menu-card">
+  <md-card-content>
     <a ng-href="#/">
       <div layout="row">
         <div flex="15">
@@ -55,6 +57,18 @@
         </div>
       </div>
     </a>
+    
+    <div layout="row"><div flex><md-divider class="divider"></md-divider></div></div>
+    
+    
+      <div layout="row" ng-click="UsersCtrl.signout()">
+        <div flex="15">
+          <md-icon><i class="material-icons menu-icon">power_settings_new</i></md-icon>
+        </div>
+        <div flex>
+          <p class="menu-label">Log out</p>
+        </div>
+      </div>
     
   </md-card-content>
 </md-card>

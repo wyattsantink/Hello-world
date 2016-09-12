@@ -15,13 +15,14 @@ angular.module('FindAParty')
       this.parties = Party.findByUser($scope.uid);
       
       this.displayActiveParties = ($routeParams.isActive === 'true');
+      this.now = Date.now();
       
-      var that = this;
+      /*var that = this;
       this.parties.$loaded().then(function(data){
         for(var i=0; i < that.parties.length; i++){
           that.parties[i].isActive = that.parties[i].endsAt.timestamp > Date.now();
         }
-      });
+      });*/ 
     }
     
     if($routeParams.id !== undefined){
@@ -99,7 +100,7 @@ angular.module('FindAParty')
         
         //save
         Party.create(this.party);
-        $location.path('/Parties/history');
+        $location.path('/Parties/history/true');
         //console.log(this.party);
       }else{
         //console.log(this.getPartyErrors());
