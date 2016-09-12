@@ -1,5 +1,5 @@
 angular.module('FindAParty')
-  .controller('UsersController', function($scope, $location, $routeParams, $mdToast, User){
+  .controller('UsersController', function($scope, $location, $routeParams, $mdToast, $mdDialog, User){
     //check if the user is logged in:
     if($location.path().substring(0,12) !== '/Users/login'){
       User.verifyLogin($scope.storeUid);
@@ -57,6 +57,19 @@ angular.module('FindAParty')
     if($routeParams.msg !== undefined){
       $mdToast.show($mdToast.simple().textContent($routeParams.msg).hideDelay(3000));
     }
+    
+    this.showAboutBox = function(ev){
+     $mdDialog.show({
+        controller : function DialogController($mdDialog){
+          this.findAParty = findAParty;
+        },
+        controllerAs : 'DialogCtrl',
+        templateUrl: 'templates/about.html',
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose:true
+      }); 
+    };
     
     //Read Last login
     this.lastLogin = function(){

@@ -448,7 +448,6 @@ md-tabs.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > m
 
 .menu-card .display-name {
   margin: 0px;
-  margin-top: 10px;
   padding-left: 20px;
   color: #757575;
   font-size: larger;
@@ -471,4 +470,48 @@ md-tabs.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > m
   color: #aaa;
   margin-top: 30px;
   margin-bottom: 10px;
+}
+
+.menu-card a {
+  text-decoration: none;
+}
+
+.menu-card a p {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  color: #717171;
+  font-weight: bold;
+}
+
+.menu-card a p md-icon {
+  vertical-align: sub;
+  padding-right: 20px;
+}
+
+.menu-card .profile-label {
+  color: #757575;
+  font-size: smaller;
+  margin-top: 30px;
+}
+
+.menu-card .action-btn {
+  padding: 0px;
+  margin: 0px;
+  text-align: left;
+}
+
+.about-dialog {
+  padding: 20px;
+}
+
+.about-dialog h2 {
+  margin-top: 0px;
+  padding-left: 20px;
+  color: #757575;
+}
+
+.about-dialog p {
+  color: #aaa;
+  padding-left: 20px;
+  font-size: small;
 }

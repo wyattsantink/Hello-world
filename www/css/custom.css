@@ -499,3 +499,19 @@ md-tabs.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > m
   margin: 0px;
   text-align: left;
 }
+
+.about-dialog {
+  padding: 20px;
+}
+
+.about-dialog h2 {
+  margin-top: 0px;
+  padding-left: 20px;
+  color: #757575;
+}
+
+.about-dialog p {
+  color: #aaa;
+  padding-left: 20px;
+  font-size: small;
+}
