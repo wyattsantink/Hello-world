@@ -15,3 +15,62 @@
     </md-toolbar>
   </div>
 </div>
+
+<div layout="row">
+  <div flex>
+    <md-card class="menu-card md-whiteframe-4dp">
+      <md-card-content>
+        <div layout="row">
+          <div flex="15">
+            <img ng-src="{{UsersCtrl.user.photoUrl}}" class="img-responsive img-circle">
+          </div>
+          <div flex>
+            <p class="display-name">{{UsersCtrl.user.displayName}}</p>
+            <p class="email">{{UsersCtrl.user.email}}</p>
+          </div>
+        </div>
+        
+        <md-divider class="divider"></md-divider>
+        
+        <md-tabs  class="" md-dynamic-height md-stretch-tabs="always">
+          <md-tab>
+            <md-tab-label>
+              <md-icon ><i class="material-icons">link</i></md-icon>
+            </md-tab-label>
+            <md-tab-body>
+              <p class="tab-title">Links:</p>
+              <md-divider></md-divider>
+            </md-tab-body>
+          </md-tab>
+          <md-tab>
+            <md-tab-label>
+              <md-icon ><i class="material-icons">person</i></md-icon>
+            </md-tab-label>
+            <md-tab-body>
+              <p class="tab-title">Profile:</p>
+              <md-divider></md-divider>
+            </md-tab-body>
+          </md-tab>
+          <md-tab>
+            <md-tab-label>
+              <md-icon ><i class="material-icons">stars</i></md-icon>
+            </md-tab-label>
+            <md-tab-body>
+              <p class="tab-title">Reviews:</p>
+              <md-divider></md-divider>
+            </md-tab-body>
+          </md-tab>
+          <md-tab>
+            <md-tab-label>
+              <md-icon ><i class="material-icons">menu</i></md-icon>
+            </md-tab-label>
+            <md-tab-body>
+              <p class="tab-title">App:</p>
+              <md-divider></md-divider>
+            </md-tab-body>
+          </md-tab>
+        </md-tabs>
+      </md-card-content>
+    </md-card>
+  </div>
+</div>

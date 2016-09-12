@@ -378,6 +378,7 @@ md-tabs.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > m
   font-size: small;
 }
 
+/*
 .menu-card {
   margin: 0px;
   height: 100%;
@@ -414,4 +415,60 @@ md-tabs.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > m
 .menu-card .menu-label {
  font-weight: bold;
  color: #757575;
+}*/
+
+.search-toolbar md-input-container {
+  margin-bottom: 0px;
+}
+
+.search-toolbar md-input-container input {
+  border-color: #616161;
+  color: #fafafa;
+  font-size: medium;
+  width: 150%;
+}
+
+.search-toolbar md-input-container:not(.md-input-invalid).md-input-focused label {
+  display: none;
+}
+
+.search-toolbar md-input-container label {
+  color: #616161;
+  font-size: medium;
+}
+
+.search-toolbar md-input-container.md-input-focused .md-input {
+  border-width: 0 0 1px;
+}
+
+.menu-card {
+  margin: 56px 0px 10px 0px;
+  border-radius: 0px;
+}
+
+.menu-card .display-name {
+  margin: 0px;
+  margin-top: 10px;
+  padding-left: 20px;
+  color: #757575;
+  font-size: larger;
+}
+
+.menu-card .email {
+  margin: 0px;
+  margin-top: 5px;
+  padding-left: 20px;
+  color: #616161;
+  font-size: smaller;
+}
+
+.menu-card .divider {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.menu-card .tab-title {
+  color: #aaa;
+  margin-top: 30px;
+  margin-bottom: 10px;
 }

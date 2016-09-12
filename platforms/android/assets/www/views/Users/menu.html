@@ -1,74 +1,76 @@
-<md-card class="menu-card-header md-whiteframe-6dp">
-  <md-card-content>
-    <div layout="row">
-      <div flex="25">
-        <img ng-src="{{UsersCtrl.user.photoUrl}}" class="img-responsive img-circle">
+<div layout="row">
+  <div flex>
+    <md-toolbar class="md-whiteframe-6dp search-toolbar" style="position: fixed;">
+      <div class="md-toolbar-tools">
+        <md-button class="md-icon-button">
+          <md-icon><i class="material-icons">search</i></md-icon>
+        </md-button>
+        <span>
+          <md-input-container class="">
+            <input placeholder="Search places...">
+          </md-input-container>
+        </span>
+        <span flex></span>
       </div>
-      <div flex>
-        <p class="display-name">{{UsersCtrl.user.displayName}}</p>
-        <p class="email">{{UsersCtrl.user.email}}</p>
-      </div>
-    </div>
-  </md-card-content>
-</md-card>
+    </md-toolbar>
+  </div>
+</div>
 
-<md-card class="menu-card">
-  <md-card-content>
-    <a ng-href="#/">
-      <div layout="row">
-        <div flex="15">
-          <md-icon><i class="material-icons menu-icon">home</i></md-icon>
+<div layout="row">
+  <div flex>
+    <md-card class="menu-card md-whiteframe-4dp">
+      <md-card-content>
+        <div layout="row">
+          <div flex="15">
+            <img ng-src="{{UsersCtrl.user.photoUrl}}" class="img-responsive img-circle">
+          </div>
+          <div flex>
+            <p class="display-name">{{UsersCtrl.user.displayName}}</p>
+            <p class="email">{{UsersCtrl.user.email}}</p>
+          </div>
         </div>
-        <div flex>
-          <p class="menu-label">Home</p>
-        </div>
-      </div>
-    </a>
-    <br>
-    <a ng-href="#/Parties/new">
-      <div layout="row">
-        <div flex="15">
-          <md-icon><i class="material-icons menu-icon">local_bar</i></md-icon>
-        </div>
-        <div flex>
-          <p class="menu-label">Host a Party</p>
-        </div>
-      </div>
-    </a>
-    <br>
-    <a ng-href="#/Parties/history/true">
-      <div layout="row">
-        <div flex="15">
-          <md-icon><i class="material-icons menu-icon">schedule</i></md-icon>
-        </div>
-        <div flex>
-          <p class="menu-label">Scheduled Parties</p>
-        </div>
-      </div>
-    </a>
-    <br>
-    <a ng-href="#/Parties/history/false">
-      <div layout="row">
-        <div flex="15">
-          <md-icon><i class="material-icons menu-icon">timeline</i></md-icon>
-        </div>
-        <div flex>
-          <p class="menu-label">History</p>
-        </div>
-      </div>
-    </a>
-    
-    <div layout="row"><div flex><md-divider class="divider"></md-divider></div></div>
-    
-    
-      <div layout="row" ng-click="UsersCtrl.signout()">
-        <div flex="15">
-          <md-icon><i class="material-icons menu-icon">power_settings_new</i></md-icon>
-        </div>
-        <div flex>
-          <p class="menu-label">Log out</p>
-        </div>
-      </div>
-    
-  </md-card-content>
-</md-card>
+        
+        <md-divider class="divider"></md-divider>
+        
+        <md-tabs  class="" md-dynamic-height md-stretch-tabs="always">
+          <md-tab>
+            <md-tab-label>
+              <md-icon ><i class="material-icons">link</i></md-icon>
+            </md-tab-label>
+            <md-tab-body>
+              <p class="tab-title">Links:</p>
+              <md-divider></md-divider>
+            </md-tab-body>
+          </md-tab>
+          <md-tab>
+            <md-tab-label>
+              <md-icon ><i class="material-icons">person</i></md-icon>
+            </md-tab-label>
+            <md-tab-body>
+              <p class="tab-title">Profile:</p>
+              <md-divider></md-divider>
+            </md-tab-body>
+          </md-tab>
+          <md-tab>
+            <md-tab-label>
+              <md-icon ><i class="material-icons">stars</i></md-icon>
+            </md-tab-label>
+            <md-tab-body>
+              <p class="tab-title">Reviews:</p>
+              <md-divider></md-divider>
+            </md-tab-body>
+          </md-tab>
+          <md-tab>
+            <md-tab-label>
+              <md-icon ><i class="material-icons">menu</i></md-icon>
+            </md-tab-label>
+            <md-tab-body>
+              <p class="tab-title">App:</p>
+              <md-divider></md-divider>
+            </md-tab-body>
+          </md-tab>
+        </md-tabs>
+      </md-card-content>
+    </md-card>
+  </div>
+</div>

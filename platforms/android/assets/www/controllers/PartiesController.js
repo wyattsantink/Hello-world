@@ -16,13 +16,6 @@ angular.module('FindAParty')
       
       this.displayActiveParties = ($routeParams.isActive === 'true');
       this.now = Date.now();
-      
-      /*var that = this;
-      this.parties.$loaded().then(function(data){
-        for(var i=0; i < that.parties.length; i++){
-          that.parties[i].isActive = that.parties[i].endsAt.timestamp > Date.now();
-        }
-      });*/ 
     }
     
     if($routeParams.id !== undefined){
