@@ -415,3 +415,27 @@ md-tabs.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > m
  font-weight: bold;
  color: #757575;
 }
+
+.search-toolbar md-input-container {
+  margin-bottom: 0px;
+}
+
+.search-toolbar md-input-container input {
+  border-color: #616161;
+  color: #fafafa;
+  font-size: medium;
+  width: 150%;
+}
+
+.search-toolbar md-input-container:not(.md-input-invalid).md-input-focused label {
+  display: none;
+}
+
+.search-toolbar md-input-container label {
+  color: #616161;
+  font-size: medium;
+}
+
+.search-toolbar md-input-container.md-input-focused .md-input {
+  border-width: 0 0 1px;
+}
