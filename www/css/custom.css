@@ -471,3 +471,19 @@ md-tabs.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > m
   margin-top: 30px;
   margin-bottom: 10px;
 }
+
+.menu-card a {
+  text-decoration: none;
+}
+
+.menu-card a p {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  color: #717171;
+  font-weight: bold;
+}
+
+.menu-card a p md-icon {
+  vertical-align: sub;
+  padding-right: 20px;
+}
