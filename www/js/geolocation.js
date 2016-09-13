@@ -21,6 +21,7 @@ function initMap(){
         lat : pos.coords.latitude,
         lng : pos.coords.longitude
       };
+      findAParty.userLocation = myLatLng;
       
       // Create an array of styles:
       var styles = [
@@ -87,6 +88,7 @@ function centerMap(){
         lat : pos.coords.latitude,
         lng : pos.coords.longitude
       };
+      findAParty.userLocation = myLatLng;
       //Stop progress bar:
       google.maps.event.addListener(map, 'center_changed', function(){
         document.getElementById("load-progress").style.display = 'none';

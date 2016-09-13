@@ -76,6 +76,18 @@ angular.module('FindAParty')
         return $firebaseObject(ref);
       },
       
+      findByLocation : function(lat,lng,callback){
+        var geoRef = firebase.database().ref(findAParty.firebase.environment+'/parties-location/');
+        var geoFire = new GeoFire(geoRef);
+        var geoQuery = geoFire.query({
+          center: [lat,lng],
+          radius: 30
+        });
+        geoQuery.on("key_entered", function(key, location){
+          callback(key);
+        });
+      },
+      
       delete : function(party, parties){
         if(parties){
           parties.$remove(party).then(function(data){
@@ -86,7 +98,7 @@ angular.module('FindAParty')
         }else{
          party.$remove().then(function(data){
             var geoRef = firebase.database().ref(findAParty.firebase.environment+'/parties-location/');
-          var geoFire = new GeoFire(geoRef);
+            var geoFire = new GeoFire(geoRef);
             geoFire.remove(data.key);
          }); 
         }

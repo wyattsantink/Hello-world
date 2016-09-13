@@ -27,6 +27,22 @@ angular.module('FindAParty')
       }); 
     }
     
+    if($location.path() === '/Parties'){
+      $scope.parties = [];
+      //Define a callback function that will receive the keys
+      //found by GeoFire and put at this.parties
+      this.addParty = function(id){
+        $scope.parties.push(Party.findById(id));
+      };
+      
+      Party.findByLocation(findAParty.userLocation.lat, findAParty.userLocation.lng, this.addParty);
+      
+      setTimeout(function(){
+        console.log($scope.parties);
+      }, 3000);
+      
+    }
+    
     this.getPartyErrors = function(){
       var partyErrors = [];
       
