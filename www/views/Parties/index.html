@@ -50,6 +50,15 @@
             </div>
           </div>
           
+          <div layout="row">
+            <div flex="10" class="ic">
+              <md-icon><i class="material-icons">event</i></md-icon>
+            </div>
+            <div flex class="ic-label">
+              <p><span>{{FindAPartyCtrl.timestampToCalendar(party.startsAt.timestamp,party.startsAt.utcOffset)}}</span></p>
+            </div>
+          </div>
+          
           <!-- 
             <p>
               <span ng-repeat="n in range(1,party.rating)">

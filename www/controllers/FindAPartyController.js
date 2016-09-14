@@ -60,7 +60,8 @@ angular.module('FindAParty')
     
     //Define default filters for Parties search:
     $scope.partyFilters = {
-      type : 'public'
+      showPublic : true,
+      showPrivate : false
     };
     
   });
