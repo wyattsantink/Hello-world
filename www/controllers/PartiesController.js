@@ -28,14 +28,27 @@ angular.module('FindAParty')
     }
     
     if($location.path() === '/Parties'){
+      //Need to define parties in $scope in order to be readable at GeoFire callback:
       $scope.parties = [];
+      
       //Define a callback function that will receive the keys
-      //found by GeoFire and put at this.parties
+      //found by GeoFire and add to this.parties
       this.addParty = function(id){
         $scope.parties.push(Party.findById(id));
       };
       
-      Party.findByLocation(findAParty.userLocation.lat, findAParty.userLocation.lng, this.addParty);
+      //Define a callback function that will receive keys
+      //to be removed from parties' array
+      this.deleteParty = function(id){
+        for(var i=0; i < $scope.parties.length; i++){
+          if($scope.parties[i].$id === id){
+            $scope.parties.splice(i,1);
+            break;
+          }
+        }
+      };
+      
+      Party.findByLocation(findAParty.userLocation.lat, findAParty.userLocation.lng, this.addParty, this.deleteParty);
       
       setTimeout(function(){
         console.log($scope.parties);
@@ -80,7 +93,7 @@ angular.module('FindAParty')
       
       return partyErrors;
     };
-        
+
     this.save = function(){
       if(this.getPartyErrors().length === 0){
         //set Hoster:

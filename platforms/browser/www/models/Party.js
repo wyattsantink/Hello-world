@@ -36,11 +36,19 @@ angular.module('FindAParty')
       create : function(party){
         var ref = firebase.database().ref(findAParty.firebase.environment+'/parties/');
         var parties = $firebaseArray(ref);
-        parties.$add(party);
+        parties.$add(party).then(function(data){
+          var geoRef = firebase.database().ref(findAParty.firebase.environment+'/parties-location/');
+          var geoFire = new GeoFire(geoRef);
+          geoFire.set(data.key, [parties[parties.$indexFor(data.key)].location.lat,parties[parties.$indexFor(data.key)].location.lng]);
+        });
       },
       
       update : function(party){
-        party.$save();
+        party.$save().then(function(data){
+          var geoRef = firebase.database().ref(findAParty.firebase.environment+'/parties-location/');
+          var geoFire = new GeoFire(geoRef);
+          geoFire.set(data.key,[party.location.lat,party.location.lng]);
+        });
       },
       
       findByUser : function(id){
@@ -68,16 +76,37 @@ angular.module('FindAParty')
         return $firebaseObject(ref);
       },
       
-      delete : function(party, parties){
-        if(parties){
-          parties.$remove(party);
-        }else{
-         party.$remove(); 
-        }
+      findByLocation : function(lat,lng,addCallback, deleteCallback){
+        var geoRef = firebase.database().ref(findAParty.firebase.environment+'/parties-location/');
+        var geoFire = new GeoFire(geoRef);
+        var geoQuery = geoFire.query({
+          center: [lat,lng],
+          radius: 30
+        });
+        
+        geoQuery.on("key_entered", function(key, location){
+          addCallback(key);
+        });
+        
+        geoQuery.on("key_exited", function(key, location){
+          deleteCallback(key);
+        });
       },
       
-      findAll : function(){},
-      
-      find : function(id){}
+      delete : function(party, parties){
+        if(parties){
+          parties.$remove(party).then(function(data){
+            var geoRef = firebase.database().ref(findAParty.firebase.environment+'/parties-location/');
+            var geoFire = new GeoFire(geoRef);
+            geoFire.remove(data.key);
+          });
+        }else{
+         party.$remove().then(function(data){
+            var geoRef = firebase.database().ref(findAParty.firebase.environment+'/parties-location/');
+            var geoFire = new GeoFire(geoRef);
+            geoFire.remove(data.key);
+         }); 
+        }
+      }
     };
   });

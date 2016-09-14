@@ -76,15 +76,20 @@ angular.module('FindAParty')
         return $firebaseObject(ref);
       },
       
-      findByLocation : function(lat,lng,callback){
+      findByLocation : function(lat,lng,addCallback, deleteCallback){
         var geoRef = firebase.database().ref(findAParty.firebase.environment+'/parties-location/');
         var geoFire = new GeoFire(geoRef);
         var geoQuery = geoFire.query({
           center: [lat,lng],
           radius: 30
         });
+        
         geoQuery.on("key_entered", function(key, location){
-          callback(key);
+          addCallback(key);
+        });
+        
+        geoQuery.on("key_exited", function(key, location){
+          deleteCallback(key);
         });
       },
       

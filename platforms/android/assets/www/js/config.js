@@ -9,10 +9,12 @@ var findAParty = {
   version : '0.0.0',
   channel : 'dev', // channels : ['dev', 'alpha', 'beta', 'master']
   buildHash : '3a461db',
-  phonegapDebugMode : false,
+  phonegapDebugMode : true,
   
   
   firstAccessFlag : true,
+  
+  userLocation : {lat:0, lng:0},
   
   googleOAuth : {
     clientId : '99044897016-uep6je443errrns1udl8gapq8325tfpo.apps.googleusercontent.com',
