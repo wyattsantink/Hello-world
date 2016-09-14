@@ -61,7 +61,21 @@ angular.module('FindAParty')
     //Define default filters for Parties search:
     $scope.partyFilters = {
       showPublic : true,
-      showPrivate : false
+      showPrivate : false,
+      dateRange : {
+        from : new function(){
+          this.date = moment.utc(Date.now(),'x').format('MM/DD/YYYY');
+          this.toTimestamp = function(){
+            return  parseInt(moment.utc(this.date,'MM/DD/YYYY').format('x'));
+          }; 
+        },
+        to : new function(){
+          this.date = moment.utc(Date.now() + 1000*60*60*24*7,'x').format('MM/DD/YYYY');
+          this.toTimestamp = function(){
+            return  parseInt(moment.utc(this.date,'MM/DD/YYYY').format('x')) + 1000*60*60*24 //Add 24hrs;
+          }; 
+        }
+      }
     };
     
   });

@@ -14,10 +14,11 @@
   </div>
 </div>
 
-<div layout="row" style="margin-top: 56px;">
+<div layout="row" style="margin-top: 56px; height: 100%;">
   <div flex>
     <md-card style="margin: 0px;">
       <md-card-content>
+        
         <p><strong>Party type:</strong></p>
         <md-checkbox ng-model="partyFilters.showPublic">
           Public
@@ -25,8 +26,25 @@
         <md-checkbox ng-model="partyFilters.showPrivate">
           Private
         </md-checkbox>
+        
         <br>
         <md-divider></md-divider>
+        <br>
+        
+        <p><strong>Date Range:</strong></p>
+        
+        <div layout="row">
+          <md-input-container class="md-block md-icon-left" flex>
+            <md-icon><i class="material-icons">today</i></md-icon>
+            <input placeholder="From" class="datepicker" id="from" ng-model="partyFilters.dateRange.from.date">
+          </md-input-container>
+          
+          <md-input-container class="md-block md-icon-left" flex>
+            <md-icon><i class="material-icons">event</i></md-icon>
+            <input placeholder="To" class="datepicker" id="to" ng-model="partyFilters.dateRange.to.date">
+          </md-input-container>
+        </div>
+        
       </md-card-content>
     </md-card>
   </div>

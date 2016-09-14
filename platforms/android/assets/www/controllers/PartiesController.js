@@ -37,21 +37,24 @@ angular.module('FindAParty')
         var party = Party.findById(id);
         party.$loaded().then(function(data){
           //Filtering...
-          //Filter parties that haven't finished yet:
-          if( party.endsAt.timestamp > Date.now() ){
-            //Filter 'type'
-            if( ($scope.partyFilters.showPublic && party.type==='public') || ($scope.partyFilters.showPrivate && party.type==='private') ){
-              $scope.parties.unshift(party);  
-            }//type  
-          }//endsAt
-          
+          //Filter Date range:
+          var from = $scope.partyFilters.dateRange.from.toTimestamp();
+          var to = $scope.partyFilters.dateRange.to.toTimestamp();
+          if( (party.startsAt.timestamp >= from) && (party.startsAt.timestamp <= to) ){
+            //Filter parties that haven't finished yet:
+            if( party.endsAt.timestamp > Date.now() ){
+              //Filter 'type'
+              if( ($scope.partyFilters.showPublic && party.type==='public') || ($scope.partyFilters.showPrivate && party.type==='private') ){
+                $scope.parties.unshift(party);  
+              }//type  
+            }//endsAt  
+          }//Date Range
           
           //Sort parties by timestamp, recent ones come 1st
           $scope.parties.sort(function(a,b){
             return a.startsAt.timestamp - b.startsAt.timestamp;
           });
         });
-        
       };
       
       //Define a callback function that will receive keys
