@@ -1,0 +1,95 @@
+<div layout="row">
+  <div flex>
+    <md-toolbar class="" style="position: fixed;">
+      <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" ng-href="#/Users/menu">
+          <md-icon><i class="material-icons">menu</i></md-icon>
+        </md-button>
+        <h2>
+          <span>Find parties near you</span>
+        </h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="">
+          <md-icon><i class="material-icons">search</i></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+  </div>
+</div>
+
+<div layout="row" style="margin-top: 50px;">
+  <div flex>
+    <md-tabs  class="md-primary" md-dynamic-height md-center-tabs md-border-bottom >
+      <md-tab>
+        <md-tab-label>
+          Public
+        </md-tab-label>
+        <md-tab-body>
+          <a ng-repeat="party in parties" ng-href="{{'#/Parties/show/' + party.id}}" style="text-decoration: none;">
+            <md-card  ng-show="party.type == 'public'" class="party-card">
+              <img ng-src="img/cocktails.gif" class="md-card-image">
+              
+              <md-card-title>
+                <md-card-title-text>
+                  <span class="md-headline">{{party.name}}</span>
+                </md-card-title-text>
+              </md-card-title>  
+              
+              <md-card-content>
+                <p class="details">{{party.details}}</p>
+                
+                <div layout="row">
+                  <div flex="10" class="ic">
+                    <md-icon><i class="material-icons">location_on</i></md-icon>
+                  </div>
+                  <div flex class="ic-label">
+                    <p><span>{{party.location.address}}</span></p>
+                  </div>
+                </div>
+                
+                <!-- 
+                  <p>
+                    <span ng-repeat="n in range(1,party.rating)">
+                      <md-icon class="ic-rating"><i class="material-icons">star</i></md-icon>
+                    </span>
+                  </p>
+                -->                    
+              </md-card-content>
+            </md-card>
+          </a>
+        </md-tab-body>
+      </md-tab>
+      
+      <md-tab>
+        <md-tab-label>
+          Private
+        </md-tab-label>
+        <md-tab-body>
+          <a ng-repeat="party in parties" ng-href="{{'#/Parties/show/' + party.id}}" style="text-decoration: none;">
+            <md-card  ng-show="party.type == 'private'" class="party-card">
+              <img ng-src="img/cocktails.gif" class="md-card-image">
+              
+              <md-card-title>
+                <md-card-title-text>
+                  <span class="md-headline">{{party.name}}</span>
+                </md-card-title-text>
+              </md-card-title>  
+              
+              <md-card-content>
+                <p class="details">{{party.details}}</p>
+                
+                <!-- 
+                  <p>
+                    <span ng-repeat="n in range(1,party.rating)">
+                      <md-icon class="ic-rating"><i class="material-icons">star</i></md-icon>
+                    </span>
+                  </p>
+                -->                    
+              </md-card-content>
+            </md-card>
+          </a>
+        </md-tab-body>
+      </md-tab>
+    </md-tabs>
+  </div>
+</div>

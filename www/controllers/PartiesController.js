@@ -34,7 +34,15 @@ angular.module('FindAParty')
       //Define a callback function that will receive the keys
       //found by GeoFire and add to this.parties
       this.addParty = function(id){
-        $scope.parties.push(Party.findById(id));
+        var party = Party.findById(id);
+        party.$loaded().then(function(data){
+          //Filtering...
+          //matches 'type'
+          if(party.type === $scope.partyFilters.type){
+            $scope.parties.push(party);  
+          }  
+        });
+        
       };
       
       //Define a callback function that will receive keys
@@ -49,11 +57,6 @@ angular.module('FindAParty')
       };
       
       Party.findByLocation(findAParty.userLocation.lat, findAParty.userLocation.lng, this.addParty, this.deleteParty);
-      
-      setTimeout(function(){
-        console.log($scope.parties);
-      }, 3000);
-      
     }
     
     this.getPartyErrors = function(){

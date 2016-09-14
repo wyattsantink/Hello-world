@@ -77,6 +77,9 @@ angular.module('FindAParty')
       },
       
       findByLocation : function(lat,lng,addCallback, deleteCallback){
+        //Displays the loading bar:
+        document.getElementById('parties-loading').style.display = 'block';
+        
         var geoRef = firebase.database().ref(findAParty.firebase.environment+'/parties-location/');
         var geoFire = new GeoFire(geoRef);
         var geoQuery = geoFire.query({
@@ -90,6 +93,11 @@ angular.module('FindAParty')
         
         geoQuery.on("key_exited", function(key, location){
           deleteCallback(key);
+        });
+        
+        geoQuery.on("ready", function(){
+          //Hides the loading bar:
+          document.getElementById('parties-loading').style.display = 'none';
         });
       },
       
