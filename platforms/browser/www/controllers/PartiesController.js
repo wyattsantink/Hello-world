@@ -37,10 +37,19 @@ angular.module('FindAParty')
         var party = Party.findById(id);
         party.$loaded().then(function(data){
           //Filtering...
-          //matches 'type'
-          if(party.type === $scope.partyFilters.type){
-            $scope.parties.push(party);  
-          }  
+          //Filter parties that haven't finished yet:
+          if( party.endsAt.timestamp > Date.now() ){
+            //Filter 'type'
+            if( ($scope.partyFilters.showPublic && party.type==='public') || ($scope.partyFilters.showPrivate && party.type==='private') ){
+              $scope.parties.unshift(party);  
+            }//type  
+          }//endsAt
+          
+          
+          //Sort parties by timestamp, recent ones come 1st
+          $scope.parties.sort(function(a,b){
+            return a.startsAt.timestamp - b.startsAt.timestamp;
+          });
         });
         
       };

@@ -12,8 +12,8 @@
         <md-button class="md-icon-button" ng-click="">
           <md-icon><i class="material-icons">search</i></md-icon>
         </md-button>
-        <md-button class="md-icon-button" ng-click="">
-          <md-icon><i class="material-icons">date_range</i></md-icon>
+        <md-button class="md-icon-button" ng-href="#/Parties/filter">
+          <md-icon><i class="material-icons">settings</i></md-icon>
         </md-button>
       </div>
     </md-toolbar>
@@ -41,12 +41,21 @@
         <md-card-content>
           <p class="details">{{party.details}}</p>
           
-          <div layout="row">
+          <div layout="row" ng-show="party.type == 'public'">
             <div flex="10" class="ic">
               <md-icon><i class="material-icons">location_on</i></md-icon>
             </div>
             <div flex class="ic-label">
               <p><span>{{party.location.address}}</span></p>
+            </div>
+          </div>
+          
+          <div layout="row">
+            <div flex="10" class="ic">
+              <md-icon><i class="material-icons">event</i></md-icon>
+            </div>
+            <div flex class="ic-label">
+              <p><span>{{FindAPartyCtrl.timestampToCalendar(party.startsAt.timestamp,party.startsAt.utcOffset)}}</span></p>
             </div>
           </div>
           
