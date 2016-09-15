@@ -9,7 +9,7 @@
           <span>Find parties near you</span>
         </h2>
         <span flex></span>
-        <md-button class="md-icon-button" ng-click="">
+        <md-button class="md-icon-button" ng-href="#/Parties/search">
           <md-icon><i class="material-icons">search</i></md-icon>
         </md-button>
         <md-button class="md-icon-button" ng-href="#/Parties/filter">
@@ -23,6 +23,20 @@
 <div layout="row" style="margin-top: 56px;">
   <div flex>
     <md-progress-linear id="parties-loading" md-mode="query" id="load-progress"></md-progress-linear>
+  </div>
+</div>
+
+<div layout="row" class="search-location" ng-show="partyFilters.selectedAddress !== null">
+  <div flex="10" class="ic">
+    <md-icon><i class="material-icons">place</i></md-icon>
+  </div>
+  <div flex>
+    <p>{{partyFilters.selectedAddress.formatted_address}}</p>
+  </div>
+  <div flex class="ic">
+    <md-button class="md-icon-button" ng-click="PartiesCtrl.clearSelectedAddress()">
+      <md-icon><i class="material-icons">clear</i></md-icon>
+    </md-button>
   </div>
 </div>
 

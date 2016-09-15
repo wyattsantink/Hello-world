@@ -68,7 +68,20 @@ angular.module('FindAParty')
         }
       };
       
-      Party.findByLocation(findAParty.userLocation.lat, findAParty.userLocation.lng, this.addParty, this.deleteParty);
+      //Check if there's an address to filter
+      if($scope.partyFilters.selectedAddress !== null){
+        Party.findByLocation($scope.partyFilters.selectedAddress.geometry.location.lat, $scope.partyFilters.selectedAddress.geometry.location.lng, this.addParty, this.deleteParty);
+      }else{
+        //if there's not, load parties with the user's location:
+        Party.findByLocation(findAParty.userLocation.lat, findAParty.userLocation.lng, this.addParty, this.deleteParty);
+      }
+      
+      this.clearSelectedAddress = function(){
+        $scope.partyFilters.selectedAddress = null;
+        //Reload parties:
+        $scope.parties = [];
+        Party.findByLocation(findAParty.userLocation.lat, findAParty.userLocation.lng, this.addParty, this.deleteParty);
+      };
     }
     
     this.getPartyErrors = function(){
@@ -215,6 +228,7 @@ angular.module('FindAParty')
     
     this.searchAddressResults = [];
     this.selectedAddress = null;
+    this.mapParams = {height:500};
     
     this.searchAddress = function(){
       this.searchAddressResults = [];
@@ -248,10 +262,55 @@ angular.module('FindAParty')
     
     this.getMap = function(){
       if(this.selectedAddress !== null){
-        var mapParams = {height:500};
-        return $scope.getStaticMapUrl(this.selectedAddress.geometry.location.lat, this.selectedAddress.geometry.location.lng, mapParams);
+        return $scope.getStaticMapUrl(this.selectedAddress.geometry.location.lat, this.selectedAddress.geometry.location.lng, this.mapParams);
       }
     };
+    
+    if($location.path().substring(0,15) === '/Parties/search'){
+      //Redefine searchAddress to use in /Parties/search
+      this.searchAddress = function(){
+        this.searchAddressResults = [];
+        this.selectedAddress = null;
+        $scope.partyFilters.selectedAddress = null;
+        
+        if($scope.partyFilters.query){
+          var encodedAddress = encodeURIComponent($scope.partyFilters.query);
+          var url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + encodedAddress +'&key=' + findAParty.googleMaps.geocodingApiKey;
+          
+          var that = this;
+          $http({method: 'GET',url: url}).then(function successCallback(response) {
+            // this callback will be called asynchronously
+            // when the response is available
+            if(response.data.results.length === 1){
+              that.selectedAddress = response.data.results[0];
+              $scope.partyFilters.selectedAddress = response.data.results[0];
+            }else{
+              that.searchAddressResults = response.data.results;
+              
+            }
+          }, 
+          function errorCallback(response) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+            console.log(response);
+          });  
+        }
+      };
+      
+      //Redifine selectAddress to use in /Parties/search
+      this.selectAddress = function(index){
+        this.selectedAddress = this.searchAddressResults[index];
+        $scope.partyFilters.selectedAddress = this.searchAddressResults[index];
+        this.searchAddressResults = [];
+      };
+      
+      this.mapParams.zoom = 12;
+      
+      //See if the user has passed a query param:
+      if($routeParams.query !== undefined){
+        this.searchAddress();
+      }
+    }
     
     $('.datepicker').pickadate({
       selectMonths: true, // Creates a dropdown to control month

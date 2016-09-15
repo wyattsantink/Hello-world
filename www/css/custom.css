@@ -519,3 +519,16 @@ md-tabs.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > m
   padding-left: 20px;
   font-size: small;
 }
+
+.search-location {
+  margin: 0 10px;
+  color: #757575;
+}
+
+.search-location i {
+  color: #757575;
+}
+
+.search-location .ic {
+  margin: auto 0px;
+}

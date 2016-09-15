@@ -74,8 +74,10 @@ angular.module('FindAParty')
           this.toTimestamp = function(){
             return  parseInt(moment.utc(this.date,'MM/DD/YYYY').format('x')) + 1000*60*60*24 //Add 24hrs;
           }; 
-        }
-      }
+        },
+      },
+      query : '',
+      selectedAddress : null
     };
     
   });
