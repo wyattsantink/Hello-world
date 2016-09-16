@@ -26,10 +26,11 @@ angular.module('FindAParty')
         that.partyIsEditable = that.party.endsAt.timestamp > Date.now();
         //set the page's selected address:
         that.searchAddress();
+        
         //If in /Parties/show, also loads the hoster information:
         if($location.path().substring(0,13) === '/Parties/show'){
           //Get Party's hoster info:
-          that.hoster = User.findById(that.party.hoster);
+          that.party.hoster = User.findById(that.party.hoster);
         }
       }); 
     }

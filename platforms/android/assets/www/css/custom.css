@@ -436,7 +436,8 @@ md-tabs.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > m
   width: 150%;
 }
 
-.search-toolbar md-input-container:not(.md-input-invalid).md-input-focused label {
+.search-toolbar md-input-container:not(.md-input-invalid).md-input-focused label,
+.search-toolbar md-input-container:not(.md-input-invalid).md-input-has-value label {
   display: none;
 }
 
