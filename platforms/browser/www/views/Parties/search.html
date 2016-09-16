@@ -1,0 +1,56 @@
+<div layout="row">
+  <div flex>
+    <md-toolbar class="md-whiteframe-6dp" style="position: fixed;">
+      <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" ng-href="#/Users/menu">
+          <md-icon><i class="material-icons">menu</i></md-icon>
+        </md-button>
+        <h2>
+          <span>Search</span>
+        </h2>
+        <span flex></span>
+      </div>
+    </md-toolbar>
+  </div>
+</div>
+
+<div layout="row" style="margin-top: 56px;">
+  <div flex>
+    <md-card>
+      <md-card-content>
+        <div layout="row">
+          <md-input-container class="md-block" flex="90">
+            <input placeholder="Search for cities or addresses..." ng-model="partyFilters.query">
+          </md-input-container>
+          
+          <md-input-container class="md-block" flex>
+            <md-button class="md-icon-button" ng-click="PartiesCtrl.searchAddress()">
+              <md-icon><i class="material-icons">search</i></md-icon>
+            </md-button>
+          </md-input-container>
+        </div>
+      </md-card-content>
+    </md-card>
+  </div>
+</div>
+
+<div layout="row" ng-show="PartiesCtrl.searchAddressResults.length > 1" ng-repeat="result in PartiesCtrl.searchAddressResults">
+  <div flex>
+    <md-card ng-click="PartiesCtrl.selectAddress($index)">
+      <md-card-content>
+        <p><strong>{{result.formatted_address}}</strong></p>
+      </md-card-content>
+    </md-card>
+  </div>
+</div>
+
+<div layout="row" ng-show="PartiesCtrl.selectedAddress !== null">
+  <a ng-href="#/Parties" style="text-decoration: none;">
+    <md-card>
+      <img ng-src="{{PartiesCtrl.getMap()}}" class="img-responsive">
+      <md-card-content>
+        <p><strong>{{PartiesCtrl.selectedAddress.formatted_address}}</strong></p>
+      </md-card-content>
+    </md-card>
+  </a>
+</div>

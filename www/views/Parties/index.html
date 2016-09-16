@@ -42,7 +42,7 @@
 
 <div layout="row">
   <div flex>
-    <a ng-repeat="party in parties" ng-href="{{'#/Parties/show/' + party.id}}" style="text-decoration: none;">
+    <a ng-repeat="party in parties" ng-href="{{'#/Parties/show/' + party.$id}}" style="text-decoration: none;">
       <md-card class="party-card">
         <img ng-src="img/cocktails.gif" class="md-card-image">
         

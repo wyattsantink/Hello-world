@@ -2,12 +2,12 @@
   <div flex>
     <md-toolbar class="md-whiteframe-6dp search-toolbar" style="position: fixed;">
       <div class="md-toolbar-tools">
-        <md-button class="md-icon-button">
+        <md-button class="md-icon-button" ng-href="{{'#/Parties/search/' + partyFilters.query}}">
           <md-icon><i class="material-icons">search</i></md-icon>
         </md-button>
         <span>
           <md-input-container class="">
-            <input placeholder="Search places...">
+            <input placeholder="Search places..." ng-model="partyFilters.query">
           </md-input-container>
         </span>
         <span flex></span>

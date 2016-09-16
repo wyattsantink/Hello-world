@@ -179,6 +179,10 @@ md-card img {
   color: rgba(0,0,0,0.54);
 }
 
+.card-party-address .btn-invite {
+  color: #757575;
+}
+
 .card-party-reviews .ic {
   margin: auto 5px;
 }
@@ -518,4 +522,17 @@ md-tabs.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > m
   color: #aaa;
   padding-left: 20px;
   font-size: small;
+}
+
+.search-location {
+  margin: 0 10px;
+  color: #757575;
+}
+
+.search-location i {
+  color: #757575;
+}
+
+.search-location .ic {
+  margin: auto 0px;
 }
