@@ -8,9 +8,8 @@ var findAParty = {
   
   version : '0.0.0',
   channel : 'dev', // channels : ['dev', 'alpha', 'beta', 'master']
-  buildHash : '3a461db',
+  buildHash : '6af1ee5',
   phonegapDebugMode : true,
-  
   
   firstAccessFlag : true,
   

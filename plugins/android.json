@@ -51,6 +51,9 @@
         },
         "com.telerik.plugins.nativepagetransitions": {
             "PACKAGE_NAME": "io.iltons.android.apps.findaparty"
+        },
+        "cordova-plugin-firebase": {
+            "PACKAGE_NAME": "io.iltons.android.apps.findaparty"
         }
     },
     "dependent_plugins": {}

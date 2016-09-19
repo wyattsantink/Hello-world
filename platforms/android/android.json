@@ -87,6 +87,10 @@
                         {
                             "xml": "<feature name=\"NativePageTransitions\"><param name=\"android-package\" value=\"com.telerik.plugins.nativepagetransitions.NativePageTransitions\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"FirebasePlugin\"><param name=\"android-package\" value=\"org.apache.cordova.firebase.FirebasePlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -114,6 +118,34 @@
                     "/manifest": [
                         {
                             "xml": "<uses-permission android:name=\"android.permission.VIBRATE\" />",
+                            "count": 1
+                        }
+                    ],
+                    "/manifest/application": [
+                        {
+                            "xml": "<service android:name=\"org.apache.cordova.firebase.FirebasePluginMessagingService\"><intent-filter><action android:name=\"com.google.firebase.MESSAGING_EVENT\" /></intent-filter></service>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<service android:name=\"org.apache.cordova.firebase.FirebasePluginInstanceIDService\"><intent-filter><action android:name=\"com.google.firebase.INSTANCE_ID_EVENT\" /></intent-filter></service>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<receiver android:name=\"org.apache.cordova.firebase.OnNotificationOpenReceiver\" />",
+                            "count": 1
+                        }
+                    ]
+                }
+            },
+            "res/values/strings.xml": {
+                "parents": {
+                    "/resources": [
+                        {
+                            "xml": "<string name=\"google_app_id\">@string/google_app_id</string>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<string name=\"google_api_key\">@string/google_api_key</string>",
                             "count": 1
                         }
                     ]
@@ -165,6 +197,9 @@
             "PACKAGE_NAME": "io.iltons.android.apps.findaparty"
         },
         "com.telerik.plugins.nativepagetransitions": {
+            "PACKAGE_NAME": "io.iltons.android.apps.findaparty"
+        },
+        "cordova-plugin-firebase": {
             "PACKAGE_NAME": "io.iltons.android.apps.findaparty"
         }
     },
@@ -303,6 +338,13 @@
             "clobbers": [
                 "window.plugins.nativepagetransitions"
             ]
+        },
+        {
+            "file": "plugins/cordova-plugin-firebase/www/firebase.js",
+            "id": "cordova-plugin-firebase.FirebasePlugin",
+            "clobbers": [
+                "FirebasePlugin"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -320,6 +362,7 @@
         "cordova-plugin-vibration": "2.1.1",
         "cordova-plugin-whitelist": "1.2.2",
         "cordova-plugin-crosswalk-webview": "2.0.0",
-        "com.telerik.plugins.nativepagetransitions": "0.6.5"
+        "com.telerik.plugins.nativepagetransitions": "0.6.5",
+        "cordova-plugin-firebase": "0.1.12"
     }
 }

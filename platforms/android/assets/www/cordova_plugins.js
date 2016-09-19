@@ -133,6 +133,13 @@ module.exports = [
         "clobbers": [
             "window.plugins.nativepagetransitions"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-firebase/www/firebase.js",
+        "id": "cordova-plugin-firebase.FirebasePlugin",
+        "clobbers": [
+            "FirebasePlugin"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -152,7 +159,8 @@ module.exports.metadata =
     "cordova-plugin-vibration": "2.1.1",
     "cordova-plugin-whitelist": "1.2.2",
     "cordova-plugin-crosswalk-webview": "2.0.0",
-    "com.telerik.plugins.nativepagetransitions": "0.6.5"
+    "com.telerik.plugins.nativepagetransitions": "0.6.5",
+    "cordova-plugin-firebase": "0.1.12"
 };
 // BOTTOM OF METADATA
 });

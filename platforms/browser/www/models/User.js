@@ -33,6 +33,10 @@ angular.module('FindAParty')
               });
               //Exec callback that stores user ID at $scope:
               callback();
+              //Set a user id for use in Analytics:
+              if(window.FirebasePlugin){
+                findAParty.FirebasePlugin.setUserId(firebase.auth().currentUser.uid);
+              }
             }//first access
           } else {
             // No user is signed in.
