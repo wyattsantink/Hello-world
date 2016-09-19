@@ -144,6 +144,45 @@ function markParty(party){
     anchor: new google.maps.Point(16,16)
   };
   
+  //Window with party info
+   /*
+   var contentString = '<a href="#/Parties/show/' + party.$id + '" style="text-decoration: none;">' +
+      '<md-card class="party-card">' + 
+        '<img src="../img/cocktails.gif" class="md-card-image">' + 
+        '<md-card-title>' +
+          '<md-card-title-text>' +
+            '<span class="md-headline">' + party.name + '</span>' +
+          '</md-card-title-text>' +
+        '</md-card-title>' +
+        '<md-card-content>' +
+          '<p class="details">' + party.details + '</p>' +
+          '<div layout="row">' +
+            '<div flex="10" class="ic">' +
+              '<md-icon><i class="material-icons">location_on</i></md-icon>' +
+            '</div>' +
+            '<div flex class="ic-label">' +
+              '<p><span>' + party.location.address + '</span></p>' +
+            '</div>' +
+          '</div>' +
+        '</md-card-content>' +
+      '</md-card>' +
+    '</a>';
+  */
+  
+  var contentString = '<div layout="row">' + 
+    '<div flex>' +
+      '<a href="#/Parties/show/' + party.$id + '" style="text-decoration: none;">' +
+        '<p style="font-size: large; color: #616161;">' + party.name + '</p>' +
+        '<md-divider></md-divider>' + 
+        '<p style="color: #757575;">' + party.details + '</p>' +
+      '</a>' + 
+    '</div>' +
+  '</div>';
+  
+  var infowindow = new google.maps.InfoWindow({
+    content: contentString
+  });
+  
   var marker = new  google.maps.Marker({
     position: {
       lat: party.location.lat,
@@ -151,6 +190,10 @@ function markParty(party){
     },
     map : map,
     icon : partyMarkerImg
+  });
+  
+  marker.addListener('click', function() {
+    infowindow.open(map, marker);
   });
   
   partiesMarkers.push(marker);
