@@ -105,3 +105,23 @@ function centerMap(){
     geoOptions
   );  
 }
+
+//Add a marker into the map
+function markParty(party){
+  //Marker image
+  var partyMarkerImg = {
+    url: 'img/markers/public-party.png',
+    size: new google.maps.Size(32, 32),
+    origin: new google.maps.Point(0,0),
+    anchor: new google.maps.Point(16,16)
+  };
+  
+  var marker = new  google.maps.Marker({
+    position: {
+      lat: party.location.lat,
+      lng: party.location.lng
+    },
+    map : map,
+    icon : partyMarkerImg
+  }); 
+}

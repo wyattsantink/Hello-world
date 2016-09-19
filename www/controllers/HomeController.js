@@ -1,5 +1,5 @@
 angular.module('FindAParty')
-  .controller('HomeController', function($location, $scope, User){
+  .controller('HomeController', function($location, $scope, Party, User){
     //check if the user is logged in:
     User.verifyLogin($scope.storeUid);
     
@@ -8,7 +8,6 @@ angular.module('FindAParty')
       window.FirebasePlugin.logEvent("page_view", {page: $location.path()});
       console.log('GA event');
     }
-    
     
     this.centerMap = function(){
       centerMap();
@@ -23,7 +22,34 @@ angular.module('FindAParty')
         document.body.appendChild(script);
       }else{
         initMap();
-      } 
+      }
     };
     this.watchMap();
+    
+    this.addPartiesMarkers = function(){
+      this.addMarker = function(id){
+        var party = Party.findById(id);
+        party.$loaded().then(function(data){
+          //Filtering...
+          //Filter Date range:
+          var from = parseInt(moment.utc(moment.utc(Date.now(),'x').format('MM/DD/YYYY'),'MM/DD/YYYY').format('x')); //today
+          var to = from + (1000*60*60*24*30); //+1 month
+          if( (party.startsAt.timestamp >= from) && (party.startsAt.timestamp <= to) ){
+            //Filter parties that haven't finished yet:
+            if( party.endsAt.timestamp > Date.now() ){
+              //Filter 'type'
+              if(party.type === 'public'){
+                markParty(party);
+              }//type  
+            }//endsAt  
+          }//Date Range
+        });
+      };
+      
+      this.deleteMarker = function(){};
+      
+      Party.findByLocation(findAParty.userLocation.lat, findAParty.userLocation.lng, this.addMarker, this.deleteMarker);
+    };
+    setTimeout(this.addPartiesMarkers, 3000);
+    
   });
