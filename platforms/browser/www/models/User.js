@@ -34,9 +34,14 @@ angular.module('FindAParty')
               //Exec callback that stores user ID at $scope:
               callback();
               //Set a user id for use in Analytics:
-              if(window.FirebasePlugin){
-                findAParty.FirebasePlugin.setUserId(firebase.auth().currentUser.uid);
-              }
+              document.addEventListener("deviceready", function(){
+                if(window.FirebasePlugin){
+                  window.FirebasePlugin.setUserId(firebase.auth().currentUser.uid);
+                  console.log('GA event: setUserId');
+                  window.FirebasePlugin.logEvent("page_view", {page: '/'});
+                  console.log('GA event: logEvent page_view; page: /');
+                }
+              }, false);
             }//first access
           } else {
             // No user is signed in.

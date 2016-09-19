@@ -48,8 +48,17 @@ angular.module('FindAParty')
       
       this.deleteMarker = function(){};
       
-      Party.findByLocation(findAParty.userLocation.lat, findAParty.userLocation.lng, this.addMarker, this.deleteMarker);
+      var mapCenter = map.getCenter();
+      
+      Party.findByLocation(mapCenter.lat(), mapCenter.lng(), this.addMarker, this.deleteMarker);
     };
     setTimeout(this.addPartiesMarkers, 3000);
+    
+    this.searchThisLocation = function(){
+      document.getElementById('search-parties-box').style.display = "none";
+      cleanMarkers();
+      this.addPartiesMarkers();
+      setCurrentMapCenter();
+    };
     
   });

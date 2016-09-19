@@ -21,6 +21,16 @@
       <md-progress-circular md-mode="indeterminate"></md-progress-circular>
     </div>-->
     
+    <div layout="row" id="search-parties-box">
+      <div flex>
+        <md-card>
+          <md-card-content>
+            <a ng-click="HomeCtrl.searchThisLocation()">Search this location...</a>
+          </md-card-content>
+        </md-card>
+      </div>
+    </div>
+    
     <div id="map"></div>
     
     <md-button class="md-fab md-primary" style="position: fixed; bottom: 60px; right: 10px;" ng-click="HomeCtrl.centerMap()">

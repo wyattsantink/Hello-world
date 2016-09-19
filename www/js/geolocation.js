@@ -11,6 +11,12 @@ var geoOptions = {
 //User's location marker
 var myLocationMarker;
 
+//Parties' markers:
+var partiesMarkers = [];
+
+//Map Center
+var currentMapCenter = {};
+
 //Callback after append g-maps script:
 function initMap(){
   navigator.geolocation.getCurrentPosition(
@@ -64,6 +70,23 @@ function initMap(){
         icon : image,
         title: "You're Here!"
       });
+      
+      //set the map center
+      setCurrentMapCenter();
+      
+      //Listen for changes in map center and aks to search the new location:
+      google.maps.event.addListener(map, 'center_changed', function(){
+        var newCenter = map.getCenter();
+        if( (newCenter.lat() > (currentMapCenter.lat() + 0.2) ) ||
+            (newCenter.lat() < (currentMapCenter.lat() - 0.2) ) ||
+            (newCenter.lng() > (currentMapCenter.lng() + 0.2) ) ||
+            (newCenter.lng() < (currentMapCenter.lng() - 0.2) ) )
+        {
+          //center out of radius, asks for re-search parties:
+          document.getElementById('search-parties-box').style.display = "flex";
+        }
+      });
+      
       //Stop progress bar after creating map:
       google.maps.event.addListenerOnce(map, 'tilesloaded',function(){
         document.getElementById("load-progress").style.display = 'none';
@@ -74,6 +97,11 @@ function initMap(){
     },
     geoOptions
   );
+}
+
+//set the current map center:
+function setCurrentMapCenter(){
+  currentMapCenter = map.getCenter();
 }
 
 //Center the Map with updated location:
@@ -123,5 +151,15 @@ function markParty(party){
     },
     map : map,
     icon : partyMarkerImg
-  }); 
+  });
+  
+  partiesMarkers.push(marker);
+}
+
+//Clean all markers:
+function cleanMarkers(){
+  for(var i=0; i < partiesMarkers.length; i++){
+    partiesMarkers[i].setMap(null);
+  }
+  partiesMarkers = [];
 }
