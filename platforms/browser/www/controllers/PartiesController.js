@@ -36,6 +36,10 @@ angular.module('FindAParty')
     }
     
     if($location.path() === '/Parties'){
+      //send page view to GA:
+      if(window.ga){
+        window.ga.trackView('Find Parties near you');
+      }
       //Need to define parties in $scope in order to be readable at GeoFire callback:
       $scope.parties = [];
       

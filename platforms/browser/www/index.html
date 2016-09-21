@@ -111,6 +111,9 @@
   			if (cordova.platformId == 'android') {
   			    StatusBar.backgroundColorByHexString("#212121");
   			}
+  			
+  			//Init Google Analytics
+  			window.ga.startTrackerWithId(findAParty.googleAnalytics.trackId);
   		}
   		document.addEventListener("deviceready", onDeviceReady, false);
 	  </script>

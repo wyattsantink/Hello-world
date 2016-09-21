@@ -3,12 +3,6 @@ angular.module('FindAParty')
     //check if the user is logged in:
     User.verifyLogin($scope.storeUid);
     
-    //Log an event using Analytics:
-    if(window.FirebasePlugin){
-      window.FirebasePlugin.logEvent("page_view", {page: $location.path()});
-      console.log('GA event');
-    }
-    
     this.centerMap = function(){
       centerMap();
     };

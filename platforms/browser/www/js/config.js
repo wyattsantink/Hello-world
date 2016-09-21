@@ -15,6 +15,10 @@ var findAParty = {
   
   userLocation : {lat:0, lng:0},
   
+  googleAnalytics : {
+    trackId : 'UA-84588202-1'
+  },
+  
   googleOAuth : {
     clientId : '99044897016-uep6je443errrns1udl8gapq8325tfpo.apps.googleusercontent.com',
     clientSecret : '2hH4EccQKJURgMk0re5AWRx-',
