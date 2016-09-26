@@ -140,8 +140,31 @@ angular.module('FindAParty')
         invitation.$save();
       },
       
-      updateInvitation : function(partyId, userId, value){},
+      updateInvitation : function(partyId, userId, value){
+        var ref = firebase.database().ref(findAParty.firebase.environment+'/parties-invitation/'+partyId+'/'+userId);
+        var invitation = $firebaseObject(ref);
+        invitation.isInvited = value;
+        invitation.$save();
+      },
       
-      isInvited : function(partyId, userId){}
+      findInvitations : function(partyId){
+        var ref = firebase.database().ref(findAParty.firebase.environment+'/parties-invitation/'+partyId);
+        var invitations = $firebaseArray(ref);
+        invitations.$loaded().then(function(data){
+          for(var i = 0; i < invitations.length; i++){
+            var userRef = firebase.database().ref(findAParty.firebase.environment+'/users/' + invitations.$keyAt(i));
+            var user = $firebaseObject(userRef);
+            invitations[i].user = user;
+          }
+        });
+        
+        invitations.$watch(function(ev){
+          var userRef = firebase.database().ref(findAParty.firebase.environment+'/users/' + ev.key);
+          var user = $firebaseObject(userRef);
+          invitations[invitations.$indexFor(ev.key)].user = user;
+        });
+        
+        return invitations;
+      }
     };
   });

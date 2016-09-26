@@ -46,6 +46,19 @@ angular.module('FindAParty')
           //Get Party's hoster info:
           that.party.hoster = User.findById(that.party.hoster);
         }
+        
+        //If in /Parties/dashboard, load a list of invitiations
+        if($location.path().substring(0,18) === '/Parties/dashboard'){
+          that.party.invitations = Party.findInvitations(that.party.$id);
+          
+          that.confirmInvitation = function(invitation){
+            Party.updateInvitation(that.party.$id,invitation.user.$id,true);
+          };
+          
+          that.refuseInvitation = function(invitation){
+            Party.updateInvitation(that.party.$id,invitation.user.$id,false);
+          };
+        }
       });
     }
     
