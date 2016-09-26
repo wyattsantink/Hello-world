@@ -21,6 +21,14 @@ angular.module('FindAParty')
     if($routeParams.id !== undefined){
       this.party = Party.findById($routeParams.id);
       
+      //register a listener to party invitation changes
+      $scope.invitationStatus = 501; //not implemented
+      this.setInvitationStatus = function(status){
+        $scope.invitationStatus = status;
+      };
+      this.unlistenOnInvitation = Party.listenOnInvitation(this.party.$id,$scope.uid,this.setInvitationStatus);
+      
+      //asks for invitation
       this.inviteMe = function(){
         Party.createInvitation(this.party.$id,$scope.uid);
         $mdToast.show($mdToast.simple().textContent("Successfully Requested!").position('bottom end').hideDelay(3000));

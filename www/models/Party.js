@@ -117,6 +117,22 @@ angular.module('FindAParty')
         }
       },
       
+      listenOnInvitation : function(partyId, userId, callback){
+        var ref = firebase.database().ref(findAParty.firebase.environment+'/parties-invitation/'+partyId+'/'+userId);
+        var invitation = $firebaseObject(ref);
+        invitation.$watch(function(){
+          if(invitation.isInvited === undefined){
+            callback(404); //not found
+          }else{
+            if(invitation.isInvited){
+              callback(200);//OK
+            }else{
+              callback(403);//forbidden
+            }
+          }
+        });
+      },
+      
       createInvitation : function(partyId, userId){
         var ref = firebase.database().ref(findAParty.firebase.environment+'/parties-invitation/'+partyId+'/'+userId);
         var invitation = $firebaseObject(ref);
