@@ -86,9 +86,9 @@
     
     
       
-    <p class="label">Requests:</p>
+    <p class="label" ng-show="PartiesCtrl.party.invitations.length > 0">Requests:</p>
       
-    <md-card class="card-party-reviews">
+    <md-card class="card-party-reviews" ng-show="PartiesCtrl.party.invitations.length > 0">
       <md-card-content>
         <div ng-repeat="invitation in PartiesCtrl.party.invitations">
         <div layout="row">

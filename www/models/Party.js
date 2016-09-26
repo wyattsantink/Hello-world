@@ -107,12 +107,20 @@ angular.module('FindAParty')
             var geoRef = firebase.database().ref(findAParty.firebase.environment+'/parties-location/');
             var geoFire = new GeoFire(geoRef);
             geoFire.remove(data.key);
+            
+            var ref = firebase.database().ref(findAParty.firebase.environment+'/parties-invitation/'+data.key);
+            var invitation = $firebaseObject(ref);
+            invitation.$remove();
           });
         }else{
          party.$remove().then(function(data){
             var geoRef = firebase.database().ref(findAParty.firebase.environment+'/parties-location/');
             var geoFire = new GeoFire(geoRef);
             geoFire.remove(data.key);
+            
+            var ref = firebase.database().ref(findAParty.firebase.environment+'/parties-invitation/'+data.key);
+            var invitation = $firebaseObject(ref);
+            invitation.$remove();
          }); 
         }
       },

@@ -65,7 +65,7 @@
 <div layout="row">
   <div flex>
     <md-card class="card-party-address">
-      <img ng-src="{{getStaticMapUrl(PartiesCtrl.party.location.lat,PartiesCtrl.party.location.lng,{})}}" class="img-responsive" ng-show="PartiesCtrl.party.type == 'public'">
+      <img ng-src="{{getStaticMapUrl(PartiesCtrl.party.location.lat,PartiesCtrl.party.location.lng,{})}}" class="img-responsive" ng-show="(PartiesCtrl.party.type == 'public') || ( (PartiesCtrl.party.type == 'private') && (invitationStatus == 200) )">
       <md-card-content>
         <div layout="row" ng-show="PartiesCtrl.party.type == 'public'">
           <div flex="10" class="ic">
@@ -76,12 +76,21 @@
           </div>
         </div>
         
-        <div layout="row" ng-show="party.type == 'private'">
+        <div layout="row" ng-show="invitationStatus !== 200">
           <div flex="10" class="ic">
             <md-icon><i class="material-icons">location_off</i></md-icon>
           </div>
           <div flex class="ic-label">
             <p><span>You need an invitation to see this address</span></p>
+          </div>
+        </div>
+        
+        <div layout="row" ng-show="invitationStatus == 200">
+          <div flex="10" class="ic">
+            <md-icon><i class="material-icons">location_on</i></md-icon>
+          </div>
+          <div flex class="ic-label">
+            <p><span>{{PartiesCtrl.party.location.address}}</span></p>
           </div>
         </div>
         
@@ -105,9 +114,19 @@
         
       </md-card-content>
       <md-card-actions layout="row" layout-align="end center"  ng-show="PartiesCtrl.party.type == 'private'">
-        <md-button class="btn-invite">
+        <md-button class="btn-invite" ng-click="PartiesCtrl.inviteMe()" ng-show="invitationStatus == 404">
           <md-icon><i class="material-icons">loyalty</i></md-icon>
           Invite Me!
+        </md-button>
+        
+        <md-button class="btn-invite" ng-disabled="true" ng-show="invitationStatus == 403">
+          <md-icon><i class="material-icons">hourglass_empty</i></md-icon>
+          pending authorization...
+        </md-button>
+        
+        <md-button class="btn-invite" ng-disabled="true" ng-show="invitationStatus == 200">
+          <md-icon><i class="material-icons">done</i></md-icon>
+          You're invited!
         </md-button>
       </md-card-actions>
     </md-card>

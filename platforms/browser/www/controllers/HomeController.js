@@ -3,11 +3,6 @@ angular.module('FindAParty')
     //check if the user is logged in:
     User.verifyLogin($scope.storeUid);
     
-    //send page view to GA:
-    if(window.ga){
-      window.ga.trackView('Home');
-    }
-    
     this.centerMap = function(){
       centerMap();
     };

@@ -51,11 +51,13 @@ angular.module('FindAParty')
       return moment.utc(timestamp,"x").utcOffset(utcOffset).format('MM/DD/YYYY HH:mm');
     };
     
-    //Add an event listener to record the user history
+    //Add an event listener to record the user history and track page views to GA
     $rootScope.$on('$locationChangeStart', function(ev,n,o){
       if(n.split('#')[1] !== historyChannel[historyChannel.length-1]){
         historyChannel.push(n.split('#')[1]);
       }
+      
+      trackPageView(n.split('#')[1]);
     });
     
     //Define default filters for Parties search:

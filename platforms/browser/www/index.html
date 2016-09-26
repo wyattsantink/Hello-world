@@ -51,6 +51,9 @@
     <!-- Native Page Transitions -->
     <script src="vendor/native-page-transitions/native-page-transitions.js"></script>
     
+    <!-- Google Analytics -->
+    <script src="js/track-page-view.js"></script>
+    
     <!-- Google Login -->
     <script src="https://apis.google.com/js/platform.js"></script>
     <script src="js/google-oAuth.js"></script>
@@ -114,6 +117,8 @@
   			
   			//Init Google Analytics
   			window.ga.startTrackerWithId(findAParty.googleAnalytics.trackId);
+  			window.ga.setAppVersion(findAParty.version + '.' + findAParty.channel + '.' + findAParty.buildHash);
+  			window.ga.trackView('Home');
   		}
   		document.addEventListener("deviceready", onDeviceReady, false);
 	  </script>

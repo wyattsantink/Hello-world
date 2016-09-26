@@ -20,6 +20,20 @@ angular.module('FindAParty')
     
     if($routeParams.id !== undefined){
       this.party = Party.findById($routeParams.id);
+      
+      //register a listener to party invitation changes
+      $scope.invitationStatus = 501; //not implemented
+      this.setInvitationStatus = function(status){
+        $scope.invitationStatus = status;
+      };
+      this.unlistenOnInvitation = Party.listenOnInvitation(this.party.$id,$scope.uid,this.setInvitationStatus);
+      
+      //asks for invitation
+      this.inviteMe = function(){
+        Party.createInvitation(this.party.$id,$scope.uid);
+        $mdToast.show($mdToast.simple().textContent("Successfully Requested!").position('bottom end').hideDelay(3000));
+      };
+      
       var that = this;
       this.party.$loaded().then(function(data){
         //Enable the edit button:
@@ -32,14 +46,23 @@ angular.module('FindAParty')
           //Get Party's hoster info:
           that.party.hoster = User.findById(that.party.hoster);
         }
-      }); 
+        
+        //If in /Parties/dashboard, load a list of invitiations
+        if($location.path().substring(0,18) === '/Parties/dashboard'){
+          that.party.invitations = Party.findInvitations(that.party.$id);
+          
+          that.confirmInvitation = function(invitation){
+            Party.updateInvitation(that.party.$id,invitation.user.$id,true);
+          };
+          
+          that.refuseInvitation = function(invitation){
+            Party.updateInvitation(that.party.$id,invitation.user.$id,false);
+          };
+        }
+      });
     }
     
     if($location.path() === '/Parties'){
-      //send page view to GA:
-      if(window.ga){
-        window.ga.trackView('Find Parties near you');
-      }
       //Need to define parties in $scope in order to be readable at GeoFire callback:
       $scope.parties = [];
       

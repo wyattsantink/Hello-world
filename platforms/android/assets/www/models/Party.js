@@ -107,14 +107,72 @@ angular.module('FindAParty')
             var geoRef = firebase.database().ref(findAParty.firebase.environment+'/parties-location/');
             var geoFire = new GeoFire(geoRef);
             geoFire.remove(data.key);
+            
+            var ref = firebase.database().ref(findAParty.firebase.environment+'/parties-invitation/'+data.key);
+            var invitation = $firebaseObject(ref);
+            invitation.$remove();
           });
         }else{
          party.$remove().then(function(data){
             var geoRef = firebase.database().ref(findAParty.firebase.environment+'/parties-location/');
             var geoFire = new GeoFire(geoRef);
             geoFire.remove(data.key);
+            
+            var ref = firebase.database().ref(findAParty.firebase.environment+'/parties-invitation/'+data.key);
+            var invitation = $firebaseObject(ref);
+            invitation.$remove();
          }); 
         }
+      },
+      
+      listenOnInvitation : function(partyId, userId, callback){
+        var ref = firebase.database().ref(findAParty.firebase.environment+'/parties-invitation/'+partyId+'/'+userId);
+        var invitation = $firebaseObject(ref);
+        invitation.$watch(function(){
+          if(invitation.isInvited === undefined){
+            callback(404); //not found
+          }else{
+            if(invitation.isInvited){
+              callback(200);//OK
+            }else{
+              callback(403);//forbidden
+            }
+          }
+        });
+      },
+      
+      createInvitation : function(partyId, userId){
+        var ref = firebase.database().ref(findAParty.firebase.environment+'/parties-invitation/'+partyId+'/'+userId);
+        var invitation = $firebaseObject(ref);
+        invitation.isInvited = false;
+        invitation.$save();
+      },
+      
+      updateInvitation : function(partyId, userId, value){
+        var ref = firebase.database().ref(findAParty.firebase.environment+'/parties-invitation/'+partyId+'/'+userId);
+        var invitation = $firebaseObject(ref);
+        invitation.isInvited = value;
+        invitation.$save();
+      },
+      
+      findInvitations : function(partyId){
+        var ref = firebase.database().ref(findAParty.firebase.environment+'/parties-invitation/'+partyId);
+        var invitations = $firebaseArray(ref);
+        invitations.$loaded().then(function(data){
+          for(var i = 0; i < invitations.length; i++){
+            var userRef = firebase.database().ref(findAParty.firebase.environment+'/users/' + invitations.$keyAt(i));
+            var user = $firebaseObject(userRef);
+            invitations[i].user = user;
+          }
+        });
+        
+        invitations.$watch(function(ev){
+          var userRef = firebase.database().ref(findAParty.firebase.environment+'/users/' + ev.key);
+          var user = $firebaseObject(userRef);
+          invitations[invitations.$indexFor(ev.key)].user = user;
+        });
+        
+        return invitations;
       }
     };
   });

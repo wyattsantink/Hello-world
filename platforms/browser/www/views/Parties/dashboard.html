@@ -85,33 +85,39 @@
     </md-card>
     
     
-    <!--  
-    <p class="label">Requests:</p>
       
-    <md-card class="card-party-reviews">
+    <p class="label" ng-show="PartiesCtrl.party.invitations.length > 0">Requests:</p>
+      
+    <md-card class="card-party-reviews" ng-show="PartiesCtrl.party.invitations.length > 0">
       <md-card-content>
-        <div ng-repeat="review in party.reviews">
+        <div ng-repeat="invitation in PartiesCtrl.party.invitations">
         <div layout="row">
           <div flex="10" class="ic">
-            <img src="img/avatar.png" class="img-responsive img-circle">
+            <img ng-src="{{invitation.user.photoUrl}}" class="img-responsive img-circle">
           </div>
           <div flex class="ic-label">
-            <p><span>{{review.userName}}<small class="ic-label-rating"> (5.0 <md-icon><i class="material-icons">star_border</i></md-icon>)</small></span></p>
+            <p><span>{{invitation.user.displayName}}<!--<small class="ic-label-rating"> (5.0 <md-icon><i class="material-icons">star_border</i></md-icon>)</small></span>--></p>
           </div>
           <div flex="10" class="ic-action">
-            <md-button class="md-icon-button" ng-click="">
+            <md-button class="md-icon-button" ng-click="PartiesCtrl.confirmInvitation(invitation)" ng-show="!invitation.isInvited">
               <md-icon><i class="material-icons">check</i></md-icon>
+            </md-button>
+            <md-button class="md-icon-button" ng-click="PartiesCtrl.refuseInvitation(invitation)" ng-show="invitation.isInvited">
+              <md-icon><i class="material-icons">close</i></md-icon>
             </md-button>
           </div>
         </div>
         <md-divider></md-divider>
         </div>
       </md-card-content>
+      <!--
       <md-card-actions layout="row" layout-align="end center">
         <md-button>View All</md-button>
       </md-card-actions>
+      -->
     </md-card>
-      
+    
+    <!--  
     <p class="label">Reviews:</p>
       
     <md-card class="card-party-reviews">
