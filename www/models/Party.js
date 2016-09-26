@@ -115,6 +115,17 @@ angular.module('FindAParty')
             geoFire.remove(data.key);
          }); 
         }
-      }
+      },
+      
+      createInvitation : function(partyId, userId){
+        var ref = firebase.database().ref(findAParty.firebase.environment+'/parties-invitation/'+partyId+'/'+userId);
+        var invitation = $firebaseObject(ref);
+        invitation.isInvited = false;
+        invitation.$save();
+      },
+      
+      updateInvitation : function(partyId, userId, value){},
+      
+      isInvited : function(partyId, userId){}
     };
   });

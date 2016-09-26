@@ -105,7 +105,7 @@
         
       </md-card-content>
       <md-card-actions layout="row" layout-align="end center"  ng-show="PartiesCtrl.party.type == 'private'">
-        <md-button class="btn-invite">
+        <md-button class="btn-invite" ng-click="PartiesCtrl.inviteMe()">
           <md-icon><i class="material-icons">loyalty</i></md-icon>
           Invite Me!
         </md-button>

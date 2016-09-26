@@ -20,6 +20,12 @@ angular.module('FindAParty')
     
     if($routeParams.id !== undefined){
       this.party = Party.findById($routeParams.id);
+      
+      this.inviteMe = function(){
+        Party.createInvitation(this.party.$id,$scope.uid);
+        $mdToast.show($mdToast.simple().textContent("Successfully Requested!").position('bottom end').hideDelay(3000));
+      };
+      
       var that = this;
       this.party.$loaded().then(function(data){
         //Enable the edit button:
@@ -32,7 +38,7 @@ angular.module('FindAParty')
           //Get Party's hoster info:
           that.party.hoster = User.findById(that.party.hoster);
         }
-      }); 
+      });
     }
     
     if($location.path() === '/Parties'){
