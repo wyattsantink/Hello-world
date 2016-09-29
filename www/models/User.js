@@ -59,6 +59,22 @@ angular.module('FindAParty')
         user.$save().then(function(){
           $mdToast.show($mdToast.simple().textContent('Data Saved!').hideDelay(3000));
         });
+      },
+      
+      favoriteParty : function(userId,partyId,favorite){
+        var ref = firebase.database().ref(findAParty.firebase.environment+'/users-favorite/'+userId+'/'+partyId);
+        var isFavorite = $firebaseObject(ref);
+        if(favorite){
+          isFavorite.favorite = true;
+          isFavorite.$save();
+        }else{
+          isFavorite.$remove();
+        }
+      },
+      
+      isFavorite : function(userId,partyId){
+        var ref = firebase.database().ref(findAParty.firebase.environment+'/users-favorite/'+userId+'/'+partyId);
+        return $firebaseObject(ref);
       }
     };
   });

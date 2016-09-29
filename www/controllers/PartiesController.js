@@ -45,6 +45,15 @@ angular.module('FindAParty')
         if($location.path().substring(0,13) === '/Parties/show'){
           //Get Party's hoster info:
           that.party.hoster = User.findById(that.party.hoster);
+          
+          //Favorite Parties functions:
+          that.favoriteParty = function(){
+            User.favoriteParty($scope.uid,that.party.$id,true);
+          };
+          that.unfavoriteParty = function(){
+            User.favoriteParty($scope.uid,that.party.$id,false);
+          };
+          that.isFavorite = User.isFavorite($scope.uid,that.party.$id);
         }
         
         //If in /Parties/dashboard, load a list of invitiations
