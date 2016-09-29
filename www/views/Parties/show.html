@@ -14,12 +14,6 @@
           <span>{{PartiesCtrl.party.name}}</span>
         </h2>
         <span flex></span>
-        <md-button class="md-icon-button" ng-show="PartiesCtrl.isFavorite.favorite === true" ng-click="PartiesCtrl.unfavoriteParty()">
-          <md-icon><i class="material-icons">favorite</i></md-icon>
-        </md-button>
-        <md-button class="md-icon-button" ng-show="PartiesCtrl.isFavorite.favorite === undefined" ng-click="PartiesCtrl.favoriteParty()">
-          <md-icon><i class="material-icons">favorite_border</i></md-icon>
-        </md-button>
       </div>
     </md-toolbar>  
 
@@ -62,7 +56,15 @@
           </div>
         </div>
         
+        <br><md-divider></md-divider>
+        
       </md-card-content>
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button class="md-icon-button" ng-click="PartiesCtrl.favoriteParty()">
+          <md-icon ng-show="isFavorite"><i class="material-icons">favorite</i></md-icon>
+          <md-icon ng-show="!isFavorite"><i class="material-icons">favorite_border</i></md-icon>
+        </md-button>
+      </md-card-actions>
     </md-card>
   </div>  
 </div>

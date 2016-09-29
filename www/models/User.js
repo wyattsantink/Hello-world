@@ -72,9 +72,13 @@ angular.module('FindAParty')
         }
       },
       
-      isFavorite : function(userId,partyId){
+      listenOnFavorite : function(userId,partyId,callback){
         var ref = firebase.database().ref(findAParty.firebase.environment+'/users-favorite/'+userId+'/'+partyId);
-        return $firebaseObject(ref);
+        var usersFavorite = $firebaseObject(ref);
+        usersFavorite.$watch(function(){
+          callback(usersFavorite.favorite);
+        });
+        return usersFavorite;
       }
     };
   });

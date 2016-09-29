@@ -48,12 +48,23 @@ angular.module('FindAParty')
           
           //Favorite Parties functions:
           that.favoriteParty = function(){
-            User.favoriteParty($scope.uid,that.party.$id,true);
+            if(!$scope.isFavorite){
+              $mdToast.show($mdToast.simple().textContent("Added to Favorites").position('bottom end').hideDelay(3000));
+            }else{
+              $mdToast.show($mdToast.simple().textContent("Removed from Favorites").position('bottom end').hideDelay(3000));
+            }
+            User.favoriteParty($scope.uid,that.party.$id,!$scope.isFavorite);
           };
-          that.unfavoriteParty = function(){
-            User.favoriteParty($scope.uid,that.party.$id,false);
+          
+          that.setFavorite = function(value){
+            if(value){
+              $scope.isFavorite = true;
+            }else{
+              $scope.isFavorite = false;
+            }
           };
-          that.isFavorite = User.isFavorite($scope.uid,that.party.$id);
+          that.unlistenOnFavorite = User.listenOnFavorite($scope.uid,that.party.$id,that.setFavorite);
+
         }
         
         //If in /Parties/dashboard, load a list of invitiations
