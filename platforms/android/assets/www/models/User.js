@@ -1,5 +1,5 @@
 angular.module('FindAParty')
-  .factory('User', function UserFactory($location, $firebaseObject, $mdToast){
+  .factory('User', function UserFactory($location, $firebaseObject, $firebaseArray, $mdToast){
     return {
       verifyLogin : function(callback){
         firebase.auth().onAuthStateChanged(function(user) {
@@ -59,6 +59,48 @@ angular.module('FindAParty')
         user.$save().then(function(){
           $mdToast.show($mdToast.simple().textContent('Data Saved!').hideDelay(3000));
         });
+      },
+      
+      favoriteParty : function(userId,partyId,favorite){
+        var ref = firebase.database().ref(findAParty.firebase.environment+'/users-favorite/'+userId+'/'+partyId);
+        var isFavorite = $firebaseObject(ref);
+        if(favorite){
+          isFavorite.favorite = true;
+          isFavorite.$save();
+        }else{
+          isFavorite.$remove();
+        }
+      },
+      
+      findFavoritesFrom : function(userId){
+        //Displays the loading bar:
+        if(document.getElementById('parties-loading')){document.getElementById('parties-loading').style.display = 'block';}
+        
+        var ref = firebase.database().ref(findAParty.firebase.environment + '/users-favorite/' + userId);
+        var favorites = $firebaseArray(ref);
+        
+        favorites.$watch(function(ev){
+          var partyRef = firebase.database().ref(findAParty.firebase.environment + '/parties/' + ev.key);
+          var party = $firebaseObject(partyRef);
+          
+          favorites[favorites.$indexFor(ev.key)].party = party;
+        });
+        
+        favorites.$loaded().then(function(){
+          //Hides the loading bar:
+          if(document.getElementById('parties-loading')){document.getElementById('parties-loading').style.display = 'none';}
+        });
+        
+        return favorites;
+      },
+      
+      listenOnFavorite : function(userId,partyId,callback){
+        var ref = firebase.database().ref(findAParty.firebase.environment+'/users-favorite/'+userId+'/'+partyId);
+        var usersFavorite = $firebaseObject(ref);
+        usersFavorite.$watch(function(){
+          callback(usersFavorite.favorite);
+        });
+        return usersFavorite;
       }
     };
   });

@@ -139,6 +139,10 @@ angular.module('FindAParty')
       };
     }
     
+    if($location.path() === '/Parties/favorite'){
+      this.favorites = User.findFavoritesFrom($scope.uid);
+    }
+    
     this.getPartyErrors = function(){
       var partyErrors = [];
       

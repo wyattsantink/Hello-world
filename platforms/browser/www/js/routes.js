@@ -66,6 +66,11 @@ angular.module('FindAParty')
         controller : 'PartiesController',
         controllerAs : 'PartiesCtrl'
       })
+      .when('/Parties/favorite', {
+        templateUrl : 'views/Parties/favorite.html',
+        controller : 'PartiesController',
+        controllerAs : 'PartiesCtrl'
+      })
       .when('/Parties/search/:query', {
         templateUrl : 'views/Parties/search.html',
         controller : 'PartiesController',

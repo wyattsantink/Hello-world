@@ -44,7 +44,6 @@
     <md-card class="card-party-description">
       <md-card-content>
         <p class="description">{{PartiesCtrl.party.details}}</p>
-
         <div layout="row">
           <div flex="10" class="ic">
             <img ng-src="{{PartiesCtrl.party.hoster.photoUrl}}" class="img-responsive img-circle">
@@ -57,7 +56,15 @@
           </div>
         </div>
         
+        <br><md-divider></md-divider>
+        
       </md-card-content>
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button class="md-icon-button" ng-click="PartiesCtrl.favoriteParty()">
+          <md-icon ng-show="isFavorite"><i class="material-icons">favorite</i></md-icon>
+          <md-icon ng-show="!isFavorite"><i class="material-icons">favorite_border</i></md-icon>
+        </md-button>
+      </md-card-actions>
     </md-card>
   </div>  
 </div>
@@ -67,7 +74,7 @@
     <md-card class="card-party-address">
       <img ng-src="{{getStaticMapUrl(PartiesCtrl.party.location.lat,PartiesCtrl.party.location.lng,{})}}" class="img-responsive" ng-show="(PartiesCtrl.party.type == 'public') || ( (PartiesCtrl.party.type == 'private') && (invitationStatus == 200) )">
       <md-card-content>
-        <div layout="row" ng-show="PartiesCtrl.party.type == 'public'">
+        <div layout="row" ng-show="(PartiesCtrl.party.type == 'public') || ( (PartiesCtrl.party.type == 'private') && (invitationStatus == 200) )">
           <div flex="10" class="ic">
             <md-icon><i class="material-icons">location_on</i></md-icon>
           </div>
@@ -76,21 +83,12 @@
           </div>
         </div>
         
-        <div layout="row" ng-show="invitationStatus !== 200">
+        <div layout="row" ng-show="( (PartiesCtrl.party.type == 'private') && (invitationStatus !== 200) )">
           <div flex="10" class="ic">
             <md-icon><i class="material-icons">location_off</i></md-icon>
           </div>
           <div flex class="ic-label">
             <p><span>You need an invitation to see this address</span></p>
-          </div>
-        </div>
-        
-        <div layout="row" ng-show="invitationStatus == 200">
-          <div flex="10" class="ic">
-            <md-icon><i class="material-icons">location_on</i></md-icon>
-          </div>
-          <div flex class="ic-label">
-            <p><span>{{PartiesCtrl.party.location.address}}</span></p>
           </div>
         </div>
         

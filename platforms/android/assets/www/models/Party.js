@@ -174,5 +174,6 @@ angular.module('FindAParty')
         
         return invitations;
       }
+      
     };
   });

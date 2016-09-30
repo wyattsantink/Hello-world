@@ -45,6 +45,26 @@ angular.module('FindAParty')
         if($location.path().substring(0,13) === '/Parties/show'){
           //Get Party's hoster info:
           that.party.hoster = User.findById(that.party.hoster);
+          
+          //Favorite Parties functions:
+          that.favoriteParty = function(){
+            if(!$scope.isFavorite){
+              $mdToast.show($mdToast.simple().textContent("Added to Favorites").position('bottom end').hideDelay(3000));
+            }else{
+              $mdToast.show($mdToast.simple().textContent("Removed from Favorites").position('bottom end').hideDelay(3000));
+            }
+            User.favoriteParty($scope.uid,that.party.$id,!$scope.isFavorite);
+          };
+          
+          that.setFavorite = function(value){
+            if(value){
+              $scope.isFavorite = true;
+            }else{
+              $scope.isFavorite = false;
+            }
+          };
+          that.unlistenOnFavorite = User.listenOnFavorite($scope.uid,that.party.$id,that.setFavorite);
+
         }
         
         //If in /Parties/dashboard, load a list of invitiations
@@ -117,6 +137,10 @@ angular.module('FindAParty')
         $scope.parties = [];
         Party.findByLocation(findAParty.userLocation.lat, findAParty.userLocation.lng, this.addParty, this.deleteParty);
       };
+    }
+    
+    if($location.path() === '/Parties/favorite'){
+      this.favorites = User.findFavoritesFrom($scope.uid);
     }
     
     this.getPartyErrors = function(){

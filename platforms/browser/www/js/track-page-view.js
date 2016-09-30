@@ -73,7 +73,12 @@ function trackPageView(location){
       window.ga.trackView('Party Search');
       return;    
     }
-  
+    
+    if(location === '/Parties/favorite'){
+      window.ga.trackView('Party Favorite');
+      return;    
+    }
+    
     // '/Parties/search/:query'
     if(location.substring(0,16) === '/Parties/search/'){
       window.ga.trackView('Party Search');
