@@ -89,7 +89,7 @@ function initMap(){
       
       //Stop progress bar after creating map:
       google.maps.event.addListenerOnce(map, 'tilesloaded',function(){
-        document.getElementById("load-progress").style.display = 'none';
+        document.getElementById("parties-loading").style.display = 'none';
       });
     },
     function(err){
@@ -107,7 +107,7 @@ function setCurrentMapCenter(){
 //Center the Map with updated location:
 function centerMap(){
   //Start progress bar:
-  document.getElementById("load-progress").style.display = 'flex';
+  document.getElementById("parties-loading").style.display = 'flex';
   navigator.geolocation.getCurrentPosition(
     function(pos){
       //success callback:
@@ -119,7 +119,7 @@ function centerMap(){
       findAParty.userLocation = myLatLng;
       //Stop progress bar:
       google.maps.event.addListener(map, 'center_changed', function(){
-        document.getElementById("load-progress").style.display = 'none';
+        document.getElementById("parties-loading").style.display = 'none';
       });
       //Set the new center:
       map.setCenter(myLatLng);
@@ -128,7 +128,7 @@ function centerMap(){
     },
     function(err){
       //error callback:
-      document.getElementById("load-progress").style.display = 'none';
+      document.getElementById("parties-loading").style.display = 'none';
     },
     geoOptions
   );  

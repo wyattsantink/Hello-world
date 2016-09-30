@@ -131,6 +131,13 @@ angular.module('FindAParty')
         Party.findByLocation(findAParty.userLocation.lat, findAParty.userLocation.lng, this.addParty, this.deleteParty);
       }
       
+      //[Bug-workaround]
+      //The progress bar doesn't get hidden when changing from Home->index to Parties->index
+      //set-up a 0.5s delay to force hidding it:
+      setTimeout(function(){
+        if(document.getElementById('parties-loading')){document.getElementById('parties-loading').style.display = 'none';}
+      }, 500);
+      
       this.clearSelectedAddress = function(){
         $scope.partyFilters.selectedAddress = null;
         //Reload parties:

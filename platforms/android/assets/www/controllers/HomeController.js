@@ -46,7 +46,12 @@ angular.module('FindAParty')
       
       Party.findByLocation(mapCenter.lat(), mapCenter.lng(), this.addMarker, this.deleteMarker);
     };
-    setTimeout(this.addPartiesMarkers, 3000);
+    if(findAParty.firstAccessFlag){
+      setTimeout(this.addPartiesMarkers, 5000);
+    }else{
+      setTimeout(this.addPartiesMarkers, 3000);
+    }
+    
     
     this.searchThisLocation = function(){
       document.getElementById('search-parties-box').style.display = "none";
